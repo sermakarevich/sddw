@@ -48,5 +48,5 @@ Follow the three-phase flow defined in the questionnaire:
 
 ## Next Step
 
-After the user approves the design, suggest running:
-> `/sddw:implement <feature-name>`
+After the user approves the design, suggest:
+> Run `/clear` to free up context, then `/sddw:implement <feature-name> --task 1`

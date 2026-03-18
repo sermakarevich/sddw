@@ -34,5 +34,5 @@ Follow the three-phase flow defined in the questionnaire:
 
 ## Next Step
 
-After the user approves the requirements, suggest running:
-> `/sddw:design <feature-name>`
+After the user approves the requirements, suggest:
+> Run `/clear` to free up context, then `/sddw:design <feature-name>`
