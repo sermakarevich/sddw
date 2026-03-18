@@ -15,3 +15,7 @@ argument-hint: "<feature-name>"
 # SPECS
 @~/.claude/sddw/specs/design-analysis.md
 @~/.claude/sddw/specs/design-task.md
+
+# NEXT STEP
+After the user approves the design, suggest:
+> Run `/clear` to free up context, then `/sddw:implement <feature-name> --task 1`

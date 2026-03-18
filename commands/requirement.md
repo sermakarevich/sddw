@@ -16,3 +16,7 @@ If no feature name is provided, ask the user to describe the feature they want t
 
 # SPECS
 @~/.claude/sddw/specs/requirements.md
+
+# NEXT STEP
+After the user approves the requirements, suggest:
+> Run `/clear` to free up context, then `/sddw:design <feature-name>`
