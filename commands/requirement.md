@@ -17,7 +17,7 @@ If no feature name is provided, ask the user to describe the feature they want t
 ## Spec Reference
 
 Read the requirements spec template before generating:
-@specs/requirements.md
+@~/.claude/sddw/specs/requirements.md
 
 ## Process
 

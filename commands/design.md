@@ -22,7 +22,7 @@ If the requirements spec does not exist, inform the user and suggest running `/s
 ## Spec Reference
 
 Read the design spec template before generating:
-@specs/design.md
+@~/.claude/sddw/specs/design.md
 
 ## Process
 
