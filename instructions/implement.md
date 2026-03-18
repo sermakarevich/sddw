@@ -7,40 +7,31 @@ Implement a single task from the design spec. This is Step 3 of the sddw workflo
 - `<feature-name>` — the feature being implemented
 - `--task <N>` — the task number to execute (e.g., `--task 1`)
 
-If no `--task` is provided, list available tasks from `.sddw/<feature-name>/design/tasks/` showing their status (done criteria checked or not) and ask the user which task to execute.
+If no `--task` is provided, list available tasks and ask the user which to execute.
 
 ## Prerequisites
 
-1. Read the task file: `.sddw/<feature-name>/design/tasks/task-<N>-*.md`
-2. If the task file does not exist, list available tasks and ask the user to pick one.
-3. Check `Depends on:` — if dependencies are not yet complete (done criteria unchecked in their task files), warn the user and ask whether to proceed anyway.
+Read the task file: `.sddw/<feature-name>/design/tasks/task-<N>-*.md`
+
+Check `Depends on:` — if dependencies are not yet complete, warn the user.
 
 Reference only if needed:
-- `.sddw/<feature-name>/design/analysis.md` — for design decisions or additional architectural context
-- `.sddw/<feature-name>/requirements.md` — if acceptance criteria in the task file need clarification
+- `.sddw/<feature-name>/design/analysis.md` — for design decisions or additional context
+- `.sddw/<feature-name>/requirements.md` — if acceptance criteria need clarification
+
+## Process
+
+Follow the three-phase flow defined in the questionnaire:
+
+1. **Discover** — Identify the task, check dependencies, ask if there's any context since the design was written.
+
+2. **Research & Propose** — Scan codebase for current state of files, research test patterns and library usage. Propose implementation approach and TDD applicability. User confirms.
+
+3. **Execute & Report** — Implement following TDD Protocol, Commit Protocol, and Deviation Handling below. Report completion and suggest next task.
 
 ---
 
-## 1. Task Execution
-
-The task file is self-contained. Execute it:
-
-1. **Load** — Read the task file. It contains FR-IDs, contracts, acceptance criteria, data models, files to modify, and done criteria.
-2. **Implement** — Write code following TDD Protocol (section 2) if applicable, or implement directly for non-TDD tasks. Respect interface contracts exactly as specified.
-3. **Verify** — Run tests. Check that acceptance criteria are satisfied. If verification fails: retry once with error feedback, then escalate to user.
-4. **Commit** — Follow Commit Protocol (section 3).
-5. **Track** — Check off done criteria in the task file.
-6. **Report** — Tell the user what was done and suggest the next task.
-
-**Rules:**
-- SHALL load the task file as primary context — it contains everything needed
-- SHALL implement interface contracts exactly as specified (method signatures, error codes, response shapes)
-- SHALL respect data model constraints (field types, validation rules, relationships)
-- SHALL NOT skip done criteria without user approval
-
----
-
-## 2. TDD Protocol
+## TDD Protocol
 
 Use TDD for tasks involving business logic, APIs, validation, data transformations, or algorithms. Skip TDD for UI layout, configuration, glue code, and simple CRUD.
 
@@ -68,7 +59,7 @@ Use TDD for tasks involving business logic, APIs, validation, data transformatio
 
 ---
 
-## 3. Commit Protocol
+## Commit Protocol
 
 One task = one commit. Commit after tests pass, never before.
 
@@ -107,7 +98,7 @@ type(feature-name): description (FR-01, FR-02)
 
 ---
 
-## 4. Deviation Handling
+## Deviation Handling
 
 Deviations during implementation are normal. Classify and handle:
 
@@ -118,43 +109,12 @@ Deviations during implementation are normal. Classify and handle:
 | **3: Blocking** | Prevents completion: missing deps, wrong types, broken imports, missing config | Fix blocker → verify → document | Auto |
 | **4: Architectural** | Structural change: new DB table, schema change, new service, switching libraries, breaking API | STOP → present to user → document | Ask user |
 
-**Rule 4 format — present to user:**
-```
-Architectural Decision Needed
-
-Current task: [task name]
-Discovery: [what prompted this]
-Proposed change: [what needs to change]
-Why needed: [rationale]
-Impact: [what this affects]
-Alternatives: [other approaches]
-
-Proceed? (yes / different approach / defer)
-```
-
 **Priority:** Rule 4 (STOP) > Rules 1-3 (auto) > unsure → Rule 4.
 
 **Rules:**
 - ALL deviations SHALL be documented (rule number, what was found, what was done)
 - Auto-fixed deviations (Rules 1-3) SHALL be mentioned in the commit message
 - If a deviation reveals a spec gap, note it in the task file for the verification step
-
----
-
-## 5. Progress Tracking
-
-After completing the task:
-
-1. Check off done criteria in the task file: `- [ ]` → `- [x]`
-2. Report to user:
-   - What was implemented
-   - Commit hash
-   - Any deviations (count by rule, brief description)
-3. Suggest the next task:
-   - List remaining tasks with unchecked done criteria
-   - Identify which are unblocked (dependencies satisfied)
-   - Suggest: `/sddw:implement <feature-name> --task <next-N>`
-4. If all tasks are complete, suggest: `/sddw:verify <feature-name>`
 
 ---
 

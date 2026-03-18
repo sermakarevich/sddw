@@ -8,3 +8,6 @@ argument-hint: "<feature-name> [--task <task-number>]"
 
 # INSTRUCTIONS
 @~/.claude/sddw/instructions/implement.md
+
+# QUESTIONNAIRE
+@~/.claude/sddw/questionnaires/implement.md

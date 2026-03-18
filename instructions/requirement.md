@@ -2,20 +2,19 @@
 
 Generate a requirements specification for a feature. This is Step 1 of the sddw workflow.
 
+## Goal
+
+Produce a precise, clear, and complete requirements spec in cooperation with the user. Every section written to the output file SHALL be explicitly accepted by the user before generation. The spec is a co-authored artifact — the agent proposes, the user decides.
+
 ## Process
 
-1. **Clarify scope** — Ask the user 2-3 targeted questions to understand the feature. Do not proceed until scope is clear.
+Follow the three-phase flow defined in the questionnaire:
 
-2. **Generate the requirements spec** following the template structure:
-   - **Purpose** — 1-2 sentences: what and why
-   - **User Stories** — 2-5 stories in As a / I want / So that format
-   - **Functional Requirements** — FR-01, FR-02, etc. with SHALL/SHOULD/MAY/SHALL NOT
-   - **Acceptance Criteria** — Given/When/Then scenarios per FR (happy path + failure path)
-   - **Constraints** — In Scope, Out of Scope (with reasons), Prohibitions (SHALL NOT)
+1. **Discover** — Ask the user to describe the feature. Follow the thread, challenge vagueness, make the abstract concrete. Gather enough context for Purpose, User Stories, and Constraints.
 
-3. **Write the spec** to `.sddw/<feature-name>/requirements.md` in the project root.
+2. **Research & Propose** — Based on discovery, research the problem space (web search, codebase analysis, domain knowledge). For each spec section, propose 2-3 ranked options with rationale. User accepts, modifies, or provides their own input.
 
-4. **Present to user** for review and refinement. Iterate until approved.
+3. **Confirm & Generate** — Summarise what will be written. User confirms. Write the spec to `.sddw/<feature-name>/requirements.md` following the spec template.
 
 ## Rules
 
@@ -25,6 +24,7 @@ Generate a requirements specification for a feature. This is Step 1 of the sddw 
 - Every FR SHALL be atomic, testable, and user-centric
 - Every FR SHALL have at least one acceptance criterion
 - Include explicit prohibitions (SHALL NOT) to prevent unwanted agent behaviour
+- SHALL NOT proceed to generation without user approval on all sections
 
 ## Output
 

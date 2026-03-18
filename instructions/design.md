@@ -1,6 +1,10 @@
 # Design Step Instructions
 
-Generate a design specification for a feature. This is Step 2 of the sddw workflow. Reads the requirements spec from Step 1 as input.
+Generate design artifacts for a feature. This is Step 2 of the sddw workflow. Reads the requirements spec from Step 1 as input.
+
+## Goal
+
+Produce precise, clear, and complete design artifacts in cooperation with the user. Every section written to the output files SHALL be explicitly accepted by the user before generation. The design is a co-authored artifact — the agent proposes, the user decides.
 
 ## Prerequisites
 
@@ -11,34 +15,13 @@ If the requirements spec does not exist, inform the user and suggest running `/s
 
 ## Process
 
-1. **Read requirements spec** — Load `.sddw/<feature-name>/requirements.md` and extract all FRs, acceptance criteria, and constraints.
+Follow the three-phase flow defined in the questionnaire:
 
-2. **Analyse the codebase** — Identify relevant patterns, key interfaces, existing flows, and conventions that the design must follow.
+1. **Discover** — Ask the user about preferred approaches, constraints, and integration concerns. The requirements spec provides the "what" — now understand the user's preferences for "how".
 
-3. **Generate analysis.md** following the design-analysis spec template:
-   - **Codebase Analysis** — patterns, interfaces, flows, conventions
-   - **Architecture** — component breakdown (new/existing/modified), data flow for happy and error paths
-   - **Data Models** — entities with typed fields and constraints, relationships, schema changes
-   - **Interface Contracts** — API endpoints with input/output/errors, internal method signatures with pre/post-conditions
-   - **Design Decisions** — chosen approach, rationale, rejected alternatives
+2. **Research & Propose** — Analyse the codebase for patterns, interfaces, and conventions. For each design section (architecture, data models, interface contracts, design decisions, task breakdown), propose ranked options with rationale. User accepts, modifies, or provides their own approach.
 
-4. **Generate individual task files** following the design-task spec template. For each task, create a self-contained file that includes:
-   - FR-IDs it traces to
-   - Dependencies on other tasks
-   - Files to create or modify
-   - Relevant interface contracts (copied from analysis.md)
-   - Relevant acceptance criteria (copied from requirements.md)
-   - Done criteria
-
-5. **Write the artifacts** to:
-   ```
-   .sddw/<feature-name>/design/analysis.md
-   .sddw/<feature-name>/design/tasks/task-1-<slug>.md
-   .sddw/<feature-name>/design/tasks/task-2-<slug>.md
-   ...
-   ```
-
-6. **Present to user** for review and refinement. Iterate until approved.
+3. **Confirm & Generate** — Summarise what will be written. User confirms. Generate the artifacts following the spec templates.
 
 ## Rules
 
@@ -50,6 +33,7 @@ If the requirements spec does not exist, inform the user and suggest running `/s
 - Each task file SHALL be self-contained with all context needed to implement
 - SHALL NOT introduce patterns that conflict with existing codebase conventions
 - SHALL document non-obvious decisions with rationale and rejected alternatives
+- SHALL NOT proceed to generation without user approval
 
 ## Output
 

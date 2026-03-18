@@ -9,6 +9,9 @@ argument-hint: "<feature-name>"
 # INSTRUCTIONS
 @~/.claude/sddw/instructions/design.md
 
+# QUESTIONNAIRE
+@~/.claude/sddw/questionnaires/design.md
+
 # SPECS
 @~/.claude/sddw/specs/design-analysis.md
 @~/.claude/sddw/specs/design-task.md

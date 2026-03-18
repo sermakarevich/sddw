@@ -11,5 +11,8 @@ If no feature name is provided, ask the user to describe the feature they want t
 # INSTRUCTIONS
 @~/.claude/sddw/instructions/requirement.md
 
+# QUESTIONNAIRE
+@~/.claude/sddw/questionnaires/requirement.md
+
 # SPECS
 @~/.claude/sddw/specs/requirements.md

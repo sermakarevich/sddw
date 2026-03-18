@@ -8,3 +8,6 @@ argument-hint: "<feature-name>"
 
 # INSTRUCTIONS
 @~/.claude/sddw/instructions/verify.md
+
+# QUESTIONNAIRE
+@~/.claude/sddw/questionnaires/verify.md
