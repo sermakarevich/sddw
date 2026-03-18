@@ -2,14 +2,6 @@
 
 Three-phase dialog for executing a single task from the design spec.
 
-## Dialog Rules
-
-- Ask ONE question at a time. Wait for the user's response before asking the next.
-- Never dump multiple questions in a single message.
-- SHALL NOT dump instructions, spec templates, or full output structure to the user. Use them as internal guidance. Present proposals in conversational form and confirm before proceeding.
-- When presenting options (task selection, approach choices), SHALL use the AskUserQuestion tool with structured options (2-4 choices). Add "(Recommended)" to the preferred option label.
-- Use plain text only for open-ended questions where options don't apply.
-
 ---
 
 ## Phase 1: Discover
