@@ -2,21 +2,35 @@
 
 Three-phase dialog to gather enough context to produce the design artifacts (analysis.md + task files).
 
+## Dialog Rules
+
+- Ask ONE question at a time. Wait for the user's response before asking the next.
+- Use the user's answer to shape the follow-up — do not follow a script.
+- Build understanding incrementally — each answer narrows the next question.
+- Never dump multiple questions in a single message.
+- SHALL NOT dump the spec template or full output structure to the user. Use the spec as internal guidance. Present proposals in conversational form, one block at a time, and confirm each before moving on.
+- When presenting options, SHALL use the AskUserQuestion tool with structured options (2-4 choices). Use `multiSelect: true` when choices are not mutually exclusive. Add "(Recommended)" to the preferred option label. Use `preview` field for code snippets, architecture diagrams, or spec block previews.
+- Use plain text only for open-ended discovery questions where options don't apply.
+
 ---
 
 ## Phase 1: Discover
 
-Understand the implementation landscape. The requirements spec is already written — now understand how it maps to the codebase.
+Understand the implementation landscape. The requirements spec is already written — now understand how it maps to the codebase. One question at a time.
 
-**Open question:**
+**Step 1 — Open:**
 > "I've read the requirements. Before I analyse the codebase, is there anything specific about the architecture or approach you have in mind?"
 
-**Follow-up techniques:**
+Wait for response.
+
+**Step 2+** — Follow up based on their answer. Pick ONE at a time:
 - **Surface assumptions** — "are you thinking this lives in [module] or should it be separate?"
 - **Identify constraints** — "any libraries or patterns you want to use or avoid?"
 - **Clarify integration** — "how should this connect to [existing feature]?"
 
-**Context checklist** (background, not a script):
+Offer 2-4 concrete options based on what you see in the codebase.
+
+**Context checklist** (background, not a script — weave naturally):
 - [ ] Any preferred architectural approach
 - [ ] Known constraints (libraries, patterns, performance)
 - [ ] Integration points the user cares about
@@ -26,7 +40,7 @@ Understand the implementation landscape. The requirements spec is already writte
 
 ## Phase 2: Research & Propose
 
-Analyse the codebase and propose design options for each section.
+Analyse the codebase and propose design options ONE section at a time. Wait for approval before moving to the next.
 
 ### 2.1 Research
 
@@ -34,46 +48,61 @@ Analyse the codebase and propose design options for each section.
 - **Dependency analysis** — what modules are affected, what's the impact radius
 - **Web search** — if the feature involves unfamiliar tech, research best practices and packages
 
-### 2.2 Propose
+### 2.2 Propose (one section at a time)
 
-**Architecture — propose component breakdown:**
+Present each section separately. Wait for user approval before proposing the next.
+
+**Section 1 — Architecture:**
 > "Here's how I'd structure this feature:"
 > - [Component A]: [responsibility] — new
 > - [Component B]: [responsibility] — modify existing
 > - [Component C]: [responsibility] — reuse existing
 > "Data flow: [source] → [action] → [destination]"
 > "Alternative approach: [brief description]. I prefer option 1 because [reason]."
+> "Agree with this structure?"
 
-**Data Models — propose entities:**
+Wait for response. Lock in approved architecture.
+
+**Section 2 — Data Models:**
 > "I'd need these entities:"
 > - [Entity]: [key fields and types]
 > "This requires a migration. Rollback strategy: [description]."
+> "Agree, or would you change the schema?"
 
-**Interface Contracts — propose APIs and signatures:**
+Wait for response. Lock in approved models.
+
+**Section 3 — Interface Contracts:**
 > "API endpoints:"
 > - [METHOD] [path]: [description, input, output, errors]
 > "Internal interfaces:"
 > - [Module.method(params) -> return]: [purpose]
 > "Agree with these contracts?"
 
-**Design Decisions — propose choices:**
+Wait for response. Lock in approved contracts.
+
+**Section 4 — Design Decisions:**
+For each non-obvious decision, present ONE at a time:
 > "Decision needed: [title]"
 > 1. **[Option A]** — [pros]. [cons].
 > 2. **[Option B]** — [pros]. [cons].
-> "I recommend option 1 because [rationale]."
+> "I recommend option 1 because [rationale]. Your call?"
 
-**Task Decomposition — propose task breakdown:**
+Wait for response. Lock in decision. Move to next decision if any.
+
+**Section 5 — Task Decomposition:**
 > "I'd break this into [N] tasks:"
 > 1. Task 1: [description] (FR-01) — depends on: none
 > 2. Task 2: [description] (FR-02) — depends on: task 1
 > "Tasks 1 and [N] can run in parallel. Agree with this ordering?"
 
+Wait for response. Lock in approved tasks.
+
 ### Rules for proposing:
+- SHALL propose ONE section at a time, wait for approval, then move to next
 - SHALL base proposals on actual codebase analysis, not assumptions
 - SHALL present architecture alternatives when non-obvious
 - SHALL include rationale for every design decision
 - User can accept, modify, or propose their own approach for any section
-- SHALL NOT proceed to generation without user approval
 
 ---
 
