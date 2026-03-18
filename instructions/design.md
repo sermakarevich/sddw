@@ -15,17 +15,30 @@ If the requirements spec does not exist, inform the user and suggest running `/s
 
 2. **Analyse the codebase** — Identify relevant patterns, key interfaces, existing flows, and conventions that the design must follow.
 
-3. **Generate the design spec** following the template structure:
+3. **Generate analysis.md** following the design-analysis spec template:
    - **Codebase Analysis** — patterns, interfaces, flows, conventions
    - **Architecture** — component breakdown (new/existing/modified), data flow for happy and error paths
    - **Data Models** — entities with typed fields and constraints, relationships, schema changes
    - **Interface Contracts** — API endpoints with input/output/errors, internal method signatures with pre/post-conditions
-   - **Task Decomposition** — atomic tasks traced to FR-IDs, dependency-ordered, with file references
    - **Design Decisions** — chosen approach, rationale, rejected alternatives
 
-4. **Write the spec** to `.sddw/<feature-name>/design.md` in the project root.
+4. **Generate individual task files** following the design-task spec template. For each task, create a self-contained file that includes:
+   - FR-IDs it traces to
+   - Dependencies on other tasks
+   - Files to create or modify
+   - Relevant interface contracts (copied from analysis.md)
+   - Relevant acceptance criteria (copied from requirements.md)
+   - Done criteria
 
-5. **Present to user** for review and refinement. Iterate until approved.
+5. **Write the artifacts** to:
+   ```
+   .sddw/<feature-name>/design/analysis.md
+   .sddw/<feature-name>/design/tasks/task-1-<slug>.md
+   .sddw/<feature-name>/design/tasks/task-2-<slug>.md
+   ...
+   ```
+
+6. **Present to user** for review and refinement. Iterate until approved.
 
 ## Rules
 
@@ -34,13 +47,19 @@ If the requirements spec does not exist, inform the user and suggest running `/s
 - Every task SHALL trace to one or more FR-IDs
 - Every FR SHALL appear in at least one task
 - Tasks SHALL be dependency-ordered (independent first) with explicit `Depends on:` field
+- Each task file SHALL be self-contained with all context needed to implement
 - SHALL NOT introduce patterns that conflict with existing codebase conventions
 - SHALL document non-obvious decisions with rationale and rejected alternatives
 
 ## Output
 
 ```
-.sddw/<feature-name>/design.md
+.sddw/<feature-name>/design/
+├── analysis.md
+└── tasks/
+    ├── task-1-<slug>.md
+    ├── task-2-<slug>.md
+    └── ...
 ```
 
 ## Next Step

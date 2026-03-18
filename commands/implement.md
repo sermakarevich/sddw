@@ -6,4 +6,5 @@ argument-hint: "<feature-name> [--task <task-number>]"
 
 <feature_name> #$ARGUMENTS </feature_name>
 
+# INSTRUCTIONS
 @~/.claude/sddw/instructions/implement.md

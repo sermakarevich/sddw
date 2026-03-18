@@ -159,41 +159,7 @@ API endpoints, method signatures, and error responses. These are the contracts t
 
 ---
 
-## 5. Task Decomposition
-
-Atomic, implementable units traced back to functional requirements. Each task SHALL be completable in a single implementation pass and independently testable.
-
-**Format:**
-```
-- [ ] Task 1: [Action-oriented description] (FR-01) — [files]
-      Depends on: none
-- [ ] Task 2: [Action-oriented description] (FR-01, FR-02) — [files]
-      Depends on: Task 1
-```
-
-**Rules:**
-- Each task traces to one or more FR-IDs from the requirements spec
-- Every FR SHALL appear in at least one task
-- Tasks SHALL be ordered by dependency (independent tasks first)
-- Tasks SHOULD be small enough for a single commit
-- Each task SHALL reference the files it creates or modifies
-- Tasks with no dependencies MAY be executed in parallel
-
-**Example:**
-> - [ ] Task 1: Create `password_reset_tokens` migration and model (FR-01, FR-02) — `db/migrations/`, `src/models/reset_token.py`
->       Depends on: none
-> - [ ] Task 2: Implement `TokenRepository` with create/validate methods (FR-02) — `src/repositories/token.py`
->       Depends on: Task 1
-> - [ ] Task 3: Implement `ResetService` orchestration logic (FR-01, FR-03) — `src/services/reset.py`
->       Depends on: Task 2
-> - [ ] Task 4: Add reset endpoints to `AuthController` (FR-01, FR-02) — `src/routes/auth.py`
->       Depends on: Task 3
-> - [ ] Task 5: Create reset email template (FR-01) — `templates/reset_email.html`
->       Depends on: none (parallel with Tasks 1-4)
-
----
-
-## 6. Design Decisions
+## 5. Design Decisions
 
 Key technical choices with rationale and rejected alternatives. Prevents re-litigating decisions during implementation and documents the "why" behind the design.
 

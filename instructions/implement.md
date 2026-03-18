@@ -1,33 +1,42 @@
 # Implement Step Instructions
 
-Implement the feature by executing tasks from the design spec. This is Step 3 of the sddw workflow. Reads both requirements and design specs as input.
+Implement a single task from the design spec. This is Step 3 of the sddw workflow. The user specifies which task to execute.
+
+## Input
+
+- `<feature-name>` — the feature being implemented
+- `--task <N>` — the task number to execute (e.g., `--task 1`)
+
+If no `--task` is provided, list available tasks from `.sddw/<feature-name>/design/tasks/` showing their status (done criteria checked or not) and ask the user which task to execute.
 
 ## Prerequisites
 
-Read the specs produced by Steps 1 and 2:
-- `.sddw/<feature-name>/requirements.md` — functional requirements, acceptance criteria, constraints
-- `.sddw/<feature-name>/design.md` — architecture, data models, interface contracts, task list
+1. Read the task file: `.sddw/<feature-name>/design/tasks/task-<N>-*.md`
+2. If the task file does not exist, list available tasks and ask the user to pick one.
+3. Check `Depends on:` — if dependencies are not yet complete (done criteria unchecked in their task files), warn the user and ask whether to proceed anyway.
 
-If either spec does not exist, inform the user and suggest running the missing step first.
+Reference only if needed:
+- `.sddw/<feature-name>/design/analysis.md` — for design decisions or additional architectural context
+- `.sddw/<feature-name>/requirements.md` — if acceptance criteria in the task file need clarification
 
 ---
 
-## 1. Task Execution Loop
+## 1. Task Execution
 
-Execute tasks from the design spec in dependency order. For each task:
+The task file is self-contained. Execute it:
 
-1. **Load context** — Read the task description, its FR-IDs, the relevant interface contracts and data models from the design spec. Load only the 3-5 constraints relevant to this task from the requirements spec — do not dump the full spec into context.
+1. **Load** — Read the task file. It contains FR-IDs, contracts, acceptance criteria, data models, files to modify, and done criteria.
 2. **Implement** — Write code following TDD Protocol (section 2) if applicable, or implement directly for non-TDD tasks. Respect interface contracts exactly as specified.
-3. **Verify** — Run tests. Check that acceptance criteria for the referenced FRs are satisfied. If verification fails: retry once with error feedback, then escalate to user.
+3. **Verify** — Run tests. Check that acceptance criteria are satisfied. If verification fails: retry once with error feedback, then escalate to user.
 4. **Commit** — Follow Commit Protocol (section 3).
-5. **Track** — Follow Progress Tracking (section 6).
-6. **Next** — Move to the next task. If the task is blocked, follow Deviation Handling (section 4).
+5. **Track** — Check off done criteria in the task file.
+6. **Report** — Tell the user what was done and suggest the next task.
 
 **Rules:**
-- SHALL execute tasks in dependency order (independent tasks first)
-- SHALL respect `Depends on:` fields — never start a task before its dependencies are done
-- Tasks with no dependencies MAY be executed in parallel
-- SHALL NOT skip tasks without user approval
+- SHALL load the task file as primary context — it contains everything needed
+- SHALL implement interface contracts exactly as specified (method signatures, error codes, response shapes)
+- SHALL respect data model constraints (field types, validation rules, relationships)
+- SHALL NOT skip done criteria without user approval
 
 ---
 
@@ -53,9 +62,9 @@ Use TDD for tasks involving business logic, APIs, validation, data transformatio
 2. Run tests — MUST still pass
 
 **Rules:**
-- Limit refinement to 3-5 iterations per task — if still failing, escalate to user
+- Limit refinement to 3-5 iterations — if still failing, escalate to user
 - SHALL NOT modify tests to make them pass — fix the implementation instead
-- If tests reveal a spec gap (insufficient acceptance criteria), update the spec first, then re-implement
+- If tests reveal a spec gap, update the task file or requirements first, then re-implement
 
 ---
 
@@ -92,7 +101,7 @@ type(feature-name): description (FR-01, FR-02)
 3. `refactor(feature): clean up X (FR-01)` (optional)
 
 **Rules:**
-- Every commit message SHALL reference the FR-IDs the task traces to
+- Every commit message SHALL reference the FR-IDs from the task file
 - SHALL NOT commit partial implementations that break tests
 - SHALL NOT commit unrelated changes in the same commit
 
@@ -128,56 +137,29 @@ Proceed? (yes / different approach / defer)
 **Rules:**
 - ALL deviations SHALL be documented (rule number, what was found, what was done)
 - Auto-fixed deviations (Rules 1-3) SHALL be mentioned in the commit message
-- If a deviation reveals a spec gap, note it for the verification step
+- If a deviation reveals a spec gap, note it in the task file for the verification step
 
 ---
 
-## 5. Spec Alignment
+## 5. Progress Tracking
 
-Stay aligned with the requirements and design specs during implementation.
+After completing the task:
 
-**Per task, load:**
-- The task description and FR-IDs from the design spec
-- The relevant acceptance criteria from the requirements spec (only for referenced FRs)
-- The relevant interface contracts (API endpoints, method signatures, pre/post-conditions)
-- The relevant data models (entity fields, types, constraints)
-- The relevant design decisions (to avoid re-litigating)
-
-**Rules:**
-- SHALL NOT load the full requirements or design spec into context — only task-relevant sections
-- SHALL implement interface contracts exactly as specified (method signatures, error codes, response shapes)
-- SHALL respect data model constraints (field types, validation rules, relationships)
-- If implementation reveals the spec is insufficient, update the spec first, then continue
-- The spec is the source of truth — when code and spec disagree, fix the code or update the spec with user approval
-
----
-
-## 6. Progress Tracking
-
-Track implementation progress in the design spec.
-
-**After each task:**
-1. Check off the task in `.sddw/<feature-name>/design.md`: `- [ ]` → `- [x]`
-2. Report to user: `Task N/M complete: [task description] (commit: abc123)`
-
-**On completion of all tasks:**
-1. Report summary: tasks completed, commits made, any deviations documented
-2. Note any spec gaps discovered during implementation
-3. Suggest running `/sddw:verify <feature-name>`
-
-**Rules:**
-- SHALL update checkboxes after each task, not at the end
-- SHALL report deviations encountered (count by rule, brief description)
+1. Check off done criteria in the task file: `- [ ]` → `- [x]`
+2. Report to user:
+   - What was implemented
+   - Commit hash
+   - Any deviations (count by rule, brief description)
+3. Suggest the next task:
+   - List remaining tasks with unchecked done criteria
+   - Identify which are unblocked (dependencies satisfied)
+   - Suggest: `/sddw:implement <feature-name> --task <next-N>`
+4. If all tasks are complete, suggest: `/sddw:verify <feature-name>`
 
 ---
 
 ## Output
 
-- Implemented code following the design spec
-- Updated `.sddw/<feature-name>/design.md` with checked-off tasks
-- Commits with descriptive messages referencing FR-IDs
-
-## Next Step
-
-After implementation is complete, suggest running:
-> `/sddw:verify <feature-name>`
+- Implemented code for the specified task
+- Updated task file with checked-off done criteria
+- Commit(s) with descriptive messages referencing FR-IDs
