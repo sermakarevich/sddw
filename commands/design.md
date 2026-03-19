@@ -16,6 +16,7 @@ argument-hint: "<feature-name>"
 @~/.claude/sddw/questionnaires/design.md
 
 # SPECS
+@~/.claude/sddw/specs/code-analysis.md
 @~/.claude/sddw/specs/design-analysis.md
 @~/.claude/sddw/specs/design-task.md
 

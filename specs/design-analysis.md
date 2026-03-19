@@ -1,47 +1,4 @@
-## 1. Codebase Analysis
-
-Analyse the existing codebase to extract patterns, interfaces, and flows relevant to the feature. This grounds the design in reality rather than assumptions.
-
-**Format:**
-```
-### Relevant Patterns
-- [Pattern]: [where it is used, how it works]
-
-### Key Interfaces
-- [Interface/module]: [purpose, signature]
-
-### Existing Flows
-- [Flow name]: [step-by-step description of current behavior]
-
-### Conventions
-- [Convention]: [description, files where enforced]
-```
-
-**Rules:**
-- SHALL identify reusable components before proposing new ones
-- SHALL document conventions the implementation must follow
-- SHALL NOT propose patterns that conflict with existing codebase conventions
-- SHALL note dependency direction between existing modules
-
-**Example:**
-> ### Relevant Patterns
-> - Token-based auth: used in `src/auth/jwt.py`, signs with RS256, 1h expiry
-> - Service layer pattern: all business logic in `src/services/`, controllers are thin
->
-> ### Key Interfaces
-> - `EmailService.send(to, template, context)`: async email delivery via SES
-> - `UserRepository.find_by_email(email) -> User | None`
->
-> ### Existing Flows
-> - Login flow: `POST /auth/login` → validate credentials → issue JWT → set cookie
->
-> ### Conventions
-> - All models inherit from `BaseModel` in `src/models/base.py`
-> - Migrations use Alembic with sequential naming
-
----
-
-## 2. Architecture
+## 1. Architecture
 
 Component and module breakdown showing how the feature fits into the existing system. Defines boundaries, responsibilities, and data flow between components.
 
@@ -76,7 +33,7 @@ Component and module breakdown showing how the feature fits into the existing sy
 
 ---
 
-## 3. Data Models
+## 2. Data Models
 
 Entity definitions, schemas, relationships, and migration requirements. Defines the structural foundation that tasks will implement.
 
@@ -116,7 +73,7 @@ Entity definitions, schemas, relationships, and migration requirements. Defines 
 
 ---
 
-## 4. Interface Contracts
+## 3. Interface Contracts
 
 API endpoints, method signatures, and error responses. These are the contracts that implementation tasks code against.
 
@@ -159,7 +116,7 @@ API endpoints, method signatures, and error responses. These are the contracts t
 
 ---
 
-## 5. Design Decisions
+## 4. Design Decisions
 
 Key technical choices with rationale and rejected alternatives. Prevents re-litigating decisions during implementation and documents the "why" behind the design.
 

@@ -1,6 +1,6 @@
 # Design Questionnaire
 
-Three-phase dialog to gather enough context to produce the design artifacts (analysis.md + task files).
+Three-phase dialog to gather enough context to produce the design artifacts (code-analysis.md + analysis.md + task files).
 
 ---
 
@@ -34,7 +34,7 @@ Analyse the codebase and propose design options ONE section at a time. Wait for 
 
 ### 2.1 Research
 
-- **Codebase analysis** — scan for relevant patterns, interfaces, flows, conventions
+- **Codebase analysis** — if `.sddw/code-analysis.md` exists, review and update; otherwise scan for relevant patterns, interfaces, flows, conventions
 - **Dependency analysis** — what modules are affected, what's the impact radius
 - **Web search** — if the feature involves unfamiliar tech, research best practices and packages
 
@@ -101,9 +101,10 @@ Wait for response. Lock in approved tasks. Each task becomes a separate file in 
 Once all sections are approved:
 
 > "Ready to generate the design artifacts? Here's what I'll write:"
-> - analysis.md: [sections summary]
+> - code-analysis.md: [create or update] — shared codebase analysis
+> - analysis.md: [sections summary] — feature-specific design
 > - [N] task files: [brief list]
 
-User confirms → generate artifacts to `.sddw/<feature-name>/design/`
+User confirms → generate `code-analysis.md` to `.sddw/` and feature artifacts to `.sddw/<feature-name>/design/`
 
 If user wants changes → return to the relevant section in Phase 2.

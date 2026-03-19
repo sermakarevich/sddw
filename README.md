@@ -41,12 +41,15 @@ Analyse the codebase and produce design artifacts through guided dialog:
 
 Output:
 ```
-.sddw/<feature-name>/design/
-├── analysis.md          # codebase analysis, architecture, data models, interface contracts, design decisions
-└── tasks/
-    ├── task-1-<slug>.md  # self-contained task file with FR-IDs, contracts, acceptance criteria, done criteria
-    ├── task-2-<slug>.md
-    └── ...
+.sddw/
+├── code-analysis.md              # shared codebase analysis (created or updated)
+└── <feature-name>/
+    └── design/
+        ├── analysis.md           # feature-specific architecture, data models, contracts, decisions
+        └── tasks/
+            ├── task-1-<slug>.md  # self-contained task file with FR-IDs, contracts, acceptance criteria
+            ├── task-2-<slug>.md
+            └── ...
 ```
 
 ### 3. Implement (`/sddw:implement <feature-name> --task <N>`)
