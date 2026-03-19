@@ -1,6 +1,6 @@
 # `sddw`
 
-> Spec-Driven Development Workflow for [Claude Code](https://docs.anthropic.com/en/docs/claude-code).
+Spec-Driven Development Workflow for [Claude Code](https://docs.anthropic.com/en/docs/claude-code).
 
 - Write **requirements**, then **design** (with task breakdown), then **implement** each task separately
 - The agent guides you through every step — researches, proposes options, confirms your decisions
