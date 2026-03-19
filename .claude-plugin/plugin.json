@@ -1,6 +1,6 @@
 {
   "name": "sddw",
   "version": "0.1.0",
-  "description": "Spec-Driven Development Workflow for Claude Code. A 4-step pipeline: Requirement → Design → Implement → Verify. Specifications are the source of truth, code is a verified artifact.",
+  "description": "Spec-Driven Development Workflow for Claude Code. A 3-step pipeline: Requirement → Design → Implement. Specifications are the source of truth, code is a verified artifact.",
   "author": { "name": "Sergii" }
 }

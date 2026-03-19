@@ -19,7 +19,7 @@ Follow the three-phase flow defined in the questionnaire:
 
 1. **Discover** — Ask the user about preferred approaches, constraints, and integration concerns. The requirements spec provides the "what" — now understand the user's preferences for "how".
 
-2. **Research & Propose** — Analyse the codebase for patterns, interfaces, and conventions. For each design section (architecture, data models, interface contracts, design decisions, task breakdown), propose ranked options with rationale. User accepts, modifies, or provides their own approach.
+2. **Research & Propose** — Analyse the codebase for patterns, interfaces, and conventions. For each design section (architecture, data models, interface contracts, design decisions), propose ranked options with rationale. Then propose the task breakdown — each approved task becomes a self-contained task file. User accepts, modifies, or provides their own approach.
 
 3. **Confirm & Generate** — Summarise what will be written. User confirms. Generate the artifacts following the spec templates.
 

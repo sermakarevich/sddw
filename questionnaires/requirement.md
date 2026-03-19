@@ -36,12 +36,6 @@ Wait for response.
 
 Do NOT walk through this checklist in order. Weave questions naturally based on what's missing.
 
-**Anti-patterns:**
-- Asking multiple questions in one message
-- Checklist walking — going through items regardless of what they said
-- Shallow acceptance — taking vague answers without probing
-- Premature constraints — asking about tech details before understanding the idea
-
 ---
 
 ## Phase 2: Research & Propose
