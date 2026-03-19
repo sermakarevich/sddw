@@ -99,8 +99,8 @@ Wait for response. Lock in decision. Move to next decision if any.
 
 **Section 5 — Task Breakdown (produces individual task files):**
 > "I'd break this into [N] tasks, each as a self-contained file:"
-> 1. Task 1: [description] (FR-01) — depends on: none — files: [list]
-> 2. Task 2: [description] (FR-02) — depends on: task 1 — files: [list]
+> 1. Task 1: [description] (FR-01) — Depends on: none — files: [list]
+> 2. Task 2: [description] (FR-02) — Depends on: task-1 — files: [list]
 > "Tasks 1 and [N] can run in parallel. Agree with this breakdown and dependency ordering?"
 
 Wait for response. Lock in approved tasks. Each task becomes a separate file in `design/tasks/`.

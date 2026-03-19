@@ -85,7 +85,7 @@ Feature: <feature-name>
     1. task-1-<slug>    ✓ done
     2. task-2-<slug>    ✓ done
     3. task-3-<slug>    ○ pending
-    4. task-4-<slug>    ○ pending (depends on: task-3)
+    4. task-4-<slug>    ○ pending (Depends on: task-3)
 ```
 
 For completed tasks, if a `.done.md` file exists, show a brief summary from it.
