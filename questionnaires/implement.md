@@ -67,4 +67,6 @@ After task completion:
 > - Deviations: [count by rule, or "none"]
 > - Done criteria: [all checked / issues]
 
-> "Next unblocked tasks: [list]. Run `/sddw:implement <feature> --task <next>`?"
+> "Next unblocked tasks: [list]."
+> "**Recommendation:** Clear your context before starting the next task (`/clear` or start a new conversation). Each task is self-contained — a fresh context avoids accumulated noise from this implementation."
+> "Then run `/sddw:implement <feature> --task <next>`."

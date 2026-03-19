@@ -29,7 +29,7 @@ Follow the three-phase flow defined in the questionnaire:
 
 2. **Research & Propose** — Scan codebase for current state of files, research test patterns and library usage. Propose implementation approach and TDD applicability. User confirms.
 
-3. **Execute & Report** — Implement following TDD Protocol, Commit Protocol, and Deviation Handling below. Report completion and suggest next task.
+3. **Execute & Report** — Implement following TDD Protocol, Commit Protocol, and Deviation Handling below. Report completion, recommend clearing context, and suggest next task.
 
 ---
 
