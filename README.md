@@ -76,22 +76,33 @@ After each task, a completion report (`task-N-<slug>.done.md`) is written alongs
 - `/sddw:help list` — list all features with progress indicators
 - `/sddw:help status <feature-name>` — detailed feature status: which steps are done, task progress, completion reports
 
-## Architecture
+## Anatomy of a Step
+
+Each step is assembled from four modular components:
+
+| Component | Purpose | Folder |
+|-----------|---------|--------|
+| **Command** | Thin entry point with frontmatter + `@references` | `commands/` |
+| **Instructions** | Process rules — what to do, in what order | `instructions/` |
+| **Questionnaire** | Dialog guidance — how to interact with the user | `questionnaires/` |
+| **Specs** | Output format templates — what to produce | `specs/` |
+
+A command wires these together:
 
 ```
-sddw/
-├── commands/           # thin wrappers (frontmatter + @references)
-├── instructions/       # process rules (what to do)
-├── questionnaires/     # dialog guidance (how to interact)
-├── specs/              # output format (what to produce)
-└── bin/                # install script
+┌─────────────────────────────────┐
+│ commands/requirement.md         │
+│                                 │
+│  @instructions/requirement.md   │  ← process rules
+│  @questionnaires/requirement.md │  ← dialog flow
+│  @specs/requirements.md         │  ← output format
+│                                 │
+│  reads: (user input)            │  ← input from previous step
+│  writes: .sddw/<feature>/      │  ← output for next step
+│          requirements.md        │
+└─────────────────────────────────┘
 ```
 
-## Dialog
+Each component lives in its own folder so they can be reused, tested, and evolved independently. The command file itself stays small — just references and glue.
 
-Every step follows a three-phase dialog: **Discover → Research & Propose → Confirm & Generate**.
-
-- One question at a time, wait for response
-- Structured options via AskUserQuestion (not text dumps)
-- Every spec block confirmed by user before generation
-- Spec templates used as internal guidance, never shown raw
+Every step follows a three-phase dialog: **Discover → Research & Propose → Confirm & Generate**. One question at a time, structured options, every spec block confirmed by the user before generation.
