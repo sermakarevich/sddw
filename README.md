@@ -7,14 +7,14 @@ Specifications become the source of truth, code becomes a verified artifact. Det
 ## Install
 
 ```bash
-git clone git@github.com:sermakarevich/sddw.git ~/.claude/sddw
-cd ~/.claude/sddw && bash bin/install.sh --local
+git clone https://github.com/sermakarevich/sddw.git ~/.claude/sddw
+cd ~/.claude/sddw && bash bin/install.sh
 ```
 
 For development (symlink from local repo):
 
 ```bash
-git clone git@github.com:sermakarevich/sddw.git
+git clone https://github.com/sermakarevich/sddw.git
 cd sddw && bash bin/install.sh --local
 ```
 
