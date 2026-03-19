@@ -45,10 +45,10 @@ Example: `/sddw:design my-feature --critical-only`
 
 ## Steps
 
-### 1. Requirement
+### 1. Requirements
 
 ```
-/sddw:requirement <feature-name> [--auto | --critical-only]
+/sddw:requirements <feature-name> [--auto | --critical-only]
 ```
 
 Collaboratively produce a requirements spec through guided dialog:

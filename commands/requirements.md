@@ -1,5 +1,5 @@
 ---
-name: sddw:requirement
+name: sddw:requirements
 description: Generate requirements spec for a feature with user stories, functional requirements, acceptance criteria, and constraints
 argument-hint: "<feature-name> [--auto | --critical-only]"
 ---
@@ -12,10 +12,10 @@ If no feature name is provided, ask the user to describe the feature they want t
 @~/.claude/sddw/instructions/dialog-rules.md
 
 # INSTRUCTIONS
-@~/.claude/sddw/instructions/requirement.md
+@~/.claude/sddw/instructions/requirements.md
 
 # QUESTIONNAIRE
-@~/.claude/sddw/questionnaires/requirement.md
+@~/.claude/sddw/questionnaires/requirements.md
 
 # SPECS
 @~/.claude/sddw/specs/requirements.md

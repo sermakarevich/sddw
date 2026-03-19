@@ -53,7 +53,7 @@ echo "Installed $COUNT commands to $COMMANDS_DIR/"
 
 echo ""
 echo "Commands available:"
-echo "  /sddw:requirement <feature-name>"
+echo "  /sddw:requirements <feature-name>"
 echo "  /sddw:design <feature-name>"
 echo "  /sddw:implement <feature-name> [--task <N>]"
 echo "  /sddw:help [list | status <feature-name>]"

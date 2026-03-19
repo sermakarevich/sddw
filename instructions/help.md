@@ -21,7 +21,7 @@ sddw — Spec-Driven Development Workflow
 
   3-step pipeline: specs are the source of truth, code is a verified artifact.
 
-  Step 1: Requirement    /sddw:requirement <feature-name>
+  Step 1: Requirements   /sddw:requirements <feature-name>
     Collaboratively produce a requirements spec: purpose, user stories,
     functional requirements, acceptance criteria, constraints.
 
@@ -49,19 +49,19 @@ For each feature, show a one-line summary with status indicator:
 
 ```
 Features in .sddw/:
-  <feature-a>    [requirement → design → implement 2/4]
-  <feature-b>    [requirement → design]
-  <feature-c>    [requirement]
+  <feature-a>    [requirements → design → implement 2/4]
+  <feature-b>    [requirements → design]
+  <feature-c>    [requirements]
 ```
 
 Status detection:
-- `requirements.md` exists → requirement done
+- `requirements.md` exists → requirements done
 - `design/analysis.md` exists → design done
 - `design/tasks/task-N-*.md` → count total tasks
 - `design/tasks/task-N-*.done.md` → count completed tasks
 
 If `.sddw/` does not exist or has no feature directories, say:
-> "No features found. Start with `/sddw:requirement <feature-name>`"
+> "No features found. Start with `/sddw:requirements <feature-name>`"
 
 ---
 
