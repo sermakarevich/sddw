@@ -90,17 +90,16 @@ Each step is assembled from four modular components:
 A command wires these together:
 
 ```
-┌─────────────────────────────────┐
-│ commands/requirement.md         │
-│                                 │
-│  @instructions/requirement.md   │  ← process rules
-│  @questionnaires/requirement.md │  ← dialog flow
-│  @specs/requirements.md         │  ← output format
-│                                 │
-│  reads: (user input)            │  ← input from previous step
-│  writes: .sddw/<feature>/      │  ← output for next step
-│          requirements.md        │
-└─────────────────────────────────┘
+┌───────────────────────────────────────────────────────┐
+│ commands/requirement.md                               │
+│                                                       │
+│  @instructions/requirement.md    ← process rules      │
+│  @questionnaires/requirement.md  ← dialog flow        │
+│  @specs/requirements.md          ← output format      │
+│                                                       │
+│  reads:  (user input)            ← previous step      │
+│  writes: .sddw/<feature>/requirements.md  ← next step │
+└───────────────────────────────────────────────────────┘
 ```
 
 Each component lives in its own folder so they can be reused, tested, and evolved independently. The command file itself stays small — just references and glue.
