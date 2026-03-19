@@ -2,7 +2,38 @@
 
 These rules apply to all sddw steps.
 
-## Interaction
+## Interaction Modes
+
+Parse `--auto` or `--critical-only` from the arguments. Default to interactive mode if neither is present.
+
+| Mode | Flag | Behavior |
+|------|------|----------|
+| **Interactive** | *(default)* | Full guided dialog. One question at a time, every section confirmed. |
+| **Critical-only** | `--critical-only` | Research and propose autonomously. Pause only for critical decisions (see below). Present all non-critical sections as a batch for quick review. |
+| **Auto** | `--auto` | Fully autonomous. No questions asked. Use best judgment for all decisions. |
+
+### What counts as critical
+
+Critical decisions are those that are hard to reverse or that fundamentally shape the output:
+
+| Step | Critical decisions | Non-critical |
+|------|-------------------|--------------|
+| **Requirement** | Project path, scope boundaries (in/out), prohibitions | Purpose framing, user story wording, FR priority order, acceptance criteria details, testing approach |
+| **Design** | Architecture approach (new vs modify vs reuse), design decisions with trade-offs, task breakdown and dependencies | Code analysis update, data model details, interface contract specifics |
+| **Implement** | Architectural deviations (Rule 4), dependency conflicts | Task selection (pick next unblocked), implementation approach, TDD applicability |
+
+### Mode rules
+
+- **Interactive**: Follow the questionnaire as written — one question at a time, wait for approval on every section.
+- **Critical-only**: Skip Discover phase (proceed with available context). Research autonomously. Present all non-critical sections together as a single review block. Pause and ask only for critical decisions. Present the final summary before generation.
+- **Auto**: Skip all questions. Research autonomously. Make best-judgment decisions for everything including critical items. Generate output directly. Still follow all spec format rules and quality standards.
+
+### Safety
+
+- In `--auto` mode for the **requirement** step: warn the user that requirements quality depends on input detail. If the feature description in the arguments is less than ~20 words, downgrade to `--critical-only` and ask for a more detailed description.
+- In `--auto` mode: architectural deviations (Deviation Rule 4) during implement still STOP and ask — this overrides `--auto` because the risk of silent architectural changes is too high.
+
+## Interaction (Interactive mode)
 
 - Ask ONE question at a time. Wait for the user's response before asking the next.
 - Use the user's answer to shape the follow-up — do not follow a script.

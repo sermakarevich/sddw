@@ -2,9 +2,13 @@
 
 Three-phase dialog to gather enough context to produce the design artifacts (code-analysis.md + analysis.md + task files).
 
+**Mode behavior:** In `--critical-only`, skip Phase 1 and non-critical proposals — pause only for architecture approach and design decisions with trade-offs. In `--auto`, skip all questions and generate directly. See dialog rules for full mode definitions.
+
 ---
 
 ## Phase 1: Discover
+
+*Skip in `--critical-only` and `--auto` — proceed with requirements spec and codebase analysis.*
 
 Understand the implementation landscape. The requirements spec is already written — now understand how it maps to the codebase. One question at a time.
 
@@ -59,6 +63,8 @@ Then proceed to research.
 ### 2.2 Propose (one section at a time)
 
 Present each section separately. Wait for user approval before proposing the next.
+
+*In `--critical-only`: present Data Models and Interface Contracts as a single batch for quick review. Pause individually only for Architecture (Section 1), Design Decisions (Section 4), and Task Breakdown (Section 5). In `--auto`: skip all proposals, decide autonomously.*
 
 **Section 1 — Architecture:**
 > "Here's how I'd structure this feature:"
@@ -124,5 +130,7 @@ Once all sections are approved:
 > - [N] task files: [brief list]
 
 User confirms → generate `code-analysis.md` to `.sddw/` and feature artifacts to `.sddw/<feature-name>/design/`
+
+*In `--critical-only`: still present this summary and wait for confirmation. In `--auto`: generate directly.*
 
 If user wants changes → return to the relevant section in Phase 2.

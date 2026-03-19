@@ -1,7 +1,7 @@
 ---
 name: sddw:implement
 description: Implement tasks from the design spec following TDD and existing codebase patterns
-argument-hint: "<feature-name> [--task <task-number>]"
+argument-hint: "<feature-name> [--task <task-number>] [--auto | --critical-only]"
 ---
 
 <feature_name> #$ARGUMENTS </feature_name>

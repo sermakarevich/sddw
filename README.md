@@ -24,12 +24,24 @@ git clone https://github.com/sermakarevich/sddw.git
 cd sddw && bash bin/install.sh --local
 ```
 
+## Interaction Modes
+
+Every step supports three interaction modes:
+
+| Mode | Flag | Behavior |
+|------|------|----------|
+| **Interactive** | *(default)* | Full guided dialog — one question at a time, every section confirmed |
+| **Critical-only** | `--critical-only` | Autonomous research and proposals, pauses only for critical decisions |
+| **Auto** | `--auto` | Fully autonomous — no questions, best-judgment decisions |
+
+Example: `/sddw:design my-feature --critical-only`
+
 ## Steps
 
 ### 1. Requirement
 
 ```
-/sddw:requirement <feature-name>
+/sddw:requirement <feature-name> [--auto | --critical-only]
 ```
 
 Collaboratively produce a requirements spec through guided dialog:
@@ -44,7 +56,7 @@ Sections: Purpose, User Stories, Functional Requirements, Acceptance Criteria, C
 ### 2. Design
 
 ```
-/sddw:design <feature-name>
+/sddw:design <feature-name> [--auto | --critical-only]
 ```
 
 Analyse the codebase and produce design artifacts through guided dialog:
@@ -70,7 +82,7 @@ Output:
 ### 3. Implement
 
 ```
-/sddw:implement <feature-name> --task <N>
+/sddw:implement <feature-name> --task <N> [--auto | --critical-only]
 ```
 
 Execute a single task from the design spec:

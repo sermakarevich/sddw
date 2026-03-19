@@ -4,7 +4,7 @@ Generate design artifacts for a feature. This is Step 2 of the sddw workflow. Re
 
 ## Goal
 
-Produce precise, clear, and complete design artifacts in cooperation with the user. Every section written to the output files SHALL be explicitly accepted by the user before generation. The design is a co-authored artifact — the agent proposes, the user decides.
+Produce precise, clear, and complete design artifacts. In interactive mode (default), every section is explicitly accepted by the user before generation. In `--critical-only` and `--auto` modes, the agent exercises more autonomy — see dialog rules for mode behavior.
 
 ## Prerequisites
 
@@ -17,11 +17,11 @@ If the requirements spec does not exist, inform the user and suggest running `/s
 
 Follow the three-phase flow defined in the questionnaire:
 
-1. **Discover** — Ask the user about preferred approaches, constraints, and integration concerns. The requirements spec provides the "what" — now understand the user's preferences for "how".
+1. **Discover** — Ask the user about preferred approaches, constraints, and integration concerns. The requirements spec provides the "what" — now understand the user's preferences for "how". *In `--critical-only` and `--auto`: skip discovery, proceed with requirements spec and codebase analysis.*
 
-2. **Research & Propose** — Check if `.sddw/code-analysis.md` exists. If it does, show the user when it was last updated and ask whether it needs updating for this feature. If it does not exist, analyse the codebase from scratch. Then for each feature-specific design section (architecture, data models, interface contracts, design decisions), propose ranked options with rationale. Then propose the task breakdown — each approved task becomes a self-contained task file. User accepts, modifies, or provides their own approach.
+2. **Research & Propose** — Check if `.sddw/code-analysis.md` exists. If it does, show the user when it was last updated and ask whether it needs updating for this feature. If it does not exist, analyse the codebase from scratch. Then for each feature-specific design section (architecture, data models, interface contracts, design decisions), propose ranked options with rationale. Then propose the task breakdown — each approved task becomes a self-contained task file. User accepts, modifies, or provides their own approach. *In `--critical-only`: present data models and contracts as a batch, pause only for architecture approach and design decisions with trade-offs. In `--auto`: decide everything autonomously.*
 
-3. **Confirm & Generate** — Summarise what will be written. User confirms. Generate the artifacts following the spec templates.
+3. **Confirm & Generate** — Summarise what will be written. User confirms. Generate the artifacts following the spec templates. *In `--critical-only`: still present final summary for approval. In `--auto`: generate directly.*
 
 ## Rules
 
@@ -34,7 +34,7 @@ Follow the three-phase flow defined in the questionnaire:
 - Each task file SHALL be self-contained with all context needed to implement
 - SHALL NOT introduce patterns that conflict with existing codebase conventions
 - SHALL document non-obvious decisions with rationale and rejected alternatives
-- SHALL NOT proceed to generation without user approval
+- SHALL NOT proceed to generation without user approval (interactive mode) or critical sections (`--critical-only` mode). `--auto` mode may proceed without approval.
 
 ## Output
 

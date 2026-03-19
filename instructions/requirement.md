@@ -4,17 +4,17 @@ Generate a requirements specification for a feature. This is Step 1 of the sddw 
 
 ## Goal
 
-Produce a precise, clear, and complete requirements spec in cooperation with the user. Every section written to the output file SHALL be explicitly accepted by the user before generation. The spec is a co-authored artifact — the agent proposes, the user decides.
+Produce a precise, clear, and complete requirements spec. In interactive mode (default), every section is explicitly accepted by the user before generation. In `--critical-only` and `--auto` modes, the agent exercises more autonomy — see dialog rules for mode behavior.
 
 ## Process
 
-Follow the three-phase flow defined in the questionnaire:
+Follow the three-phase flow defined in the questionnaire, adapted to the interaction mode:
 
-1. **Discover** — Ask the user to describe the feature. Follow the thread, challenge vagueness, make the abstract concrete. Gather enough context for Purpose, User Stories, and Constraints.
+1. **Discover** — Ask the user to describe the feature. Follow the thread, challenge vagueness, make the abstract concrete. Gather enough context for Purpose, User Stories, and Constraints. *In `--critical-only`: skip discovery, infer from the feature description and codebase. In `--auto`: same, but also skip critical questions.*
 
-2. **Research & Propose** — Based on discovery, research the problem space (web search, codebase analysis, domain knowledge). For each spec section, propose 2-3 ranked options with rationale. User accepts, modifies, or provides their own input.
+2. **Research & Propose** — Based on discovery, research the problem space (web search, codebase analysis, domain knowledge). For each spec section, propose 2-3 ranked options with rationale. User accepts, modifies, or provides their own input. *In `--critical-only`: present non-critical sections as a batch, pause only for scope boundaries and prohibitions. In `--auto`: decide everything autonomously.*
 
-3. **Confirm & Generate** — Summarise what will be written. User confirms. Write the spec to `.sddw/<feature-name>/requirements.md` following the spec template.
+3. **Confirm & Generate** — Summarise what will be written. User confirms. Write the spec to `.sddw/<feature-name>/requirements.md` following the spec template. *In `--critical-only`: still present final summary for approval. In `--auto`: generate directly.*
 
 ## Rules
 
@@ -24,7 +24,7 @@ Follow the three-phase flow defined in the questionnaire:
 - Every FR SHALL be atomic, testable, and user-centric
 - Every FR SHALL have at least one acceptance criterion
 - Include explicit prohibitions (SHALL NOT) to prevent unwanted agent behaviour
-- SHALL NOT proceed to generation without user approval on all sections
+- SHALL NOT proceed to generation without user approval on all sections (interactive mode) or critical sections (`--critical-only` mode). `--auto` mode may proceed without approval.
 
 ## Output
 
