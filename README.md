@@ -2,7 +2,19 @@
 
 Spec-Driven Development Workflow for Claude Code.
 
-Specifications become the source of truth, code becomes a verified artifact. Detailed, executable specs reduce AI code errors by up to 50% (Piskala) and security defects by 73% (Marri).
+## Why
+
+The standard way to use AI coding agents is short, interactive prompts: describe what you want, get code, fix it, repeat. This works for small tasks but breaks down for anything non-trivial — context gets lost between sessions, architectural decisions live only in chat history, and there's no artifact a teammate can review before code is written.
+
+sddw inverts this. Instead of prompting for code, you collaborate with the agent to write **specifications** — requirements, architecture, interface contracts, task breakdowns. The specs become the primary artifact: reviewable by peers, version-controlled, persistent across sessions. Code generation is then a mechanical step guided by approved specs, not a creative leap from a vague prompt.
+
+This matters because:
+
+- **Specs are reviewable, prompts are not.** A teammate can review a requirements doc or design analysis before a single line of code is written. With prompt-driven development, the first reviewable artifact is the PR.
+- **Specs survive across sessions.** Chat history degrades as conversations grow. Specs live on disk, version-controlled, and carry full context into every future session.
+- **Specs reduce AI errors.** When given precise specifications, LLMs stop hallucinating and start executing intent. Detailed specs reduce AI code errors by up to 50% (Piskala, 2026) and security defects by 73% (Marri, 2026).
+- **Specs make decisions auditable.** Every design choice, rejected alternative, and constraint is documented with rationale — not buried in a chat log.
+- **Specs compound.** Codebase analysis is shared across features. Requirements and design patterns improve with each iteration. The investment in writing specs pays off across the project lifetime.
 
 ## Install
 
