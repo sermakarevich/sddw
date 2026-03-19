@@ -1,14 +1,14 @@
-# sddw
+# `sddw`
 
-Spec-Driven Development Workflow for Claude Code.
+> Spec-Driven Development Workflow for [Claude Code](https://docs.anthropic.com/en/docs/claude-code).
 
 ## Why
 
 The standard way to use AI coding agents is short, interactive prompts: describe what you want, get code, fix it, repeat. This works for small tasks but breaks down for anything non-trivial — context gets lost between sessions, architectural decisions live only in chat history, and there's no artifact a teammate can review before code is written.
 
-sddw inverts this. Instead of prompting for code, you collaborate with the agent to write **specifications** — requirements, architecture, interface contracts, task breakdowns. The specs become the primary artifact: reviewable by peers, version-controlled, persistent across sessions. Code generation is then a mechanical step guided by approved specs, not a creative leap from a vague prompt.
+`sddw` inverts this. Instead of prompting for code, you collaborate with the agent to write **specifications** — requirements, architecture, interface contracts, task breakdowns. The specs become the primary artifact: reviewable by peers, version-controlled, persistent across sessions. Code generation is then a mechanical step guided by approved specs, not a creative leap from a vague prompt.
 
-Detailed specifications reduce AI code errors by up to 50% (Piskala, 2026), security defects by 73% (Marri, 2026), and architecture-misaligned PRs by 60% (GitHub Spec Kit). sddw is designed for medium to large projects that don't fit into a single context window. By splitting work into discrete steps — requirements, design, per-task implementation — each step operates within a focused context where models are more accurate, rather than a sprawling conversation where critical details get lost.
+Detailed specifications reduce AI code errors by up to 50% (Piskala, 2026), security defects by 73% (Marri, 2026), and architecture-misaligned PRs by 60% (GitHub Spec Kit). `sddw` is designed for medium to large projects that don't fit into a single context window. By splitting work into discrete steps — requirements, design, per-task implementation — each step operates within a focused context where models are more accurate, rather than a sprawling conversation where critical details get lost.
 
 ## Install
 
@@ -26,7 +26,11 @@ cd sddw && bash bin/install.sh --local
 
 ## Steps
 
-### 1. Requirement (`/sddw:requirement <feature-name>`)
+### 1. Requirement
+
+```
+/sddw:requirement <feature-name>
+```
 
 Collaboratively produce a requirements spec through guided dialog:
 
@@ -37,7 +41,11 @@ Collaboratively produce a requirements spec through guided dialog:
 Output: `.sddw/<feature-name>/requirements.md`
 Sections: Purpose, User Stories, Functional Requirements, Acceptance Criteria, Constraints
 
-### 2. Design (`/sddw:design <feature-name>`)
+### 2. Design
+
+```
+/sddw:design <feature-name>
+```
 
 Analyse the codebase and produce design artifacts through guided dialog:
 
@@ -46,6 +54,7 @@ Analyse the codebase and produce design artifacts through guided dialog:
 - **Confirm & Generate** — user approves each block, artifacts are written
 
 Output:
+
 ```
 .sddw/
 ├── code-analysis.md              # shared codebase analysis (created or updated)
@@ -58,7 +67,11 @@ Output:
             └── ...
 ```
 
-### 3. Implement (`/sddw:implement <feature-name> --task <N>`)
+### 3. Implement
+
+```
+/sddw:implement <feature-name> --task <N>
+```
 
 Execute a single task from the design spec:
 
@@ -70,7 +83,11 @@ Each task file is self-contained — the agent loads it as primary context witho
 
 After each task, a completion report (`task-N-<slug>.done.md`) is written alongside the task file, documenting what was done, deviations, and difficulties.
 
-### Help (`/sddw:help [list | status <feature-name>]`)
+### Help
+
+```
+/sddw:help [list | status <feature-name>]
+```
 
 - `/sddw:help` — workflow overview and available commands
 - `/sddw:help list` — list all features with progress indicators
