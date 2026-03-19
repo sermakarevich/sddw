@@ -32,7 +32,7 @@ All modes perform the same work — discover, research, propose, decide. The dif
 
 ### Safety
 
-- In `--auto` mode for the **requirement** step: warn the user that requirements quality depends on input detail. If the feature description in the arguments is less than ~20 words, downgrade to `--critical-only` and ask for a more detailed description.
+- In `--auto` mode for the **requirements** step: warn the user that requirements quality depends on input detail. If the feature description in the arguments is less than ~20 words, downgrade to `--critical-only` and ask for a more detailed description.
 - In `--auto` mode: architectural deviations (Deviation Rule 4) during implement still STOP and ask — this overrides `--auto` because the risk of silent architectural changes is too high.
 
 ## Interaction (Interactive mode)

@@ -1,4 +1,4 @@
-# Requirement Step Instructions
+# Requirements Step Instructions
 
 Generate a requirements specification for a feature. This is Step 1 of the sddw workflow.
 

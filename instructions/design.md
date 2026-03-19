@@ -11,7 +11,7 @@ Produce precise, clear, and complete design artifacts. In interactive mode (defa
 Read the requirements spec produced by Step 1:
 `.sddw/<feature-name>/requirements.md`
 
-If the requirements spec does not exist, inform the user and suggest running `/sddw:requirement <feature-name>` first.
+If the requirements spec does not exist, inform the user and suggest running `/sddw:requirements <feature-name>` first.
 
 ## Process
 
