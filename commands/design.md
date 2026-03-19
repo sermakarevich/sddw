@@ -1,7 +1,7 @@
 ---
 name: sddw:design
 description: Generate design spec by analysing codebase, defining architecture, data models, interfaces, and task decomposition
-argument-hint: "<feature-name>"
+argument-hint: "<feature-name> [--auto | --critical-only]"
 ---
 
 <feature_name> #$ARGUMENTS </feature_name>

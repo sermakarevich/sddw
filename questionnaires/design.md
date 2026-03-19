@@ -2,9 +2,13 @@
 
 Three-phase dialog to gather enough context to produce the design artifacts (code-analysis.md + analysis.md + task files).
 
+**Mode behavior:** All modes perform the same work. In `--critical-only`, the agent makes non-critical decisions autonomously but asks the user for critical ones (architecture approach, design decisions with trade-offs, task breakdown). In `--auto`, the agent makes all decisions autonomously. See dialog rules for full mode definitions.
+
 ---
 
 ## Phase 1: Discover
+
+*In `--critical-only`: infer non-critical preferences autonomously, but ask about preferred architectural approach if multiple viable options exist. In `--auto`: perform discovery fully autonomously.*
 
 Understand the implementation landscape. The requirements spec is already written — now understand how it maps to the codebase. One question at a time.
 
@@ -59,6 +63,8 @@ Then proceed to research.
 ### 2.2 Propose (one section at a time)
 
 Present each section separately. Wait for user approval before proposing the next.
+
+*In `--critical-only`: decide Data Models and Interface Contracts autonomously. Pause only for Architecture (Section 1), Design Decisions (Section 4), and Task Breakdown (Section 5) — present these for user approval. In `--auto`: decide all sections autonomously.*
 
 **Section 1 — Architecture:**
 > "Here's how I'd structure this feature:"
@@ -124,5 +130,7 @@ Once all sections are approved:
 > - [N] task files: [brief list]
 
 User confirms → generate `code-analysis.md` to `.sddw/` and feature artifacts to `.sddw/<feature-name>/design/`
+
+*In `--critical-only`: still present this summary and wait for confirmation. In `--auto`: generate directly.*
 
 If user wants changes → return to the relevant section in Phase 2.

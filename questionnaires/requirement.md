@@ -2,9 +2,13 @@
 
 Three-phase dialog to gather enough context to write the requirements spec.
 
+**Mode behavior:** All modes perform the same work. In `--critical-only`, the agent makes non-critical decisions autonomously but asks the user for critical ones (project path, scope boundaries, prohibitions). In `--auto`, the agent makes all decisions autonomously. See dialog rules for full mode definitions.
+
 ---
 
 ## Phase 1: Discover
+
+*In `--critical-only`: infer non-critical context autonomously, but ask the user about project path, scope boundaries, and prohibitions. In `--auto`: perform discovery fully autonomously.*
 
 Understand the feature and its context. One question at a time, follow the thread.
 
@@ -53,6 +57,8 @@ Depending on the feature, research:
 ### 2.2 Propose (one section at a time)
 
 Present each section separately. Wait for user approval before proposing the next.
+
+*In `--critical-only`: decide Purpose, User Stories, FRs, Acceptance Criteria, and Testing Approach autonomously. Pause only for Constraints (scope boundaries and prohibitions) — present these for user approval. In `--auto`: decide all sections autonomously.*
 
 **Section 1 — Purpose:**
 > "Based on what you described, here are two ways to frame this feature:"
@@ -121,7 +127,7 @@ Wait for response. Lock in testing approach — this carries through to the impl
 
 ## Phase 3: Confirm & Generate
 
-Once all sections are approved:
+Once all sections are approved (or decided in `--auto` mode):
 
 > "Ready to generate the requirements spec? Here's what I'll write:"
 > - Purpose: [summary]
@@ -131,5 +137,7 @@ Once all sections are approved:
 > - Constraints: [in/out/prohibitions summary]
 
 User confirms → generate spec to `.sddw/<feature-name>/requirements.md`
+
+*In `--critical-only`: still present this summary and wait for confirmation. In `--auto`: generate directly.*
 
 If user wants changes → return to the relevant section in Phase 2.

@@ -24,12 +24,24 @@ git clone https://github.com/sermakarevich/sddw.git
 cd sddw && bash bin/install.sh --local
 ```
 
+## Interaction Modes
+
+Every step supports three interaction modes:
+
+| Mode | Flag | Behavior |
+|------|------|----------|
+| **Interactive** | *(default)* | Full guided dialog — one question at a time, every section confirmed |
+| **Critical-only** | `--critical-only` | Autonomous research and proposals, pauses only for critical decisions |
+| **Auto** | `--auto` | Fully autonomous — no questions, best-judgment decisions |
+
+Example: `/sddw:design my-feature --critical-only`
+
 ## Steps
 
 ### 1. Requirement
 
 ```
-/sddw:requirement <feature-name>
+/sddw:requirement <feature-name> [--auto | --critical-only]
 ```
 
 Collaboratively produce a requirements spec through guided dialog:
@@ -44,7 +56,7 @@ Sections: Purpose, User Stories, Functional Requirements, Acceptance Criteria, C
 ### 2. Design
 
 ```
-/sddw:design <feature-name>
+/sddw:design <feature-name> [--auto | --critical-only]
 ```
 
 Analyse the codebase and produce design artifacts through guided dialog:
@@ -70,7 +82,7 @@ Output:
 ### 3. Implement
 
 ```
-/sddw:implement <feature-name> --task <N>
+/sddw:implement <feature-name> --task <N> [--auto | --critical-only]
 ```
 
 Execute a single task from the design spec:
@@ -107,16 +119,16 @@ Each step is assembled from four modular components:
 A command wires these together:
 
 ```
-┌───────────────────────────────────────────────────────┐
-│ commands/requirement.md                               │
-│                                                       │
-│  @instructions/requirement.md    ← process rules      │
-│  @questionnaires/requirement.md  ← dialog flow        │
-│  @specs/requirements.md          ← output format      │
-│                                                       │
-│  reads:  (user input)            ← previous step      │
-│  writes: .sddw/<feature>/requirements.md  ← next step │
-└───────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────┐
+│ commands/<step>.md                                       │
+│                                                          │
+│  @instructions/<step>.md        ← process rules          │
+│  @questionnaires/<step>.md      ← dialog flow            │
+│  @specs/<step>.md               ← output format          │
+│                                                          │
+│  reads:  .sddw/<feature>/<previous_step>.md  ← input     │
+│  writes: .sddw/<feature>/<current_step>.md   ← output    │
+└──────────────────────────────────────────────────────────┘
 ```
 
 Each component lives in its own folder so they can be reused, tested, and evolved independently. The command file itself stays small — just references and glue.
