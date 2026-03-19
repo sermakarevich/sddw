@@ -32,9 +32,27 @@ Offer 2-4 concrete options based on what you see in the codebase.
 
 Analyse the codebase and propose design options ONE section at a time. Wait for approval before moving to the next.
 
+### 2.0 Code Analysis Check
+
+Before researching, check if `.sddw/code-analysis.md` exists.
+
+**If it exists**, read it and ask the user:
+> "I found an existing codebase analysis (last updated: [date from file modification time]). Want me to update it for this feature, or is it still current?"
+
+Options:
+- **Update** — scan codebase for changes relevant to this feature, propose additions
+- **Keep as-is** — reuse without changes
+
+Wait for response. If "Update", propose specific additions/changes and get approval before continuing.
+
+**If it does not exist**, inform the user:
+> "No codebase analysis found. I'll scan the codebase and create one."
+
+Then proceed to research.
+
 ### 2.1 Research
 
-- **Codebase analysis** — if `.sddw/code-analysis.md` exists, review and update; otherwise scan for relevant patterns, interfaces, flows, conventions
+- **Codebase analysis** — scan for relevant patterns, interfaces, flows, conventions (skip if code-analysis.md is kept as-is)
 - **Dependency analysis** — what modules are affected, what's the impact radius
 - **Web search** — if the feature involves unfamiliar tech, research best practices and packages
 

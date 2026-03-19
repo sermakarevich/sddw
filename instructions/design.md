@@ -19,7 +19,7 @@ Follow the three-phase flow defined in the questionnaire:
 
 1. **Discover** — Ask the user about preferred approaches, constraints, and integration concerns. The requirements spec provides the "what" — now understand the user's preferences for "how".
 
-2. **Research & Propose** — If `.sddw/code-analysis.md` exists, read it and propose updates relevant to this feature. If it does not exist, analyse the codebase from scratch. Then for each feature-specific design section (architecture, data models, interface contracts, design decisions), propose ranked options with rationale. Then propose the task breakdown — each approved task becomes a self-contained task file. User accepts, modifies, or provides their own approach.
+2. **Research & Propose** — Check if `.sddw/code-analysis.md` exists. If it does, show the user when it was last updated and ask whether it needs updating for this feature. If it does not exist, analyse the codebase from scratch. Then for each feature-specific design section (architecture, data models, interface contracts, design decisions), propose ranked options with rationale. Then propose the task breakdown — each approved task becomes a self-contained task file. User accepts, modifies, or provides their own approach.
 
 3. **Confirm & Generate** — Summarise what will be written. User confirms. Generate the artifacts following the spec templates.
 
