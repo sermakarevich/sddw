@@ -120,8 +120,15 @@ Deviations during implementation are normal. Classify and handle:
 
 ---
 
+## Completion Report
+
+After the task commit(s), write a completion report following the task-completion spec:
+`.sddw/<feature-name>/design/tasks/task-<N>-<slug>.done.md`
+
+The report documents what was done, deviations, and difficulties. This enables `/sddw:help status` to show task completion and provides context for future tasks.
+
 ## Output
 
 - Implemented code for the specified task
-- Updated task file with checked-off done criteria
 - Commit(s) with descriptive messages referencing FR-IDs
+- Completion report (`.done.md`) alongside the task file

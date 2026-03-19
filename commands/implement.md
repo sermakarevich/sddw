@@ -17,6 +17,7 @@ argument-hint: "<feature-name> [--task <task-number>]"
 
 # SPECS
 @~/.claude/sddw/specs/design-task.md
+@~/.claude/sddw/specs/task-completion.md
 
 # NEXT STEP
 After completing a task, suggest the next unblocked task:

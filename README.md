@@ -62,6 +62,14 @@ Execute a single task from the design spec:
 
 Each task file is self-contained — the agent loads it as primary context without needing the full design document.
 
+After each task, a completion report (`task-N-<slug>.done.md`) is written alongside the task file, documenting what was done, deviations, and difficulties.
+
+### Help (`/sddw:help [list | status <feature-name>]`)
+
+- `/sddw:help` — workflow overview and available commands
+- `/sddw:help list` — list all features with progress indicators
+- `/sddw:help status <feature-name>` — detailed feature status: which steps are done, task progress, completion reports
+
 ## Architecture
 
 ```
