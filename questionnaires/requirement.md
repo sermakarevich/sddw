@@ -33,6 +33,7 @@ Wait for response.
 - [ ] Who uses it and why (enough for User Stories)
 - [ ] What should NOT happen (boundaries, prohibitions)
 - [ ] What "done" looks like (observable outcomes)
+- [ ] Testing approach (TDD, test-after, no tests — and why)
 
 Do NOT walk through this checklist in order. Weave questions naturally based on what's missing.
 
@@ -97,6 +98,17 @@ Wait for response. Repeat for each FR, one at a time.
 > "Anything to add or move?"
 
 Wait for response. Lock in approved constraints.
+
+**Section 6 — Testing Approach:**
+> "How do you want to handle testing for this feature?"
+
+Options:
+- **TDD (Recommended)** — write failing tests first, then implement to pass
+- **Test-after** — implement first, add tests after
+- **Selective TDD** — TDD for business logic/APIs, skip for config/glue code
+- **No tests** — skip testing (e.g., prototype, spike)
+
+Wait for response. Lock in testing approach — this carries through to the implement step.
 
 ### Rules for proposing:
 - SHALL propose ONE section at a time, wait for approval, then move to next

@@ -35,7 +35,13 @@ Follow the three-phase flow defined in the questionnaire:
 
 ## TDD Protocol
 
-Use TDD for tasks involving business logic, APIs, validation, data transformations, or algorithms. Skip TDD for UI layout, configuration, glue code, and simple CRUD.
+Check the Testing Approach in `.sddw/<feature-name>/requirements.md` Constraints section. Follow the user's chosen approach:
+- **TDD** — always write tests first
+- **Test-after** — implement first, add tests after
+- **Selective TDD** — TDD for business logic/APIs, skip for config/glue code
+- **No tests** — skip testing entirely
+
+If Selective TDD or no preference specified, use TDD for tasks involving business logic, APIs, validation, data transformations, or algorithms. Skip TDD for UI layout, configuration, glue code, and simple CRUD.
 
 **Heuristic:** Can you write `expect(fn(input)).toBe(output)` before writing `fn`? If yes, use TDD.
 

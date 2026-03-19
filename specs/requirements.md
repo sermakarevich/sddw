@@ -118,6 +118,9 @@ Explicit boundaries defining what is in scope, out of scope, and prohibited. Pre
 
 ### Prohibitions
 - SHALL NOT [prohibited behavior] — [reason]
+
+### Testing Approach
+- [TDD | Test-after | Selective TDD | No tests] — [rationale]
 ```
 
 **Rules:**
@@ -137,3 +140,6 @@ Explicit boundaries defining what is in scope, out of scope, and prohibited. Pre
 > ### Prohibitions
 > - SHALL NOT store plaintext passwords at any point
 > - SHALL NOT log reset tokens or email addresses
+>
+> ### Testing Approach
+> - Selective TDD — TDD for token validation and reset flow, test-after for migration and config
