@@ -4,7 +4,7 @@ Generate design artifacts for a feature. This is Step 2 of the sddw workflow. Re
 
 ## Goal
 
-Produce precise, clear, and complete design artifacts. In interactive mode (default), every section is explicitly accepted by the user before generation. In `--critical-only` and `--auto` modes, the agent exercises more autonomy — see dialog rules for mode behavior.
+Produce precise, clear, and complete design artifacts. In interactive mode (default), every section is explicitly accepted by the user before generation. In `--critical-only` mode, the agent makes non-critical decisions autonomously but asks the user for critical ones. In `--auto` mode, the agent makes all decisions autonomously. See dialog rules for mode behavior.
 
 ## Prerequisites
 
@@ -17,7 +17,7 @@ If the requirements spec does not exist, inform the user and suggest running `/s
 
 Follow the three-phase flow defined in the questionnaire:
 
-1. **Discover** — Ask the user about preferred approaches, constraints, and integration concerns. The requirements spec provides the "what" — now understand the user's preferences for "how". *In `--critical-only` and `--auto`: perform discovery autonomously — infer preferences from the requirements spec and codebase.*
+1. **Discover** — Ask the user about preferred approaches, constraints, and integration concerns. The requirements spec provides the "what" — now understand the user's preferences for "how". *In `--critical-only`: infer non-critical preferences autonomously, but ask about preferred architectural approach if multiple viable options exist. In `--auto`: perform discovery fully autonomously.*
 
 2. **Research & Propose** — Check if `.sddw/code-analysis.md` exists. If it does, show the user when it was last updated and ask whether it needs updating for this feature. If it does not exist, analyse the codebase from scratch. Then for each feature-specific design section (architecture, data models, interface contracts, design decisions), propose ranked options with rationale. Then propose the task breakdown — each approved task becomes a self-contained task file. User accepts, modifies, or provides their own approach. *In `--critical-only`: decide data models and contracts autonomously, ask only for architecture approach and design decisions with trade-offs. In `--auto`: decide all sections autonomously.*
 

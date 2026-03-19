@@ -2,13 +2,13 @@
 
 Three-phase dialog to gather enough context to write the requirements spec.
 
-**Mode behavior:** All modes perform the same work. In `--critical-only`, the agent handles discovery and non-critical decisions autonomously, pausing only for critical decisions. In `--auto`, the agent makes all decisions autonomously. See dialog rules for full mode definitions.
+**Mode behavior:** All modes perform the same work. In `--critical-only`, the agent makes non-critical decisions autonomously but asks the user for critical ones (project path, scope boundaries, prohibitions). In `--auto`, the agent makes all decisions autonomously. See dialog rules for full mode definitions.
 
 ---
 
 ## Phase 1: Discover
 
-*In `--critical-only` and `--auto`: perform discovery autonomously — infer context from the feature description and codebase without asking the user.*
+*In `--critical-only`: infer non-critical context autonomously, but ask the user about project path, scope boundaries, and prohibitions. In `--auto`: perform discovery fully autonomously.*
 
 Understand the feature and its context. One question at a time, follow the thread.
 

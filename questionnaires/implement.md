@@ -2,13 +2,13 @@
 
 Three-phase dialog for executing a single task from the design spec.
 
-**Mode behavior:** All modes perform the same work. In `--critical-only` and `--auto`, the agent handles discovery and proposals autonomously — picks next unblocked task if none specified, researches approach, proceeds to execution. Deviation Rule 4 (architectural) always asks the user, even in `--auto`. See dialog rules for full mode definitions.
+**Mode behavior:** All modes perform the same work. In `--critical-only`, the agent handles non-critical decisions autonomously but asks about dependency conflicts and architectural deviations (Rule 4). In `--auto`, the agent makes all decisions autonomously — except architectural deviations (Rule 4), which always ask the user. See dialog rules for full mode definitions.
 
 ---
 
 ## Phase 1: Discover
 
-*In `--critical-only` and `--auto`: perform discovery autonomously — pick next unblocked task if no `--task` flag, check dependencies, proceed without asking.*
+*In `--critical-only`: pick next unblocked task if no `--task` flag, but ask the user if dependencies are incomplete. In `--auto`: perform discovery fully autonomously.*
 
 Understand which task to execute and any blockers. One question at a time.
 
@@ -59,7 +59,7 @@ Based on the task file, research implementation approach and propose a plan.
 
 Wait for response. User confirms → execute following the instructions.
 
-*In `--critical-only` and `--auto`: decide implementation approach autonomously, proceed directly to execution.*
+*In `--critical-only`: decide implementation approach autonomously, proceed to execution. In `--auto`: same.*
 
 ---
 

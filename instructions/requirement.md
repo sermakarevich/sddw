@@ -4,13 +4,13 @@ Generate a requirements specification for a feature. This is Step 1 of the sddw 
 
 ## Goal
 
-Produce a precise, clear, and complete requirements spec. In interactive mode (default), every section is explicitly accepted by the user before generation. In `--critical-only` and `--auto` modes, the agent exercises more autonomy — see dialog rules for mode behavior.
+Produce a precise, clear, and complete requirements spec. In interactive mode (default), every section is explicitly accepted by the user before generation. In `--critical-only` mode, the agent makes non-critical decisions autonomously but asks the user for critical ones. In `--auto` mode, the agent makes all decisions autonomously. See dialog rules for mode behavior.
 
 ## Process
 
 Follow the three-phase flow defined in the questionnaire, adapted to the interaction mode:
 
-1. **Discover** — Ask the user to describe the feature. Follow the thread, challenge vagueness, make the abstract concrete. Gather enough context for Purpose, User Stories, and Constraints. *In `--critical-only` and `--auto`: perform discovery autonomously — infer from the feature description and codebase.*
+1. **Discover** — Ask the user to describe the feature. Follow the thread, challenge vagueness, make the abstract concrete. Gather enough context for Purpose, User Stories, and Constraints. *In `--critical-only`: infer non-critical context autonomously, but ask the user about project path, scope boundaries, and prohibitions. In `--auto`: perform discovery fully autonomously.*
 
 2. **Research & Propose** — Based on discovery, research the problem space (web search, codebase analysis, domain knowledge). For each spec section, propose 2-3 ranked options with rationale. User accepts, modifies, or provides their own input. *In `--critical-only`: decide non-critical sections autonomously, ask only for scope boundaries and prohibitions. In `--auto`: decide all sections autonomously.*
 
