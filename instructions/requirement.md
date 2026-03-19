@@ -10,9 +10,9 @@ Produce a precise, clear, and complete requirements spec. In interactive mode (d
 
 Follow the three-phase flow defined in the questionnaire, adapted to the interaction mode:
 
-1. **Discover** — Ask the user to describe the feature. Follow the thread, challenge vagueness, make the abstract concrete. Gather enough context for Purpose, User Stories, and Constraints. *In `--critical-only`: skip discovery, infer from the feature description and codebase. In `--auto`: same, but also skip critical questions.*
+1. **Discover** — Ask the user to describe the feature. Follow the thread, challenge vagueness, make the abstract concrete. Gather enough context for Purpose, User Stories, and Constraints. *In `--critical-only` and `--auto`: perform discovery autonomously — infer from the feature description and codebase.*
 
-2. **Research & Propose** — Based on discovery, research the problem space (web search, codebase analysis, domain knowledge). For each spec section, propose 2-3 ranked options with rationale. User accepts, modifies, or provides their own input. *In `--critical-only`: present non-critical sections as a batch, pause only for scope boundaries and prohibitions. In `--auto`: decide everything autonomously.*
+2. **Research & Propose** — Based on discovery, research the problem space (web search, codebase analysis, domain knowledge). For each spec section, propose 2-3 ranked options with rationale. User accepts, modifies, or provides their own input. *In `--critical-only`: decide non-critical sections autonomously, ask only for scope boundaries and prohibitions. In `--auto`: decide all sections autonomously.*
 
 3. **Confirm & Generate** — Summarise what will be written. User confirms. Write the spec to `.sddw/<feature-name>/requirements.md` following the spec template. *In `--critical-only`: still present final summary for approval. In `--auto`: generate directly.*
 

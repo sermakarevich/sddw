@@ -2,13 +2,13 @@
 
 Three-phase dialog to gather enough context to write the requirements spec.
 
-**Mode behavior:** In `--critical-only`, skip Phase 1 and non-critical proposals in Phase 2 — infer from the feature description and codebase, pause only for critical decisions. In `--auto`, skip all questions and generate directly. See dialog rules for full mode definitions.
+**Mode behavior:** All modes perform the same work. In `--critical-only`, the agent handles discovery and non-critical decisions autonomously, pausing only for critical decisions. In `--auto`, the agent makes all decisions autonomously. See dialog rules for full mode definitions.
 
 ---
 
 ## Phase 1: Discover
 
-*Skip in `--critical-only` and `--auto` — infer context from the feature description and codebase.*
+*In `--critical-only` and `--auto`: perform discovery autonomously — infer context from the feature description and codebase without asking the user.*
 
 Understand the feature and its context. One question at a time, follow the thread.
 
@@ -58,7 +58,7 @@ Depending on the feature, research:
 
 Present each section separately. Wait for user approval before proposing the next.
 
-*In `--critical-only`: present Purpose, User Stories, FRs, Acceptance Criteria, and Testing Approach as a single batch for quick review. Pause individually only for Constraints (scope boundaries and prohibitions). In `--auto`: skip all proposals, decide autonomously.*
+*In `--critical-only`: decide Purpose, User Stories, FRs, Acceptance Criteria, and Testing Approach autonomously. Pause only for Constraints (scope boundaries and prohibitions) — present these for user approval. In `--auto`: decide all sections autonomously.*
 
 **Section 1 — Purpose:**
 > "Based on what you described, here are two ways to frame this feature:"

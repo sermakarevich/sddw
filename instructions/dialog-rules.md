@@ -24,9 +24,11 @@ Critical decisions are those that are hard to reverse or that fundamentally shap
 
 ### Mode rules
 
+All modes perform the same work — discover, research, propose, decide. The difference is only in what requires user input.
+
 - **Interactive**: Follow the questionnaire as written — one question at a time, wait for approval on every section.
-- **Critical-only**: Skip Discover phase (proceed with available context). Research autonomously. Present all non-critical sections together as a single review block. Pause and ask only for critical decisions. Present the final summary before generation.
-- **Auto**: Skip all questions. Research autonomously. Make best-judgment decisions for everything including critical items. Generate output directly. Still follow all spec format rules and quality standards.
+- **Critical-only**: Perform all phases autonomously. Make decisions on non-critical items using best judgment. Pause and ask only for critical decisions. Present the final summary before generation.
+- **Auto**: Perform all phases autonomously. Make all decisions — including critical ones — using best judgment. Generate output directly. Still follow all spec format rules and quality standards.
 
 ### Safety
 

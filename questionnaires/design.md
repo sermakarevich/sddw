@@ -2,13 +2,13 @@
 
 Three-phase dialog to gather enough context to produce the design artifacts (code-analysis.md + analysis.md + task files).
 
-**Mode behavior:** In `--critical-only`, skip Phase 1 and non-critical proposals — pause only for architecture approach and design decisions with trade-offs. In `--auto`, skip all questions and generate directly. See dialog rules for full mode definitions.
+**Mode behavior:** All modes perform the same work. In `--critical-only`, the agent handles discovery and non-critical decisions autonomously, pausing only for critical decisions. In `--auto`, the agent makes all decisions autonomously. See dialog rules for full mode definitions.
 
 ---
 
 ## Phase 1: Discover
 
-*Skip in `--critical-only` and `--auto` — proceed with requirements spec and codebase analysis.*
+*In `--critical-only` and `--auto`: perform discovery autonomously — infer preferences from the requirements spec and codebase without asking the user.*
 
 Understand the implementation landscape. The requirements spec is already written — now understand how it maps to the codebase. One question at a time.
 
@@ -64,7 +64,7 @@ Then proceed to research.
 
 Present each section separately. Wait for user approval before proposing the next.
 
-*In `--critical-only`: present Data Models and Interface Contracts as a single batch for quick review. Pause individually only for Architecture (Section 1), Design Decisions (Section 4), and Task Breakdown (Section 5). In `--auto`: skip all proposals, decide autonomously.*
+*In `--critical-only`: decide Data Models and Interface Contracts autonomously. Pause only for Architecture (Section 1), Design Decisions (Section 4), and Task Breakdown (Section 5) — present these for user approval. In `--auto`: decide all sections autonomously.*
 
 **Section 1 — Architecture:**
 > "Here's how I'd structure this feature:"
