@@ -1,4 +1,23 @@
-## 1. Purpose
+## 1. Project
+
+The target codebase where the feature will be implemented. All subsequent steps (design analysis, implementation) use this path.
+
+**Format:**
+```
+- Path: [relative or absolute path to the target project]
+```
+
+**Rules:**
+- SHALL be resolved in the requirement step before any codebase analysis
+- If the feature targets the current directory, use `.`
+- If the feature targets a different project, use the relative or absolute path
+
+**Example:**
+> - Path: `../ccw`
+
+---
+
+## 2. Purpose
 
 One to two sentences describing what the feature does and why it matters. Focus on the problem being solved, not the implementation.
 
@@ -7,7 +26,7 @@ One to two sentences describing what the feature does and why it matters. Focus 
 
 ---
 
-## 2. User Stories
+## 3. User Stories
 
 Two to five user stories capturing the primary user journeys. Each story follows the format:
 
@@ -26,7 +45,7 @@ As a [role], I want [capability], so that [benefit].
 
 ---
 
-## 3. Functional Requirements
+## 4. Functional Requirements
 
 Enumerated capabilities using unique identifiers. Each requirement SHALL be atomic, testable, and expressed with an RFC 2119 keyword.
 
@@ -48,7 +67,7 @@ Enumerated capabilities using unique identifiers. Each requirement SHALL be atom
 
 ---
 
-## 4. Acceptance Criteria
+## 5. Acceptance Criteria
 
 One or more Given/When/Then scenarios per functional requirement. These serve as the primary verification mechanism and the basis for test generation.
 
@@ -85,7 +104,7 @@ One or more Given/When/Then scenarios per functional requirement. These serve as
 
 ---
 
-## 5. Constraints
+## 6. Constraints
 
 Explicit boundaries defining what is in scope, out of scope, and prohibited. Prevents scope creep and unwanted agent additions.
 

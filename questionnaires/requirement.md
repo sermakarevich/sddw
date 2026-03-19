@@ -8,12 +8,17 @@ Three-phase dialog to gather enough context to write the requirements spec.
 
 Understand the feature and its context. One question at a time, follow the thread.
 
-**Step 1 — Open:**
+**Step 1 — Project location:**
+> "Where does this feature's code live? Is it the current directory, or a different project?"
+
+Offer options: current directory (`.`) or let user specify a path. Wait for response.
+
+**Step 2 — Open:**
 > "Describe the feature you want to build. What problem does it solve?"
 
 Wait for response.
 
-**Step 2 — Follow up** on what they said. Pick ONE:
+**Step 3 — Follow up** on what they said. Pick ONE:
 - **Follow energy** — whatever they emphasized, dig into that
 - **Challenge vagueness** — "users" means who? "simple" means how? "fast" means what?
 - **Make abstract concrete** — "walk me through using this"
@@ -23,7 +28,7 @@ Offer 2-4 interpretations as options when possible.
 
 Wait for response.
 
-**Step 3+** — Continue one question at a time until the context checklist is covered:
+**Step 4+** — Continue one question at a time until the context checklist is covered:
 - [ ] What the feature does (concrete enough to write Purpose)
 - [ ] Who uses it and why (enough for User Stories)
 - [ ] What should NOT happen (boundaries, prohibitions)

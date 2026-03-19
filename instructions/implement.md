@@ -13,6 +13,8 @@ If no `--task` is provided, list available tasks and ask the user which to execu
 
 Read the task file: `.sddw/<feature-name>/design/tasks/task-<N>-*.md`
 
+Use the Project path from `.sddw/<feature-name>/requirements.md` as the working directory for implementation.
+
 Check `Depends on:` — if dependencies are not yet complete, warn the user.
 
 Reference only if needed:

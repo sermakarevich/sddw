@@ -26,6 +26,7 @@ Follow the three-phase flow defined in the questionnaire:
 ## Rules
 
 - SHALL read and reference the requirements spec — every design element traces to an FR
+- SHALL use the Project path from the requirements spec as the target codebase for analysis
 - SHALL analyse the actual codebase, not assume patterns
 - Every task SHALL trace to one or more FR-IDs
 - Every FR SHALL appear in at least one task
