@@ -2,6 +2,13 @@
 
 > Spec-Driven Development Workflow for [Claude Code](https://docs.anthropic.com/en/docs/claude-code).
 
+- Write **requirements**, then **design** (with task breakdown), then **implement** each task separately
+- The agent guides you through every step — researches, proposes options, confirms your decisions
+- Every step produces a spec. Every step reads specs from previous steps.
+- `/clear` context between steps — each step works within a focused context window
+- Three interaction modes: guided dialog (default), `--critical-only`, or fully `--auto`
+- Lightweight and easily customizable — just markdown files, no runtime dependencies
+
 ## Why
 
 The standard way to use AI coding agents is short, interactive prompts: describe what you want, get code, fix it, repeat. This works for small tasks but breaks down for anything non-trivial — context gets lost between sessions, architectural decisions live only in chat history, and there's no artifact a teammate can review before code is written.
