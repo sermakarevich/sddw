@@ -22,4 +22,6 @@ If no feature name is provided, ask the user to describe the feature they want t
 
 # NEXT STEP
 After the user approves the requirements, suggest:
-> Run `/clear` to free up context, then `/sddw:design <feature-name>`
+> Run `/clear` to free up context.
+> If you have an existing codebase, run `/sddw:code-analysis <feature-name>` to ground design decisions in the actual code.
+> Otherwise, go straight to `/sddw:design <feature-name>`.
