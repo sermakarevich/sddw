@@ -1,6 +1,6 @@
 ## Task File Format
 
-Each task is a self-contained file at `.sddw/<feature-name>/design/tasks/task-<N>-<slug>.md`. The file contains everything the implementation agent needs to execute the task without loading the full design document.
+Each task is a self-contained file at `.sddw/<feature-name>/design/tasks/task-<N>-<slug>.md`. The file contains everything the implementation agent needs to execute the task without loading any other design document.
 
 **Format:**
 ```
@@ -14,9 +14,17 @@ Each task is a self-contained file at `.sddw/<feature-name>/design/tasks/task-<N
 - `path/to/create.py` — create
 - `path/to/modify.py` — modify
 
-## Contracts
+## Architecture
 
-[Copy only the interface contracts relevant to this task from analysis.md]
+[Component and data flow relevant to this task]
+
+### Components
+- [Component]: [responsibility] — [new | existing | modified]
+
+### Data Flow
+[Source] → [Transform/Action] → [Destination]
+
+## Contracts
 
 ### API Endpoints
 - [METHOD] [path]: [description]
@@ -31,11 +39,20 @@ Each task is a self-contained file at `.sddw/<feature-name>/design/tasks/task-<N
 
 ## Data Models
 
-[Copy only the entities and schema changes relevant to this task from analysis.md]
+[Entities, schemas, relationships, and migration requirements relevant to this task]
+
+## Design Decisions
+
+[Non-obvious technical choices relevant to this task with rationale and rejected alternatives]
+
+### [Decision title]
+- **Chosen:** [approach]
+- **Rationale:** [why this approach]
+- **Rejected:** [alternative] — [why rejected]
 
 ## Acceptance Criteria
 
-[Copy only the Given/When/Then scenarios for the referenced FR-IDs from requirements.md]
+[Given/When/Then scenarios for the referenced FR-IDs from requirements.md]
 
 ## Done Criteria
 - [ ] [Specific, verifiable outcome]
@@ -45,12 +62,14 @@ Each task is a self-contained file at `.sddw/<feature-name>/design/tasks/task-<N
 
 **Rules:**
 - Each task file SHALL be self-contained — include all context needed to implement
-- SHALL copy relevant contracts and acceptance criteria inline, not reference other files
-- SHALL include only the contracts, models, and criteria relevant to this task
+- SHALL include architecture, data models, contracts, and design decisions relevant to this task inline
+- SHALL copy relevant acceptance criteria inline, not reference other files
+- SHALL include only the architecture, contracts, models, decisions, and criteria relevant to this task
 - FR-IDs SHALL match the functional requirements from the requirements spec
 - `Depends on:` SHALL reference other task numbers (e.g., `task-1`) or `none`
 - Done criteria SHALL be specific enough to verify programmatically
 - File paths SHALL be concrete, not placeholders
+- Sections with no content for this task (e.g., no API endpoints) SHALL be omitted rather than left empty
 
 **Example:**
 > # Task 1: Create password reset token migration and model
@@ -62,6 +81,14 @@ Each task is a self-contained file at `.sddw/<feature-name>/design/tasks/task-<N
 > ## Files
 > - `db/migrations/003_create_password_reset_tokens.py` — create
 > - `src/models/reset_token.py` — create
+>
+> ## Architecture
+>
+> ### Components
+> - `TokenRepository`: persists and validates reset tokens — new
+>
+> ### Data Flow
+> `ResetService` → `TokenRepository.create()` → database
 >
 > ## Contracts
 >
@@ -78,6 +105,13 @@ Each task is a self-contained file at `.sddw/<feature-name>/design/tasks/task-<N
 >   - `expires_at (datetime)`: creation time + 24h
 >   - `used (bool, default: false)`: single-use flag
 >   - `created_at (datetime)`: auto-set
+>
+> ## Design Decisions
+>
+> ### Token storage: database vs Redis
+> - **Chosen:** Database (PostgreSQL)
+> - **Rationale:** Tokens need to survive server restarts, existing stack uses PostgreSQL, 24h expiry doesn't need Redis performance
+> - **Rejected:** Redis with TTL — adds infrastructure dependency for a low-throughput feature
 >
 > ## Acceptance Criteria
 >

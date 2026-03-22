@@ -1,6 +1,6 @@
 # Design Questionnaire
 
-Three-phase dialog to gather enough context to produce the design artifacts (code-analysis.md + analysis.md + task files).
+Three-phase dialog to gather enough context to produce self-contained task files.
 
 **Mode behavior:** All modes perform the same work. In `--critical-only`, the agent makes non-critical decisions autonomously but asks the user for critical ones (architecture approach, design decisions with trade-offs, task breakdown). In `--auto`, the agent makes all decisions autonomously. See dialog rules for full mode definitions.
 
@@ -13,7 +13,7 @@ Three-phase dialog to gather enough context to produce the design artifacts (cod
 Understand the implementation landscape. The requirements spec is already written — now understand how it maps to the codebase. One question at a time.
 
 **Step 1 — Open:**
-> "I've read the requirements. Before I analyse the codebase, is there anything specific about the architecture or approach you have in mind?"
+> "I've read the requirements. Before I design the tasks, is there anything specific about the architecture or approach you have in mind?"
 
 Wait for response.
 
@@ -22,7 +22,7 @@ Wait for response.
 - **Identify constraints** — "any libraries or patterns you want to use or avoid?"
 - **Clarify integration** — "how should this connect to [existing feature]?"
 
-Offer 2-4 concrete options based on what you see in the codebase.
+Offer 2-4 concrete options based on what you see in the codebase (or code-analysis.md if available).
 
 **Context checklist** (background, not a script — weave naturally):
 - [ ] Any preferred architectural approach
@@ -34,29 +34,11 @@ Offer 2-4 concrete options based on what you see in the codebase.
 
 ## Phase 2: Research & Propose
 
-Analyse the codebase and propose design options ONE section at a time. Wait for approval before moving to the next.
-
-### 2.0 Code Analysis Check
-
-Before researching, check if `.sddw/code-analysis.md` exists.
-
-**If it exists**, read it and ask the user:
-> "I found an existing codebase analysis (last updated: [date from file modification time]). Want me to update it for this feature, or is it still current?"
-
-Options:
-- **Update** — scan codebase for changes relevant to this feature, propose additions
-- **Keep as-is** — reuse without changes
-
-Wait for response. If "Update", propose specific additions/changes and get approval before continuing.
-
-**If it does not exist**, inform the user:
-> "No codebase analysis found. I'll scan the codebase and create one."
-
-Then proceed to research.
+Research the design and propose ONE section at a time. Wait for approval before moving to the next. If `.sddw/code-analysis.md` exists, use it as context. Otherwise, scan the codebase as needed.
 
 ### 2.1 Research
 
-- **Codebase analysis** — scan for relevant patterns, interfaces, flows, conventions (skip if code-analysis.md is kept as-is)
+- **Codebase analysis** — scan for relevant patterns, interfaces, flows, conventions (use code-analysis.md if available, supplement as needed)
 - **Dependency analysis** — what modules are affected, what's the impact radius
 - **Web search** — if the feature involves unfamiliar tech, research best practices and packages
 
@@ -108,12 +90,14 @@ Wait for response. Lock in decision. Move to next decision if any.
 > 1. Task 1: [description] (FR-01) — Depends on: none — files: [list]
 > 2. Task 2: [description] (FR-02) — Depends on: task-1 — files: [list]
 > "Tasks 1 and [N] can run in parallel. Agree with this breakdown and dependency ordering?"
+>
+> "Each task file will include the architecture, data models, contracts, and design decisions relevant to that task — fully self-contained."
 
 Wait for response. Lock in approved tasks. Each task becomes a separate file in `design/tasks/`.
 
 ### Rules for proposing:
 - SHALL propose ONE section at a time, wait for approval, then move to next
-- SHALL base proposals on actual codebase analysis, not assumptions
+- SHALL base proposals on actual codebase analysis (or code-analysis.md), not assumptions
 - SHALL present architecture alternatives when non-obvious
 - SHALL include rationale for every design decision
 - User can accept, modify, or propose their own approach for any section
@@ -124,12 +108,10 @@ Wait for response. Lock in approved tasks. Each task becomes a separate file in 
 
 Once all sections are approved:
 
-> "Ready to generate the design artifacts? Here's what I'll write:"
-> - code-analysis.md: [create or update] — shared codebase analysis
-> - analysis.md: [sections summary] — feature-specific design
-> - [N] task files: [brief list]
+> "Ready to generate the task files? Here's what I'll write:"
+> - [N] task files, each self-contained with relevant architecture, models, contracts, decisions, and acceptance criteria
 
-User confirms → generate `code-analysis.md` to `.sddw/` and feature artifacts to `.sddw/<feature-name>/design/`
+User confirms → generate task files to `.sddw/<feature-name>/design/tasks/`
 
 *In `--critical-only`: still present this summary and wait for confirmation. In `--auto`: generate directly.*
 

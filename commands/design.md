@@ -1,6 +1,6 @@
 ---
 name: sddw:design
-description: Generate design spec by analysing codebase, defining architecture, data models, interfaces, and task decomposition
+description: Generate design spec as self-contained task files with architecture, data models, interfaces, and decisions
 argument-hint: "<feature-name> [--auto | --critical-only]"
 ---
 
@@ -16,8 +16,6 @@ argument-hint: "<feature-name> [--auto | --critical-only]"
 @~/.claude/sddw/questionnaires/design.md
 
 # SPECS
-@~/.claude/sddw/specs/code-analysis.md
-@~/.claude/sddw/specs/design-analysis.md
 @~/.claude/sddw/specs/design-task.md
 
 # NEXT STEP

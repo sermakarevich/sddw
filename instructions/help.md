@@ -19,17 +19,21 @@ Display:
 ```
 sddw — Spec-Driven Development Workflow
 
-  3-step pipeline: specs are the source of truth, code is a verified artifact.
+  4-step pipeline: specs are the source of truth, code is a verified artifact.
 
-  Step 1: Requirements   /sddw:requirements <feature-name>
+  Step 1: Requirements     /sddw:requirements <feature-name>
     Collaboratively produce a requirements spec: purpose, user stories,
     functional requirements, acceptance criteria, constraints.
 
-  Step 2: Design         /sddw:design <feature-name>
-    Analyse codebase, produce design artifacts: architecture, data models,
+  Step 2: Code Analysis    /sddw:code-analysis <feature-name>   (optional)
+    Analyse existing codebase: patterns, interfaces, flows, conventions.
+    Skip this step for greenfield projects with no existing codebase.
+
+  Step 3: Design           /sddw:design <feature-name>
+    Produce self-contained task files: architecture, data models,
     interface contracts, design decisions, task breakdown.
 
-  Step 3: Implement      /sddw:implement <feature-name> --task <N>
+  Step 4: Implement        /sddw:implement <feature-name> --task <N>
     Execute a single task following TDD protocol, commit protocol,
     and deviation handling. One task at a time.
 
@@ -49,15 +53,15 @@ For each feature, show a one-line summary with status indicator:
 
 ```
 Features in .sddw/:
-  <feature-a>    [requirements → design → implement 2/4]
+  <feature-a>    [requirements → code-analysis → design → implement 2/4]
   <feature-b>    [requirements → design]
   <feature-c>    [requirements]
 ```
 
 Status detection:
 - `requirements.md` exists → requirements done
-- `design/analysis.md` exists → design done
-- `design/tasks/task-N-*.md` → count total tasks
+- `.sddw/code-analysis.md` exists → code analysis done
+- `design/tasks/task-N-*.md` → design done (count total tasks)
 - `design/tasks/task-N-*.done.md` → count completed tasks
 
 If `.sddw/` does not exist or has no feature directories, say:
@@ -72,16 +76,17 @@ Read the feature directory and show detailed progress:
 ```
 Feature: <feature-name>
 
-  Requirement:  ✓ completed
+  Requirements:    ✓ completed
     └─ .sddw/<feature-name>/requirements.md
 
-  Code Analysis: ✓ exists (last updated: <date>)
+  Code Analysis:   ✓ exists (last updated: <date>)
     └─ .sddw/code-analysis.md
+    (or: ○ skipped — no code-analysis.md found)
 
-  Design:       ✓ completed
-    └─ .sddw/<feature-name>/design/analysis.md
+  Design:          ✓ completed
+    └─ .sddw/<feature-name>/design/tasks/
 
-  Tasks:        2 of 4 complete
+  Tasks:           2 of 4 complete
     1. task-1-<slug>    ✓ done
     2. task-2-<slug>    ✓ done
     3. task-3-<slug>    ○ pending

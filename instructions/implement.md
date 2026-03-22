@@ -18,7 +18,7 @@ Use the Project path from `.sddw/<feature-name>/requirements.md` as the working 
 Check `Depends on:` — if dependencies are not yet complete, warn the user.
 
 Reference only if needed:
-- `.sddw/<feature-name>/design/analysis.md` — for design decisions or additional context
+- `.sddw/code-analysis.md` — for codebase patterns and conventions (may not exist)
 - `.sddw/<feature-name>/requirements.md` — if acceptance criteria need clarification
 
 ## Process
