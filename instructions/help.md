@@ -37,6 +37,11 @@ sddw — Spec-Driven Development Workflow
     Execute a single task following TDD protocol, commit protocol,
     and deviation handling. One task at a time.
 
+  Fast-track:
+    /sddw:chat <feature-name>     Quick edits, questions, or updates on an
+                                   existing feature. Loads artifacts, skips
+                                   the full questionnaire ceremony.
+
   Utilities:
     /sddw:help                     This overview
     /sddw:help list                List all features
