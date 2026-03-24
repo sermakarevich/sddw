@@ -6,8 +6,7 @@ argument-hint: "<feature-name> [--task <task-number>] [--auto | --critical-only]
 
 <feature_name> #$ARGUMENTS </feature_name>
 
-# DIALOG RULES
-@~/.claude/sddw/instructions/dialog-rules.md
+# COMMON RULES
 @~/.claude/sddw/instructions/common.md
 
 # INSTRUCTIONS

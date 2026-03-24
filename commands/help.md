@@ -6,8 +6,7 @@ argument-hint: "[list | status <feature-name>]"
 
 <subcommand> #$ARGUMENTS </subcommand>
 
-# DIALOG RULES
-@~/.claude/sddw/instructions/dialog-rules.md
+# COMMON RULES
 @~/.claude/sddw/instructions/common.md
 
 # INSTRUCTIONS
