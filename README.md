@@ -124,6 +124,23 @@ Each task file is self-contained — the agent loads it as primary context witho
 
 After each task, a completion report (`task-N-<slug>.done.md`) is written to `implement/tasks/`, documenting what was done, deviations, and difficulties.
 
+### Chat
+
+```
+/sddw:chat <feature-name> [--auto | --critical-only]
+```
+
+Fast-track interaction with a feature that already has artifacts. Skips the full questionnaire ceremony — just load context and talk.
+
+- **Questions** — ask anything about the feature; answered from loaded artifacts and codebase
+- **Spec updates** — edit requirements, FRs, acceptance criteria, or task files in-place
+- **Quick implementation** — small code changes following TDD and commit protocols
+- **Status** — check feature progress
+
+Default mode is **critical-only** — chat assumes you know what you want and only pauses for scope-affecting changes or ambiguous requests.
+
+If a request is too large (new task files, new architecture, >3 files), chat redirects you to the full workflow.
+
 ### Help
 
 ```
