@@ -1,8 +1,8 @@
 ## Task Completion Report
 
-Written after a task is implemented. Lives alongside the task file as `task-<N>-<slug>.done.md`.
+Written after a task is implemented. Stored in the implement folder as `task-<N>-<slug>.done.md`.
 
-**Location:** `.sddw/<feature-name>/design/tasks/task-<N>-<slug>.done.md`
+**Location:** `.sddw/<feature-name>/implement/tasks/task-<N>-<slug>.done.md`
 
 **Format:**
 ```

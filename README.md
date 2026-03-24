@@ -122,7 +122,7 @@ Execute a single task from the design spec:
 
 Each task file is self-contained — the agent loads it as primary context without needing any other design document.
 
-After each task, a completion report (`task-N-<slug>.done.md`) is written alongside the task file, documenting what was done, deviations, and difficulties.
+After each task, a completion report (`task-N-<slug>.done.md`) is written to `implement/tasks/`, documenting what was done, deviations, and difficulties.
 
 ### Help
 

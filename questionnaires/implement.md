@@ -4,6 +4,8 @@ Three-phase dialog for executing a single task from the design spec.
 
 **Mode behavior:** All modes perform the same work. In `--critical-only`, the agent handles non-critical decisions autonomously but asks about dependency conflicts and architectural deviations (Rule 4). In `--auto`, the agent makes all decisions autonomously — except architectural deviations (Rule 4), which always ask the user. See dialog rules for full mode definitions.
 
+> **Tool reminder:** Every question to the user — whether options or open-ended — MUST use the `AskUserQuestion` tool. See "Tool Usage — AskUserQuestion" in dialog rules.
+
 ---
 
 ## Phase 1: Discover
@@ -15,18 +17,16 @@ Understand which task to execute and any blockers. One question at a time.
 **Step 1 — Task selection:**
 
 If no --task flag provided:
-> "Here are the available tasks for [feature-name]:"
-> | # | Task | Status | Depends on |
-> |---|------|--------|------------|
-> | 1 | [name] | done / pending | none |
-> | 2 | [name] | done / pending | task 1 |
-> "Which task would you like to implement?"
+Present the task table as context text, then use `AskUserQuestion` with each pending task as an option:
+- Task 1: [name] (Depends on: none)
+- Task 2: [name] (Depends on: task 1)
+Question: "Which task would you like to implement?"
 
 Wait for response.
 
 If --task flag provided, check dependencies:
 > "Task [N]: [name]. Dependencies: [status of each]."
-> If blocked: "Task [dep] is not yet complete. Proceed anyway?"
+> If blocked: use `AskUserQuestion` with options "Yes — proceed anyway" / "No — pick a different task".
 
 Wait for response.
 
