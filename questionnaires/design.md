@@ -2,7 +2,7 @@
 
 Three-phase dialog to gather enough context to produce self-contained task files.
 
-**Mode behavior:** All modes perform the same work. In `--critical-only`, the agent makes non-critical decisions autonomously but asks the user for critical ones (architecture approach, design decisions with trade-offs, task breakdown). In `--auto`, the agent makes all decisions autonomously. See dialog rules for full mode definitions.
+**Critical decisions (`--critical-only`):** architecture approach, design decisions with trade-offs, task breakdown.
 
 ---
 
@@ -22,7 +22,7 @@ Wait for response.
 - **Identify constraints** — "any libraries or patterns you want to use or avoid?"
 - **Clarify integration** — "how should this connect to [existing feature]?"
 
-Offer 2-4 concrete options based on what you see in the codebase (or code-analysis.md if available).
+Use `AskUserQuestion` with 2-4 concrete options based on what you see in the codebase (or code-analysis.md if available).
 
 **Context checklist** (background, not a script — weave naturally):
 - [ ] Any preferred architectural approach
@@ -49,13 +49,10 @@ Present each section separately. Wait for user approval before proposing the nex
 *In `--critical-only`: decide Data Models and Interface Contracts autonomously. Pause only for Architecture (Section 1), Design Decisions (Section 4), and Task Breakdown (Section 5) — present these for user approval. In `--auto`: decide all sections autonomously.*
 
 **Section 1 — Architecture:**
-> "Here's how I'd structure this feature:"
-> - [Component A]: [responsibility] — new
-> - [Component B]: [responsibility] — modify existing
-> - [Component C]: [responsibility] — reuse existing
-> "Data flow: [source] → [action] → [destination]"
-> "Alternative approach: [brief description]. I prefer option 1 because [reason]."
-> "Agree with this structure?"
+Present the architecture overview as context text, then use `AskUserQuestion` with options:
+- Option 1: [Proposed architecture — description, data flow]
+- Option 2: [Alternative approach — description]
+Question: "Which architecture do you prefer, or would you adjust?"
 
 Wait for response. Lock in approved architecture.
 
@@ -77,11 +74,10 @@ Wait for response. Lock in approved models.
 Wait for response. Lock in approved contracts.
 
 **Section 4 — Design Decisions:**
-For each non-obvious decision, present ONE at a time:
-> "Decision needed: [title]"
-> 1. **[Option A]** — [pros]. [cons].
-> 2. **[Option B]** — [pros]. [cons].
-> "I recommend option 1 because [rationale]. Your call?"
+For each non-obvious decision, present ONE at a time using `AskUserQuestion` with options:
+- **[Option A] (Recommended)** — [pros]. [cons]. Use `preview` for code snippets if helpful.
+- **[Option B]** — [pros]. [cons].
+Question: "Decision: [title]. I recommend option 1 because [rationale]. Your call?"
 
 Wait for response. Lock in decision. Move to next decision if any.
 

@@ -4,12 +4,12 @@ Analyse the existing codebase to extract patterns, interfaces, flows, and conven
 
 ## Goal
 
-Produce a shared, project-level codebase analysis. In interactive mode (default), every section is explicitly accepted by the user before generation. In `--critical-only` mode, the agent makes non-critical decisions autonomously but asks the user for critical ones. In `--auto` mode, the agent makes all decisions autonomously. See dialog rules for mode behavior.
+Produce a shared, project-level codebase analysis.
 
 ## Prerequisites
 
 Read the requirements spec produced by Step 1:
-`.sddw/<feature-name>/requirements.md`
+`<resolved-sddw-path>/<feature-name>/requirements.md`
 
 If the requirements spec does not exist, inform the user and suggest running `/sddw:requirements <feature-name>` first.
 

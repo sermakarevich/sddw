@@ -2,7 +2,7 @@
 
 Three-phase dialog to gather enough context to write the requirements spec.
 
-**Mode behavior:** All modes perform the same work. In `--critical-only`, the agent makes non-critical decisions autonomously but asks the user for critical ones (project path, scope boundaries, prohibitions). In `--auto`, the agent makes all decisions autonomously. See dialog rules for full mode definitions.
+**Critical decisions (`--critical-only`):** project path, scope boundaries, prohibitions.
 
 ---
 
@@ -15,7 +15,7 @@ Understand the feature and its context. One question at a time, follow the threa
 **Step 1 — Project location:**
 > "Where does this feature's code live? Is it the current directory, or a different project?"
 
-Offer options: current directory (`.`) or let user specify a path. Wait for response.
+Use `AskUserQuestion` with options: current directory (`.`) or "Other — I'll specify a path". Wait for response.
 
 **Step 2 — Open:**
 > "Describe the feature you want to build. What problem does it solve?"
@@ -28,7 +28,7 @@ Wait for response.
 - **Make abstract concrete** — "walk me through using this"
 - **Clarify ambiguity** — "when you say X, do you mean A or B?"
 
-Offer 2-4 interpretations as options when possible.
+Use `AskUserQuestion` with 2-4 interpretations as options when possible.
 
 Wait for response.
 
@@ -61,10 +61,10 @@ Present each section separately. Wait for user approval before proposing the nex
 *In `--critical-only`: decide Purpose, User Stories, FRs, Acceptance Criteria, and Testing Approach autonomously. Pause only for Constraints (scope boundaries and prohibitions) — present these for user approval. In `--auto`: decide all sections autonomously.*
 
 **Section 1 — Purpose:**
-> "Based on what you described, here are two ways to frame this feature:"
-> 1. [Framing A — focused on problem]
-> 2. [Framing B — focused on outcome]
-> "Which framing works better, or would you adjust?"
+Use `AskUserQuestion` with options presenting 2 framings:
+- Option 1: [Framing A — focused on problem]
+- Option 2: [Framing B — focused on outcome]
+Question: "Which framing works better, or would you adjust?"
 
 Wait for response. Lock in approved Purpose.
 
@@ -106,13 +106,12 @@ Wait for response. Repeat for each FR, one at a time.
 Wait for response. Lock in approved constraints.
 
 **Section 6 — Testing Approach:**
-> "How do you want to handle testing for this feature?"
-
-Options:
+Use `AskUserQuestion` with options:
 - **TDD (Recommended)** — write failing tests first, then implement to pass
 - **Test-after** — implement first, add tests after
 - **Selective TDD** — TDD for business logic/APIs, skip for config/glue code
 - **No tests** — skip testing (e.g., prototype, spike)
+Question: "How do you want to handle testing for this feature?"
 
 Wait for response. Lock in testing approach — this carries through to the implement step.
 

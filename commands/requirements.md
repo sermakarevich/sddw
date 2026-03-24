@@ -8,8 +8,8 @@ argument-hint: "<feature-name> [--auto | --critical-only]"
 
 If no feature name is provided, ask the user to describe the feature they want to build.
 
-# DIALOG RULES
-@~/.claude/sddw/instructions/dialog-rules.md
+# COMMON RULES
+@~/.claude/sddw/instructions/common.md
 
 # INSTRUCTIONS
 @~/.claude/sddw/instructions/requirements.md

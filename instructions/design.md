@@ -4,16 +4,16 @@ Generate design as self-contained task files for a feature. This is Step 3 of th
 
 ## Goal
 
-Produce self-contained task files — each containing everything needed to implement that task. In interactive mode (default), every section is explicitly accepted by the user before generation. In `--critical-only` mode, the agent makes non-critical decisions autonomously but asks the user for critical ones. In `--auto` mode, the agent makes all decisions autonomously. See dialog rules for mode behavior.
+Produce self-contained task files — each containing everything needed to implement that task.
 
 ## Prerequisites
 
 Read the requirements spec produced by the requirements step:
-`.sddw/<feature-name>/requirements.md`
+`<resolved-sddw-path>/<feature-name>/requirements.md`
 
 If the requirements spec does not exist, inform the user and suggest running `/sddw:requirements <feature-name>` first.
 
-Check if `.sddw/code-analysis.md` exists. If it does, read it and use it to ground design decisions. If it does not exist, that is fine — the code-analysis step is optional. In that case, perform lightweight codebase scanning as needed during design.
+Check if `<resolved-sddw-path>/code-analysis.md` exists. If it does, read it and use it to ground design decisions. If it does not exist, that is fine — the code-analysis step is optional. In that case, perform lightweight codebase scanning as needed during design.
 
 ## Process
 

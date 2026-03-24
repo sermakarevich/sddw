@@ -6,8 +6,8 @@ argument-hint: "<feature-name> [--auto | --critical-only]"
 
 <feature_name> #$ARGUMENTS </feature_name>
 
-# DIALOG RULES
-@~/.claude/sddw/instructions/dialog-rules.md
+# COMMON RULES
+@~/.claude/sddw/instructions/common.md
 
 # INSTRUCTIONS
 @~/.claude/sddw/instructions/code-analysis.md

@@ -2,7 +2,7 @@
 
 Three-phase dialog to gather enough context to produce the codebase analysis (code-analysis.md).
 
-**Mode behavior:** All modes perform the same work. In `--critical-only`, the agent makes non-critical decisions autonomously but asks the user for critical ones (ambiguous conventions, unclear patterns). In `--auto`, the agent makes all decisions autonomously. See dialog rules for full mode definitions.
+**Critical decisions (`--critical-only`):** ambiguous conventions, conflicting patterns.
 
 ---
 

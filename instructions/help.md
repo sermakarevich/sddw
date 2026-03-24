@@ -62,7 +62,7 @@ Status detection:
 - `requirements.md` exists → requirements done
 - `.sddw/code-analysis.md` exists → code analysis done
 - `design/tasks/task-N-*.md` → design done (count total tasks)
-- `design/tasks/task-N-*.done.md` → count completed tasks
+- `implement/tasks/task-N-*.done.md` → count completed tasks
 
 If `.sddw/` does not exist or has no feature directories, say:
 > "No features found. Start with `/sddw:requirements <feature-name>`"
@@ -102,9 +102,11 @@ If the feature directory does not exist:
 
 ---
 
+**Path note:** If `.sddw/` cannot be found at the project root, display the "No features found" message.
+
 ## Rules
 
 - SHALL scan actual filesystem, not assume
-- SHALL show concrete file paths so the user can navigate
+- SHALL show concrete file paths (resolved absolute) so the user can navigate
 - SHALL detect status from file existence, not file content
 - SHALL handle missing `.sddw/` directory gracefully

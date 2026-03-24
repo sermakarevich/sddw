@@ -11,15 +11,15 @@ If no `--task` is provided, list available tasks and ask the user which to execu
 
 ## Prerequisites
 
-Read the task file: `.sddw/<feature-name>/design/tasks/task-<N>-*.md`
+Read the task file: `<resolved-sddw-path>/<feature-name>/design/tasks/task-<N>-*.md`
 
-Use the Project path from `.sddw/<feature-name>/requirements.md` as the working directory for implementation.
+Use the Project path from `<resolved-sddw-path>/<feature-name>/requirements.md` as the working directory for implementation.
 
 Check `Depends on:` — if dependencies are not yet complete, warn the user.
 
 Reference only if needed:
-- `.sddw/code-analysis.md` — for codebase patterns and conventions (may not exist)
-- `.sddw/<feature-name>/requirements.md` — if acceptance criteria need clarification
+- `<resolved-sddw-path>/code-analysis.md` — for codebase patterns and conventions (may not exist)
+- `<resolved-sddw-path>/<feature-name>/requirements.md` — if acceptance criteria need clarification
 
 ## Process
 
@@ -129,12 +129,12 @@ Deviations during implementation are normal. Classify and handle:
 ## Completion Report
 
 After the task commit(s), write a completion report following the task-completion spec:
-`.sddw/<feature-name>/design/tasks/task-<N>-<slug>.done.md`
+`.sddw/<feature-name>/implement/tasks/task-<N>-<slug>.done.md`
 
-The report documents what was done, deviations, and difficulties. This enables `/sddw:help status` to show task completion and provides context for future tasks.
+Create the `implement/tasks/` directory if it does not exist. The report documents what was done, deviations, and difficulties. This enables `/sddw:help status` to show task completion and provides context for future tasks.
 
 ## Output
 
 - Implemented code for the specified task
 - Commit(s) with descriptive messages referencing FR-IDs
-- Completion report (`.done.md`) alongside the task file
+- Completion report (`.done.md`) in `implement/tasks/`
