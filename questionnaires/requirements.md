@@ -2,9 +2,7 @@
 
 Three-phase dialog to gather enough context to write the requirements spec.
 
-**Mode behavior:** All modes perform the same work. In `--critical-only`, the agent makes non-critical decisions autonomously but asks the user for critical ones (project path, scope boundaries, prohibitions). In `--auto`, the agent makes all decisions autonomously. See dialog rules for full mode definitions.
-
-> **Tool reminder:** Every question to the user — whether options or open-ended — MUST use the `AskUserQuestion` tool. See "Tool Usage — AskUserQuestion" in dialog rules.
+**Critical decisions (`--critical-only`):** project path, scope boundaries, prohibitions.
 
 ---
 

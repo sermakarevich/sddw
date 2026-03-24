@@ -9,10 +9,6 @@ Implement a single task from the design spec. This is Step 3 of the sddw workflo
 
 If no `--task` is provided, list available tasks and ask the user which to execute.
 
-## Path Resolution
-
-Before any other work, resolve the `.sddw/` base path following the Path Resolution rules in the dialog rules. Use the resolved absolute path for all file operations in this step.
-
 ## Prerequisites
 
 Read the task file: `<resolved-sddw-path>/<feature-name>/design/tasks/task-<N>-*.md`

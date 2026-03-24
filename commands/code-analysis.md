@@ -8,6 +8,7 @@ argument-hint: "<feature-name> [--auto | --critical-only]"
 
 # DIALOG RULES
 @~/.claude/sddw/instructions/dialog-rules.md
+@~/.claude/sddw/instructions/common.md
 
 # INSTRUCTIONS
 @~/.claude/sddw/instructions/code-analysis.md

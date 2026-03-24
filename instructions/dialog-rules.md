@@ -19,6 +19,7 @@ Critical decisions are those that are hard to reverse or that fundamentally shap
 | Step | Critical decisions | Non-critical |
 |------|-------------------|--------------|
 | **Requirement** | Project path, scope boundaries (in/out), prohibitions | Purpose framing, user story wording, FR priority order, acceptance criteria details, testing approach |
+| **Code analysis** | Ambiguous conventions, conflicting patterns | Clear-cut patterns, interfaces, flows, naming conventions |
 | **Design** | Architecture approach (new vs modify vs reuse), design decisions with trade-offs, task breakdown and dependencies | Code analysis update, data model details, interface contract specifics |
 | **Implement** | Architectural deviations (Rule 4), dependency conflicts | Task selection (pick next unblocked), implementation approach, TDD applicability |
 

@@ -2,9 +2,7 @@
 
 Three-phase dialog for executing a single task from the design spec.
 
-**Mode behavior:** All modes perform the same work. In `--critical-only`, the agent handles non-critical decisions autonomously but asks about dependency conflicts and architectural deviations (Rule 4). In `--auto`, the agent makes all decisions autonomously — except architectural deviations (Rule 4), which always ask the user. See dialog rules for full mode definitions.
-
-> **Tool reminder:** Every question to the user — whether options or open-ended — MUST use the `AskUserQuestion` tool. See "Tool Usage — AskUserQuestion" in dialog rules.
+**Critical decisions (`--critical-only`):** dependency conflicts, architectural deviations (Rule 4 — always asks, even in `--auto`).
 
 ---
 

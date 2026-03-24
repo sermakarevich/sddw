@@ -10,6 +10,7 @@ If no feature name is provided, ask the user to describe the feature they want t
 
 # DIALOG RULES
 @~/.claude/sddw/instructions/dialog-rules.md
+@~/.claude/sddw/instructions/common.md
 
 # INSTRUCTIONS
 @~/.claude/sddw/instructions/requirements.md

@@ -4,7 +4,7 @@ Generate a requirements specification for a feature. This is Step 1 of the sddw 
 
 ## Goal
 
-Produce a precise, clear, and complete requirements spec. In interactive mode (default), every section is explicitly accepted by the user before generation. In `--critical-only` mode, the agent makes non-critical decisions autonomously but asks the user for critical ones. In `--auto` mode, the agent makes all decisions autonomously. See dialog rules for mode behavior.
+Produce a precise, clear, and complete requirements spec.
 
 ## Process
 
@@ -26,9 +26,7 @@ Follow the three-phase flow defined in the questionnaire, adapted to the interac
 - Include explicit prohibitions (SHALL NOT) to prevent unwanted agent behaviour
 - SHALL NOT proceed to generation without user approval on all sections (interactive mode) or critical sections (`--critical-only` mode). `--auto` mode may proceed without approval.
 
-## Path Resolution
-
-Before any other work, resolve the `.sddw/` base path following the Path Resolution rules in the dialog rules. The requirements step is responsible for **creating** the `.sddw/` directory and the feature subdirectory if they do not exist. Use the resolved absolute path for all file operations.
+**Path note:** The requirements step is responsible for **creating** the `.sddw/` directory and the feature subdirectory if they do not exist.
 
 ## Output
 

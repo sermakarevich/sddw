@@ -102,9 +102,7 @@ If the feature directory does not exist:
 
 ---
 
-## Path Resolution
-
-Before any other work, resolve the `.sddw/` base path following the Path Resolution rules in the dialog rules. Use the resolved absolute path for all filesystem scans. If `.sddw/` cannot be found at the project root, display the "No features found" message.
+**Path note:** If `.sddw/` cannot be found at the project root, display the "No features found" message.
 
 ## Rules
 

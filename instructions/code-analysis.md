@@ -4,11 +4,7 @@ Analyse the existing codebase to extract patterns, interfaces, flows, and conven
 
 ## Goal
 
-Produce a shared, project-level codebase analysis. In interactive mode (default), every section is explicitly accepted by the user before generation. In `--critical-only` mode, the agent makes non-critical decisions autonomously but asks the user for critical ones. In `--auto` mode, the agent makes all decisions autonomously. See dialog rules for mode behavior.
-
-## Path Resolution
-
-Before any other work, resolve the `.sddw/` base path following the Path Resolution rules in the dialog rules. Use the resolved absolute path for all file operations in this step.
+Produce a shared, project-level codebase analysis.
 
 ## Prerequisites
 

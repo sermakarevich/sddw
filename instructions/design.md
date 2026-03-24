@@ -4,11 +4,7 @@ Generate design as self-contained task files for a feature. This is Step 3 of th
 
 ## Goal
 
-Produce self-contained task files — each containing everything needed to implement that task. In interactive mode (default), every section is explicitly accepted by the user before generation. In `--critical-only` mode, the agent makes non-critical decisions autonomously but asks the user for critical ones. In `--auto` mode, the agent makes all decisions autonomously. See dialog rules for mode behavior.
-
-## Path Resolution
-
-Before any other work, resolve the `.sddw/` base path following the Path Resolution rules in the dialog rules. Use the resolved absolute path for all file operations in this step.
+Produce self-contained task files — each containing everything needed to implement that task.
 
 ## Prerequisites
 
