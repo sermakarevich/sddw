@@ -44,21 +44,6 @@ All modes perform the same work — discover, research, propose, decide. The dif
 - Never dump multiple questions in a single message.
 - SHALL NOT dump the spec template or full output structure to the user. Use the spec as internal guidance. Present proposals in conversational form, one block at a time, and confirm each before moving on.
 
-## Tool Usage — AskUserQuestion
-
-**CRITICAL:** All user-facing questions MUST use the `AskUserQuestion` tool. Do NOT use plain text conversation turns to ask questions or present options.
-
-| Question type | How to ask |
-|--------------|------------|
-| **Options / choices** (2-4 items) | `AskUserQuestion` with structured `options`. Add "(Recommended)" to the preferred option. Use `multiSelect: true` when choices are not mutually exclusive. Use `preview` field for code snippets, architecture diagrams, or spec block previews. |
-| **Open-ended question** (no predefined choices) | `AskUserQuestion` with `question` only (no `options` array). |
-| **Yes/No confirmation** | `AskUserQuestion` with two options: "Yes" and "No" (or contextual equivalents). |
-
-**Rules:**
-- SHALL use `AskUserQuestion` for every question in interactive and critical-only modes — both option-based and open-ended.
-- SHALL NOT present questions or options as plain text in the conversation and wait for a reply.
-- The only text output between questions should be brief context, summaries, or research findings that set up the next question.
-
 ## Path Resolution
 
 All `.sddw/` references are **relative to the project root** — the git root of the target codebase being worked on.
@@ -73,6 +58,21 @@ All `.sddw/` references are **relative to the project root** — the git root of
 - SHALL NOT assume `.sddw/` is in the current working directory — always resolve from the project root.
 - When writing file paths in output or logs, use the resolved absolute path.
 - Step-specific path behavior (creating directories, fallback messages) is noted in each step's instructions.
+
+## Tool Usage — AskUserQuestion
+
+**CRITICAL:** All user-facing questions MUST use the `AskUserQuestion` tool. Do NOT use plain text conversation turns to ask questions or present options.
+
+| Question type | How to ask |
+|--------------|------------|
+| **Options / choices** (2-4 items) | `AskUserQuestion` with structured `options`. Add "(Recommended)" to the preferred option. Use `multiSelect: true` when choices are not mutually exclusive. Use `preview` field for code snippets, architecture diagrams, or spec block previews. |
+| **Open-ended question** (no predefined choices) | `AskUserQuestion` with `question` only (no `options` array). |
+| **Yes/No confirmation** | `AskUserQuestion` with two options: "Yes" and "No" (or contextual equivalents). |
+
+**Rules:**
+- SHALL use `AskUserQuestion` for every question in interactive and critical-only modes — both option-based and open-ended.
+- SHALL NOT present questions or options as plain text in the conversation and wait for a reply.
+- The only text output between questions should be brief context, summaries, or research findings that set up the next question.
 
 ## Anti-patterns
 
