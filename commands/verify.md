@@ -24,4 +24,3 @@ After verification:
 - If all checks pass, congratulate and summarise what was built.
 - If remediation tasks were created, suggest:
   > Run `/clear` to free up context, then `/sddw:implement <feature-name> --task <N>` for each remediation task.
-  > After fixing, run `/sddw:verify <feature-name>` again.
