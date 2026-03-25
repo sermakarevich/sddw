@@ -19,7 +19,7 @@ Display:
 ```
 sddw — Spec-Driven Development Workflow
 
-  4-step pipeline: specs are the source of truth, code is a verified artifact.
+  5-step pipeline: specs are the source of truth, code is a verified artifact.
 
   Step 1: Requirements     /sddw:requirements <feature-name>
     Collaboratively produce a requirements spec: purpose, user stories,
@@ -36,6 +36,10 @@ sddw — Spec-Driven Development Workflow
   Step 4: Implement        /sddw:implement <feature-name> --task <N>
     Execute a single task following TDD protocol, commit protocol,
     and deviation handling. One task at a time.
+
+  Step 5: Verify           /sddw:verify <feature-name>
+    Run tests, cross-check acceptance criteria, review done criteria.
+    Creates remediation tasks if issues are found.
 
   Fast-track:
     /sddw:chat <feature-name>     Quick edits, questions, or updates on an
@@ -59,7 +63,7 @@ For each feature, show a one-line summary with status indicator:
 ```
 Features in .sddw/:
   <feature-a>    [requirements → code-analysis → design → implement 2/4]
-  <feature-b>    [requirements → design]
+  <feature-b>    [requirements → design → implement 4/4 → verify PASS]
   <feature-c>    [requirements]
 ```
 
@@ -68,6 +72,7 @@ Status detection:
 - `.sddw/code-analysis.md` exists → code analysis done
 - `design/tasks/task-N-*.md` → design done (count total tasks)
 - `implement/tasks/task-N-*.done.md` → count completed tasks
+- `verify/report.md` exists → verification done (read result from Summary)
 
 If `.sddw/` does not exist or has no feature directories, say:
 > "No features found. Start with `/sddw:requirements <feature-name>`"
@@ -96,6 +101,11 @@ Feature: <feature-name>
     2. task-2-<slug>    ✓ done
     3. task-3-<slug>    ○ pending
     4. task-4-<slug>    ○ pending (Depends on: task-3)
+
+  Verification:      ✓ PASS (2026-03-25)
+    └─ .sddw/<feature-name>/verify/report.md
+    (or: ○ not yet run)
+    (or: ✗ FAIL — 1 FR failed, 1 partial — 2 remediation tasks created)
 ```
 
 For completed tasks, if a `.done.md` file exists, show a brief summary from it.

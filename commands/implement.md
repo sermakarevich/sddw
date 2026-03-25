@@ -22,4 +22,5 @@ argument-hint: "<feature-name> [--task <task-number>] [--auto | --critical-only]
 # NEXT STEP
 After completing a task, suggest the next unblocked task:
 > `/sddw:implement <feature-name> --task <next-N>`
-When all tasks are complete, congratulate and summarise what was built.
+When all tasks are complete, suggest verification:
+> Run `/clear` to free up context, then `/sddw:verify <feature-name>` to check everything works.
