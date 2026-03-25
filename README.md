@@ -8,7 +8,7 @@
 
 Spec-Driven Development Workflow for [Claude Code](https://docs.anthropic.com/en/docs/claude-code).
 
-- Write **requirements**, optionally **analyse the codebase**, then **design** (as self-contained task files), then **implement** each task separately
+- Write **requirements**, optionally **analyse the codebase**, then **design** (as self-contained task files), then **implement** each task separately, then **verify** the result
 - The agent guides you through every step — researches, proposes options, confirms your decisions
 - Every step produces exactly one spec type. Every step reads specs from previous steps.
 - `/clear` context between steps — each step works within a focused context window
@@ -123,6 +123,28 @@ Execute a single task from the design spec:
 Each task file is self-contained — the agent loads it as primary context without needing any other design document.
 
 After each task, a completion report (`task-N-<slug>.done.md`) is written to `implement/tasks/`, documenting what was done, deviations, and difficulties.
+
+### 5. Verify
+
+```
+/sddw:verify <feature-name> [--auto | --critical-only]
+```
+
+Verify the implementation against requirements after all tasks are complete:
+
+- **Assess** — load artifacts, detect test runner, check task completion status
+- **Verify** — run test suite, cross-check each FR's acceptance criteria, review done criteria
+- **Report & Remediate** — produce verification report, create remediation tasks if issues found
+
+Output:
+
+```
+.sddw/<feature-name>/
+└── verify/
+    └── report.md    # FR-by-FR pass/fail, test results, deviations, warnings
+```
+
+If issues are found, remediation tasks are created as additional task files in `design/tasks/` (continuing the numbering). These can be executed with `/sddw:implement` and then verified again — the loop repeats until all checks pass.
 
 ### Chat
 
