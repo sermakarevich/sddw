@@ -53,10 +53,9 @@ echo "Installed $COUNT commands to $COMMANDS_DIR/"
 
 echo ""
 echo "Commands available:"
-echo "  /sddw:requirements <feature-name>"
-echo "  /sddw:code-analysis <feature-name>          (optional)"
-echo "  /sddw:design <feature-name>"
-echo "  /sddw:implement <feature-name> [--task <N>]"
-echo "  /sddw:help [list | status <feature-name>]"
+for cmd_file in "$COMMANDS_DIR"/*.md; do
+    cmd_name="$(basename "$cmd_file" .md)"
+    echo "  /sddw:$cmd_name"
+done
 echo ""
 echo "Done."
