@@ -19,7 +19,7 @@ Display:
 ```
 sddw — Spec-Driven Development Workflow
 
-  5-step pipeline: specs are the source of truth, code is a verified artifact.
+  6-step pipeline: specs are the source of truth, code is a verified artifact.
 
   Step 1: Requirements     /sddw:requirements <feature-name>
     Collaboratively produce a requirements spec: purpose, user stories,
@@ -40,6 +40,11 @@ sddw — Spec-Driven Development Workflow
   Step 5: Verify           /sddw:verify <feature-name>
     Run tests, cross-check acceptance criteria, review done criteria.
     Creates remediation tasks if issues are found.
+
+  Step 6: Self-Improve     /sddw:self-improve <feature-name>
+    Analyse feature execution across all steps. Identify gaps,
+    errors, and patterns. Propose concrete improvements to
+    workflow instructions, questionnaires, and specs.
 
   Fast-track:
     /sddw:chat <feature-name>     Quick edits, questions, or updates on an
@@ -63,7 +68,7 @@ For each feature, show a one-line summary with status indicator:
 ```
 Features in .sddw/:
   <feature-a>    [requirements → code-analysis → design → implement 2/4]
-  <feature-b>    [requirements → design → implement 4/4 → verify PASS]
+  <feature-b>    [requirements → design → implement 4/4 → verify PASS → self-improve 2 applied]
   <feature-c>    [requirements]
 ```
 
@@ -73,6 +78,7 @@ Status detection:
 - `design/tasks/task-N-*.md` → design done (count total tasks)
 - `implement/tasks/task-N-*.done.md` → count completed tasks
 - `verify/report.md` exists → verification done (read result from Summary)
+- `self-improve/report.md` exists → self-improve done (read applied/skipped counts from Summary)
 
 If `.sddw/` does not exist or has no feature directories, say:
 > "No features found. Start with `/sddw:requirements <feature-name>`"
@@ -106,6 +112,10 @@ Feature: <feature-name>
     └─ .sddw/<feature-name>/verify/report.md
     (or: ○ not yet run)
     (or: ✗ FAIL — 1 FR failed, 1 partial — 2 remediation tasks created)
+
+  Self-Improve:      ✓ done — 2 applied, 1 skipped (2026-03-26)
+    └─ .sddw/<feature-name>/self-improve/report.md
+    (or: ○ not yet run)
 ```
 
 For completed tasks, if a `.done.md` file exists, show a brief summary from it.

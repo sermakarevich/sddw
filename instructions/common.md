@@ -23,6 +23,7 @@ Critical decisions are those that are hard to reverse or that fundamentally shap
 | **Design** | Architecture approach (new vs modify vs reuse), design decisions with trade-offs, task breakdown and dependencies | Code analysis update, data model details, interface contract specifics |
 | **Implement** | Architectural deviations (Rule 4), dependency conflicts | Task selection (pick next unblocked), implementation approach, TDD applicability |
 | **Verify** | Ambiguous pass/fail classification, remediation task creation | Test runner detection, FR classification (clear pass/fail), report generation |
+| **Self-improve** | Ambiguous root cause classification, applying changes to workflow files | Signal extraction, pattern analysis, finding classification |
 
 ### Mode rules
 

@@ -21,6 +21,7 @@ argument-hint: "<feature-name> [--auto | --critical-only]"
 
 # NEXT STEP
 After verification:
-- If all checks pass, congratulate and summarise what was built.
+- If all checks pass, suggest:
+  > Feature verified. Run `/clear` to free up context, then `/sddw:self-improve <feature-name>` to analyse the execution and improve the workflow.
 - If remediation tasks were created, suggest:
-  > Run `/clear` to free up context, then `/sddw:implement <feature-name> --task <N>` for each remediation task.
+  > Run `/clear` to free up context, then `/sddw:implement <feature-name> --task <N>` for each remediation task. After remediation, re-run `/sddw:verify <feature-name>`.
