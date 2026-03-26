@@ -88,6 +88,8 @@ Wait for response. Lock in decision. Move to next decision if any.
 > "Tasks 1 and [N] can run in parallel. Agree with this breakdown and dependency ordering?"
 >
 > "Each task file will include the architecture, data models, contracts, and design decisions relevant to that task — fully self-contained."
+>
+> For each task that modifies a module's interface: also list existing test files (especially integration tests) that mock or depend on the current interface — mark them as `— update`.
 
 Wait for response. Lock in approved tasks. Each task becomes a separate file in `design/tasks/`.
 

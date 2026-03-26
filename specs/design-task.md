@@ -70,6 +70,7 @@ Each task is a self-contained file at `.sddw/<feature-name>/design/tasks/task-<N
 - Done criteria SHALL be specific enough to verify programmatically
 - File paths SHALL be concrete, not placeholders
 - Sections with no content for this task (e.g., no API endpoints) SHALL be omitted rather than left empty
+- Files section SHALL include existing test files that depend on interfaces being changed, marked as `— update (interface change)`. When a task changes a module's public interface (function signatures, data schema, return types), existing tests that mock or depend on that interface will break — listing them prevents Rule 3 deviations during implementation.
 
 **Example:**
 > # Task 1: Create password reset token migration and model
