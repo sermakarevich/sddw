@@ -51,6 +51,15 @@ Example: `/sddw:design my-feature --critical-only`
 
 ## Steps
 
+1. **Requirements** — collaboratively produce a feature spec with user stories, FRs, and acceptance criteria
+2. **Code Analysis** *(optional)* — scan existing codebase for patterns, interfaces, and conventions
+3. **Design** — break the feature into self-contained task files with architecture and contracts
+4. **Implement** — execute one task at a time following TDD and commit protocols
+5. **Verify** — validate the implementation against requirements and acceptance criteria
+6. **Self-Improve** — analyse execution across all steps and propose workflow improvements
+- **Chat** — fast-track interaction with an existing feature: questions, edits, quick fixes
+- **Help** — workflow overview, list features, check feature status
+
 ### 1. Requirements
 
 ```
