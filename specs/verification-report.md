@@ -46,6 +46,9 @@ Written after the verify step runs. Stored at `.sddw/<feature-name>/verify/repor
 ## Remediation Tasks
 [List of created remediation tasks, or "None — all checks passed"]
 - task-[N]-fix-[slug].md — [what it fixes] (FR-01)
+  - **Severity:** [FAIL | PARTIAL]
+  - **Origin:** [requirements | design | implementation | external] — [brief explanation]
+  - **Evidence:** [specific test name, acceptance criterion, or done criterion that triggered this]
 
 ## Warnings
 [Non-blocking concerns, or "None"]
@@ -57,7 +60,8 @@ Written after the verify step runs. Stored at `.sddw/<feature-name>/verify/repor
 - SHALL include actual test output, not assumptions
 - SHALL classify every FR explicitly as PASS, FAIL, or PARTIAL
 - SHALL reference specific test names and error messages for failures
-- SHALL list remediation tasks if any were created
+- SHALL list remediation tasks if any were created, with Severity, Origin, and Evidence for each
+- Origin SHALL classify where the issue was introduced: `requirements` (ambiguous/missing spec), `design` (task scoping/architecture gap), `implementation` (code bug), or `external` (dependency/environment issue)
 - SHALL be concise — this is a report, not a narrative
 - Overall result SHALL be PASS only if all FRs pass and all tests pass
 - Re-running verify SHALL overwrite the previous report
@@ -122,7 +126,13 @@ Written after the verify step runs. Stored at `.sddw/<feature-name>/verify/repor
 >
 > ## Remediation Tasks
 > - task-4-fix-token-expiry.md — fix `is_valid()` boundary comparison (FR-02)
+>   - **Severity:** FAIL
+>   - **Origin:** implementation — off-by-one in comparison operator
+>   - **Evidence:** `test_reset_token_expiry` — AssertionError: token accepted after 24h
 > - task-5-fix-email-timing.md — optimise email sending to meet 60s SLA (FR-01)
+>   - **Severity:** FAIL
+>   - **Origin:** design — task file had no performance constraint for email delivery
+>   - **Evidence:** `test_reset_email_timing` — TimeoutError: email sent after 90s
 >
 > ## Warnings
 > - None

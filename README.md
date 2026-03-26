@@ -8,7 +8,7 @@
 
 Spec-Driven Development Workflow for [Claude Code](https://docs.anthropic.com/en/docs/claude-code).
 
-- Write **requirements**, optionally **analyse the codebase**, then **design** (as self-contained task files), then **implement** each task separately, then **verify** the result
+- Write **requirements**, optionally **analyse the codebase**, then **design** (as self-contained task files), then **implement** each task separately, then **verify** the result, then **self-improve** the workflow
 - The agent guides you through every step — researches, proposes options, confirms your decisions
 - Every step produces exactly one spec type. Every step reads specs from previous steps.
 - `/clear` context between steps — each step works within a focused context window
@@ -145,6 +145,28 @@ Output:
 ```
 
 If issues are found, remediation tasks are created as additional task files in `design/tasks/` (continuing the numbering). These can be executed with `/sddw:implement` and then verified again — the loop repeats until all checks pass.
+
+### 6. Self-Improve
+
+```
+/sddw:self-improve <feature-name> [--auto | --critical-only]
+```
+
+Analyse the completed feature's execution across all workflow steps. Identify what went wrong (or could be better) and propose concrete improvements to the workflow itself:
+
+- **Analyse** — extract signals: deviations, difficulties, remediation task origins, spec gaps
+- **Diagnose** — classify findings by workflow step, identify patterns, propose improvements
+- **Apply** — present proposals with diff previews, apply approved changes to workflow files
+
+Output:
+
+```
+.sddw/<feature-name>/
+└── self-improve/
+    └── report.md    # findings, proposals, applied/skipped changes
+```
+
+Each improvement targets a specific workflow component (instruction, questionnaire, or spec) with a concrete diff. The workflow evolves with every feature — gaps found during one feature prevent the same issues in the next.
 
 ### Chat
 

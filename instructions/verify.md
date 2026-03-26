@@ -88,6 +88,7 @@ Where `<N>` continues the numbering from existing tasks. Follow the same task fi
 - `Depends on:` SHALL reference the original task that implemented the failing functionality
 - SHALL be scoped to fix the specific issue — no scope creep
 - SHALL be implementable with `/sddw:implement <feature-name> --task <N>`
+- SHALL classify the root cause origin in the verification report: `requirements` (ambiguous/missing spec), `design` (task scoping/architecture gap), `implementation` (code bug), or `external` (dependency/environment issue)
 
 ---
 
