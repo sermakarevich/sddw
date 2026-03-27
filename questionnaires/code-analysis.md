@@ -45,39 +45,50 @@ Scan the codebase and propose findings ONE section at a time. Wait for approval 
 
 Present each section separately. Wait for user approval before proposing the next.
 
+**Output rule:** Always output the full findings as text FIRST. Then use `AskUserQuestion` only for the approval question. Never put the findings list inside the `AskUserQuestion` prompt — the user must be able to read the content before answering.
+
 *In `--critical-only`: decide clear-cut sections autonomously. Pause only for sections where conventions are ambiguous or patterns conflict. In `--auto`: decide all sections autonomously.*
 
 **Section 1 — Relevant Patterns:**
+Output as text:
 > "Here are the patterns I found relevant to this feature:"
 > - [Pattern]: [where used, how it works]
-> "Anything I missed or got wrong?"
+
+Then ask: "Anything I missed or got wrong?"
 
 Wait for response. Lock in approved patterns.
 
 **Section 2 — Key Interfaces:**
+Output as text:
 > "Key interfaces and module boundaries:"
 > - [Interface/module]: [purpose, signature]
-> "Agree with these?"
+
+Then ask: "Agree with these?"
 
 Wait for response. Lock in approved interfaces.
 
 **Section 3 — Existing Flows:**
+Output as text:
 > "Existing flows relevant to this feature:"
 > - [Flow name]: [step-by-step description]
-> "Accurate?"
+
+Then ask: "Accurate?"
 
 Wait for response. Lock in approved flows.
 
 **Section 4 — Conventions:**
+Output as text:
 > "Conventions the implementation should follow:"
 > - [Convention]: [description, files where enforced]
-> "Anything to add or correct?"
+
+Then ask: "Anything to add or correct?"
 
 Wait for response. Lock in approved conventions.
 
 ### Rules for proposing:
 - SHALL propose ONE section at a time, wait for approval, then move to next
 - SHALL base findings on actual codebase scan, not assumptions
+- SHALL output full findings as text before calling AskUserQuestion — never embed the list inside the question prompt
 - User can accept, modify, or provide their own findings for any section
 
 ---
