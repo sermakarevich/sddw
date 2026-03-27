@@ -87,7 +87,7 @@ Heuristic: if the change would touch more than 3 files or require more than 1 co
 
 ## Rules
 
-- SHALL resolve paths using common.md Path Resolution rules (resolve `.sddw/` from project root)
+- SHALL resolve paths using common.md Path Resolution rules (resolve `.sddw/` from current working directory)
 - SHALL load artifacts silently — no preamble about what was found
 - SHALL reference FR-IDs when making changes that trace to requirements
 - SHALL follow commit protocol from implement instructions for any code changes

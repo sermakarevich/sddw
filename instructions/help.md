@@ -127,7 +127,7 @@ If the feature directory does not exist:
 
 ---
 
-**Path note:** If `.sddw/` cannot be found at the project root, display the "No features found" message.
+**Path note:** If `.sddw/` cannot be found in the current working directory, display the "No features found" message.
 
 ## Rules
 

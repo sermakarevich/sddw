@@ -48,16 +48,16 @@ All modes perform the same work — discover, research, propose, decide. The dif
 
 ## Path Resolution
 
-All `.sddw/` references are **relative to the project root** — the git root of the target codebase being worked on.
+All `.sddw/` references are **relative to the current working directory** — the directory from which the user invoked the command.
 
 | Step | Path resolution |
 |------|----------------|
-| **Requirements** | If the user specifies a Project path other than `.`, resolve `.sddw/` relative to that path's git root. If the Project path is `.` or unspecified, `.sddw/` is relative to the current working directory's git root. **Create** `.sddw/` if it does not exist. |
+| **Requirements** | If the user specifies a Project path other than `.`, resolve `.sddw/` relative to that path. If the Project path is `.` or unspecified, `.sddw/` is relative to the current working directory. **Create** `.sddw/` if it does not exist. |
 | **All other steps** | Read the Project path from `.sddw/<feature-name>/requirements.md`. Resolve `.sddw/` relative to the same root used by the requirements step. If `.sddw/` cannot be found, tell the user and suggest running `/sddw:requirements` first. |
 
 **Rules:**
 - SHALL resolve the `.sddw/` base path **once** at the start of every step and use absolute paths for all reads and writes.
-- SHALL NOT assume `.sddw/` is in the current working directory — always resolve from the project root.
+- SHALL resolve `.sddw/` from the current working directory, NOT the git root.
 - When writing file paths in output or logs, use the resolved absolute path.
 - Step-specific path behavior (creating directories, fallback messages) is noted in each step's instructions.
 
