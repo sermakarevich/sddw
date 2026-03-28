@@ -1,7 +1,7 @@
 ---
 name: sddw:self-improve
 description: Analyse feature execution to identify workflow gaps and propose improvements to sddw steps and components
-argument-hint: "<feature-name> [--auto | --critical-only]"
+argument-hint: "<feature-name> [--auto]"
 ---
 
 <feature_name> #$ARGUMENTS </feature_name>

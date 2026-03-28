@@ -2,13 +2,11 @@
 
 Three-phase dialog for executing a single task from the design spec.
 
-**Critical decisions (`--critical-only`):** dependency conflicts, architectural deviations (Rule 4 — always asks, even in `--auto`).
-
 ---
 
 ## Phase 1: Discover
 
-*In `--critical-only`: pick next unblocked task if no `--task` flag, but ask the user if dependencies are incomplete. In `--auto`: perform discovery fully autonomously.*
+*In `--auto`: perform discovery fully autonomously.*
 
 Understand which task to execute and any blockers. One question at a time.
 
@@ -57,7 +55,7 @@ Based on the task file, research implementation approach and propose a plan.
 
 Wait for response. User confirms → execute following the instructions.
 
-*In `--critical-only`: decide implementation approach autonomously, proceed to execution. In `--auto`: same.*
+*In `--auto`: decide implementation approach autonomously, proceed to execution.*
 
 ---
 

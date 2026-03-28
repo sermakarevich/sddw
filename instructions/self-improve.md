@@ -32,9 +32,9 @@ Also read the current sddw workflow components that may be improved:
 
 Follow the three-phase flow defined in the questionnaire:
 
-1. **Analyse** — Load all artifacts and extract signals: deviations, difficulties, remediation task origins, test gaps, spec ambiguities. *In `--critical-only`: analyse autonomously, ask only about ambiguous root causes. In `--auto`: analyse fully autonomously.*
+1. **Analyse** — Load all artifacts and extract signals: deviations, difficulties, remediation task origins, test gaps, spec ambiguities. *In `--auto`: analyse fully autonomously.*
 
-2. **Diagnose** — Classify findings by workflow step and component. Identify patterns and root causes. Propose specific improvements. *In `--critical-only`: propose autonomously, pause for user review of proposals. In `--auto`: same — always pause for approval before applying changes.*
+2. **Diagnose** — Classify findings by workflow step and component. Identify patterns and root causes. Propose specific improvements. *In `--auto`: propose autonomously — always pause for approval before applying changes.*
 
 3. **Apply** — Present improvement proposals. User approves which to apply. Apply approved changes to workflow files. Generate improvement report. *All modes: user approval required before modifying workflow files.*
 

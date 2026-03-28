@@ -27,11 +27,11 @@ Use the Project path from `<resolved-sddw-path>/<feature-name>/requirements.md` 
 
 Follow the three-phase flow defined in the questionnaire:
 
-1. **Assess** — Load all artifacts, identify the test runner, check which tasks are complete vs pending. *In `--critical-only`: assess autonomously, ask only if test runner cannot be detected. In `--auto`: assess fully autonomously.*
+1. **Assess** — Load all artifacts, identify the test runner, check which tasks are complete vs pending. *In `--auto`: assess fully autonomously.*
 
-2. **Verify** — Run the test suite, cross-check each FR's acceptance criteria against implementation, review done criteria from task files, and check for deviations noted in completion reports. Classify each FR as pass, fail, or partial. *In `--critical-only`: classify autonomously, ask only for ambiguous results. In `--auto`: classify all autonomously.*
+2. **Verify** — Run the test suite, cross-check each FR's acceptance criteria against implementation, review done criteria from task files, and check for deviations noted in completion reports. Classify each FR as pass, fail, or partial. *In `--auto`: classify all autonomously.*
 
-3. **Report & Remediate** — Produce a verification report. If any FRs failed or are partial, propose remediation tasks. User confirms which remediation tasks to create. *In `--critical-only`: still present remediation tasks for approval. In `--auto`: create all proposed remediation tasks directly.*
+3. **Report & Remediate** — Produce a verification report. If any FRs failed or are partial, propose remediation tasks. User confirms which remediation tasks to create. *In `--auto`: create all proposed remediation tasks directly.*
 
 ---
 
@@ -99,7 +99,7 @@ Where `<N>` continues the numbering from existing tasks. Follow the same task fi
 - SHALL reference specific test names and error messages for failures
 - SHALL overwrite the previous verification report when re-run (idempotent)
 - SHALL NOT modify existing task files or completion reports
-- SHALL NOT create remediation tasks without user approval (interactive and `--critical-only` modes). `--auto` mode may create them directly.
+- SHALL NOT create remediation tasks without user approval (interactive mode). `--auto` mode may create them directly.
 - SHALL NOT proceed to report generation without completing all verification checks
 
 ## Output

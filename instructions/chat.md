@@ -28,14 +28,14 @@ Load all available artifacts **silently** — do not list or summarize what was 
 
 ## Default Interaction Mode
 
-The default mode is **critical-only** (not interactive). Chat assumes the user knows what they want.
+Chat is not interactive by default. It assumes the user knows what they want and acts directly.
 
-The only things that pause and ask in default mode:
+The only things that pause and ask:
 - Architectural deviations (Deviation Rule 4 from implement instructions)
 - Spec changes that affect scope (adding or removing FRs, changing constraints)
 - Ambiguous requests where the wrong interpretation could cause damage
 
-`--auto` and `--critical-only` flags from common.md are still respected if explicitly passed.
+The `--auto` flag from common.md is still respected if explicitly passed — it removes even these pauses.
 
 ## Process
 

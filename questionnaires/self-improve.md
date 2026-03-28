@@ -2,15 +2,13 @@
 
 Three-phase dialog for analysing feature execution and proposing workflow improvements.
 
-**Critical decisions (`--critical-only`):** ambiguous root cause classification, applying changes to workflow files.
-
 **All modes:** Applying changes to workflow files always requires user approval.
 
 ---
 
 ## Phase 1: Analyse
 
-*In `--critical-only`: analyse autonomously, ask only about ambiguous root causes. In `--auto`: analyse fully autonomously.*
+*In `--auto`: analyse fully autonomously.*
 
 Load all feature artifacts and extract signals.
 
@@ -60,7 +58,7 @@ Wait for response.
 
 ## Phase 2: Diagnose
 
-*In `--critical-only`: diagnose autonomously, present proposals for review. In `--auto`: diagnose autonomously, still present proposals for approval.*
+*In `--auto`: diagnose autonomously, still present proposals for approval.*
 
 ### 2.1 Pattern Analysis
 

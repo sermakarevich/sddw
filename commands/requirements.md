@@ -1,7 +1,7 @@
 ---
 name: sddw:requirements
 description: Generate requirements spec for a feature with user stories, functional requirements, acceptance criteria, and constraints
-argument-hint: "<feature-name> [--auto | --critical-only]"
+argument-hint: "<feature-name> [--auto]"
 ---
 
 <feature_name> #$ARGUMENTS </feature_name>

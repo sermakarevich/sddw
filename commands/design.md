@@ -1,7 +1,7 @@
 ---
 name: sddw:design
 description: Generate design spec as self-contained task files with architecture, data models, interfaces, and decisions
-argument-hint: "<feature-name> [--auto | --critical-only]"
+argument-hint: "<feature-name> [--auto]"
 ---
 
 <feature_name> #$ARGUMENTS </feature_name>

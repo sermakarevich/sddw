@@ -2,13 +2,11 @@
 
 Three-phase dialog to gather enough context to write the requirements spec.
 
-**Critical decisions (`--critical-only`):** project path, scope boundaries, prohibitions.
-
 ---
 
 ## Phase 1: Discover
 
-*In `--critical-only`: infer non-critical context autonomously, but ask the user about project path, scope boundaries, and prohibitions. In `--auto`: perform discovery fully autonomously.*
+*In `--auto`: perform discovery fully autonomously.*
 
 Understand the feature and its context. One question at a time, follow the thread.
 
@@ -58,7 +56,7 @@ Depending on the feature, research:
 
 Present each section separately. Wait for user approval before proposing the next.
 
-*In `--critical-only`: decide Purpose, User Stories, FRs, Acceptance Criteria, and Testing Approach autonomously. Pause only for Constraints (scope boundaries and prohibitions) — present these for user approval. In `--auto`: decide all sections autonomously.*
+*In `--auto`: decide all sections autonomously.*
 
 **Section 1 — Purpose:**
 Use `AskUserQuestion` with options presenting 2 framings:
@@ -126,7 +124,7 @@ Wait for response. Lock in testing approach — this carries through to the impl
 
 ## Phase 3: Confirm & Generate
 
-Once all sections are approved (or decided in `--auto` mode):
+Once all sections are approved:
 
 > "Ready to generate the requirements spec? Here's what I'll write:"
 > - Purpose: [summary]
@@ -137,6 +135,6 @@ Once all sections are approved (or decided in `--auto` mode):
 
 User confirms → generate spec to `.sddw/<feature-name>/requirements.md`
 
-*In `--critical-only`: still present this summary and wait for confirmation. In `--auto`: generate directly.*
+*In `--auto`: generate directly.*
 
 If user wants changes → return to the relevant section in Phase 2.
