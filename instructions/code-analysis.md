@@ -19,11 +19,11 @@ Use the Project path from the requirements spec as the target codebase for analy
 
 Follow the three-phase flow defined in the questionnaire:
 
-1. **Discover** — Ask the user what areas of the codebase are most relevant, whether there are known conventions or gotchas. *In `--critical-only`: infer scope autonomously, but ask about areas the user considers critical. In `--auto`: perform discovery fully autonomously.*
+1. **Discover** — Ask the user what areas of the codebase are most relevant, whether there are known conventions or gotchas. *In `--auto`: perform discovery fully autonomously.*
 
-2. **Research & Propose** — Scan the codebase for patterns, interfaces, flows, and conventions relevant to the feature. Propose each section with findings. User accepts, modifies, or provides their own input. *In `--critical-only`: decide non-critical sections autonomously, ask only for conventions or patterns that seem ambiguous. In `--auto`: decide all sections autonomously.*
+2. **Research & Propose** — Scan the codebase for patterns, interfaces, flows, and conventions relevant to the feature. Propose each section with findings. User accepts, modifies, or provides their own input. *In `--auto`: decide all sections autonomously.*
 
-3. **Confirm & Generate** — Summarise what will be written. User confirms. Write the spec to `.sddw/code-analysis.md`. *In `--critical-only`: still present final summary for approval. In `--auto`: generate directly.*
+3. **Confirm & Generate** — Summarise what will be written. User confirms. Write the spec to `.sddw/code-analysis.md`. *In `--auto`: generate directly.*
 
 ## Rules
 
@@ -34,7 +34,7 @@ Follow the three-phase flow defined in the questionnaire:
 - SHALL note dependency direction between existing modules
 - If `.sddw/code-analysis.md` already exists, SHALL review and update it rather than recreate
 - SHALL add new sections relevant to the current feature without removing existing content
-- SHALL NOT proceed to generation without user approval (interactive mode) or critical sections (`--critical-only` mode). `--auto` mode may proceed without approval.
+- SHALL NOT proceed to generation without user approval (interactive mode). `--auto` mode may proceed without approval.
 
 ## Output
 

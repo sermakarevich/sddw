@@ -2,13 +2,11 @@
 
 Three-phase dialog to gather enough context to produce the codebase analysis (code-analysis.md).
 
-**Critical decisions (`--critical-only`):** ambiguous conventions, conflicting patterns.
-
 ---
 
 ## Phase 1: Discover
 
-*In `--critical-only`: infer scope autonomously, but ask about areas the user considers critical. In `--auto`: perform discovery fully autonomously.*
+*In `--auto`: perform discovery fully autonomously.*
 
 Understand which parts of the codebase matter most for the upcoming design. The requirements spec is already written — now understand the landscape. One question at a time.
 
@@ -47,7 +45,7 @@ Present each section separately. Wait for user approval before proposing the nex
 
 **Output rule:** Always output the full findings as text FIRST. Then use `AskUserQuestion` only for the approval question. Never put the findings list inside the `AskUserQuestion` prompt — the user must be able to read the content before answering.
 
-*In `--critical-only`: decide clear-cut sections autonomously. Pause only for sections where conventions are ambiguous or patterns conflict. In `--auto`: decide all sections autonomously.*
+*In `--auto`: decide all sections autonomously.*
 
 **Section 1 — Relevant Patterns:**
 Output as text:
@@ -105,6 +103,6 @@ Once all sections are approved:
 
 User confirms → generate `code-analysis.md` to `.sddw/`
 
-*In `--critical-only`: still present this summary and wait for confirmation. In `--auto`: generate directly.*
+*In `--auto`: generate directly.*
 
 If user wants changes → return to the relevant section in Phase 2.

@@ -12,7 +12,7 @@ Spec-Driven Development Workflow for [Claude Code](https://docs.anthropic.com/en
 - The agent guides you through every step — researches, proposes options, confirms your decisions
 - Every step produces exactly one spec type. Every step reads specs from previous steps.
 - `/clear` context between steps — each step works within a focused context window
-- Three interaction modes: guided dialog (default), `--critical-only`, or fully `--auto`
+- Two interaction modes: guided dialog (default) or fully `--auto`
 - Lightweight and easily customizable — just markdown files, no runtime dependencies
 
 ## Why
@@ -39,15 +39,18 @@ cd sddw && bash bin/install.sh --local
 
 ## Interaction Modes
 
-Every step supports three interaction modes:
+Every step supports two interaction modes:
 
 | Mode | Flag | Behavior |
 |------|------|----------|
 | **Interactive** | *(default)* | Full guided dialog — one question at a time, every section confirmed |
-| **Critical-only** | `--critical-only` | Autonomous research and proposals, pauses only for critical decisions |
 | **Auto** | `--auto` | Fully autonomous — no questions, best-judgment decisions |
 
-Example: `/sddw:design my-feature --critical-only`
+## Usage
+
+**Vibecoding** — `--auto`. The agent decides everything.
+
+**Agentic engineering** — default mode. You stay in control: review proposals, add missing context, ask questions, approve each spec section before it's written, and validate the output spec.
 
 ## Steps
 
@@ -63,7 +66,7 @@ Example: `/sddw:design my-feature --critical-only`
 ### 1. Requirements
 
 ```
-/sddw:requirements <feature-name> [--auto | --critical-only]
+/sddw:requirements <feature-name> [--auto]
 ```
 
 Collaboratively produce a requirements spec through guided dialog:
@@ -78,7 +81,7 @@ Sections: Purpose, User Stories, Functional Requirements, Acceptance Criteria, C
 ### 2. Code Analysis (optional)
 
 ```
-/sddw:code-analysis <feature-name> [--auto | --critical-only]
+/sddw:code-analysis <feature-name> [--auto]
 ```
 
 Analyse the existing codebase to ground design decisions in reality:
@@ -95,7 +98,7 @@ Skip this step for greenfield projects with no existing codebase.
 ### 3. Design
 
 ```
-/sddw:design <feature-name> [--auto | --critical-only]
+/sddw:design <feature-name> [--auto]
 ```
 
 Produce self-contained task files through guided dialog:
@@ -120,7 +123,7 @@ Each task file includes all relevant design details inline — architecture, dat
 ### 4. Implement
 
 ```
-/sddw:implement <feature-name> --task <N> [--auto | --critical-only]
+/sddw:implement <feature-name> --task <N> [--auto]
 ```
 
 Execute a single task from the design spec:
@@ -136,7 +139,7 @@ After each task, a completion report (`task-N-<slug>.done.md`) is written to `im
 ### 5. Verify
 
 ```
-/sddw:verify <feature-name> [--auto | --critical-only]
+/sddw:verify <feature-name> [--auto]
 ```
 
 Verify the implementation against requirements after all tasks are complete:
@@ -158,7 +161,7 @@ If issues are found, remediation tasks are created as additional task files in `
 ### 6. Self-Improve
 
 ```
-/sddw:self-improve <feature-name> [--auto | --critical-only]
+/sddw:self-improve <feature-name> [--auto]
 ```
 
 Analyse the completed feature's execution across all workflow steps. Identify what went wrong (or could be better) and propose concrete improvements to the workflow itself:
@@ -180,7 +183,7 @@ Each improvement targets a specific workflow component (instruction, questionnai
 ### Chat
 
 ```
-/sddw:chat <feature-name> [--auto | --critical-only]
+/sddw:chat <feature-name> [--auto]
 ```
 
 Fast-track interaction with a feature that already has artifacts. Skips the full questionnaire ceremony — just load context and talk.
@@ -190,7 +193,7 @@ Fast-track interaction with a feature that already has artifacts. Skips the full
 - **Quick implementation** — small code changes following TDD and commit protocols
 - **Status** — check feature progress
 
-Default mode is **critical-only** — chat assumes you know what you want and only pauses for scope-affecting changes or ambiguous requests.
+Chat assumes you know what you want and only pauses for scope-affecting changes or ambiguous requests.
 
 If a request is too large (new task files, new architecture, >3 files), chat redirects you to the full workflow.
 

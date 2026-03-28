@@ -1,7 +1,7 @@
 ---
 name: sddw:code-analysis
 description: Analyse existing codebase to extract patterns, interfaces, flows, and conventions
-argument-hint: "<feature-name> [--auto | --critical-only]"
+argument-hint: "<feature-name> [--auto]"
 ---
 
 <feature_name> #$ARGUMENTS </feature_name>

@@ -2,13 +2,11 @@
 
 Three-phase dialog for verifying implementation against requirements.
 
-**Critical decisions (`--critical-only`):** ambiguous pass/fail classification, remediation task creation.
-
 ---
 
 ## Phase 1: Assess
 
-*In `--critical-only`: assess autonomously, ask only if test runner cannot be detected. In `--auto`: assess fully autonomously.*
+*In `--auto`: assess fully autonomously.*
 
 Understand the current state of the feature. Load artifacts and identify the verification scope.
 
@@ -70,7 +68,7 @@ For each FR, present the verification result:
 > - Tests: [pass / fail count for related tests]
 > - Issues: [list specific problems, or "none"]
 
-*In `--critical-only`: present all FR results as a batch. Pause only if any result is ambiguous (could be pass or partial). In `--auto`: classify all results autonomously.*
+*In `--auto`: classify all results autonomously.*
 
 If there are ambiguous results, use `AskUserQuestion` with options:
 - "Pass — [reason why it could be acceptable]"
@@ -118,4 +116,4 @@ Generate the verification report to `.sddw/<feature-name>/verify/report.md`.
 
 If remediation tasks were approved, generate them to `.sddw/<feature-name>/design/tasks/`.
 
-*In `--critical-only`: still present remediation tasks for approval before creating. In `--auto`: create all proposed tasks directly.*
+*In `--auto`: create all proposed tasks directly.*

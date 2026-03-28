@@ -1,7 +1,7 @@
 ---
 name: sddw:verify
 description: Verify implementation against requirements, run tests, and create remediation tasks if needed
-argument-hint: "<feature-name> [--auto | --critical-only]"
+argument-hint: "<feature-name> [--auto]"
 ---
 
 <feature_name> #$ARGUMENTS </feature_name>

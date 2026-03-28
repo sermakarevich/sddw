@@ -19,11 +19,11 @@ Check if `<resolved-sddw-path>/code-analysis.md` exists. If it does, read it and
 
 Follow the three-phase flow defined in the questionnaire:
 
-1. **Discover** — Ask the user about preferred approaches, constraints, and integration concerns. The requirements spec provides the "what" — now understand the user's preferences for "how". *In `--critical-only`: infer non-critical preferences autonomously, but ask about preferred architectural approach if multiple viable options exist. In `--auto`: perform discovery fully autonomously.*
+1. **Discover** — Ask the user about preferred approaches, constraints, and integration concerns. The requirements spec provides the "what" — now understand the user's preferences for "how". *In `--auto`: perform discovery fully autonomously.*
 
-2. **Research & Propose** — For each design concern (architecture, data models, interface contracts, design decisions), propose ranked options with rationale. Then propose the task breakdown — each task becomes a self-contained task file that includes all relevant design details inline. User accepts, modifies, or provides their own approach. *In `--critical-only`: decide data models and contracts autonomously, ask only for architecture approach and design decisions with trade-offs. In `--auto`: decide all sections autonomously.*
+2. **Research & Propose** — For each design concern (architecture, data models, interface contracts, design decisions), propose ranked options with rationale. Then propose the task breakdown — each task becomes a self-contained task file that includes all relevant design details inline. User accepts, modifies, or provides their own approach. *In `--auto`: decide all sections autonomously.*
 
-3. **Confirm & Generate** — Summarise what will be written. User confirms. Generate the task files following the spec template. *In `--critical-only`: still present final summary for approval. In `--auto`: generate directly.*
+3. **Confirm & Generate** — Summarise what will be written. User confirms. Generate the task files following the spec template. *In `--auto`: generate directly.*
 
 ## Rules
 
@@ -37,7 +37,7 @@ Follow the three-phase flow defined in the questionnaire:
 - Each task file SHALL be self-contained with all context needed to implement, including architecture, data models, contracts, and design decisions relevant to that task
 - SHALL NOT introduce patterns that conflict with existing codebase conventions
 - SHALL document non-obvious decisions with rationale and rejected alternatives
-- SHALL NOT proceed to generation without user approval (interactive mode) or critical sections (`--critical-only` mode). `--auto` mode may proceed without approval.
+- SHALL NOT proceed to generation without user approval (interactive mode). `--auto` mode may proceed without approval.
 
 ## Output
 

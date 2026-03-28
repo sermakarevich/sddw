@@ -25,9 +25,9 @@ Reference only if needed:
 
 Follow the three-phase flow defined in the questionnaire:
 
-1. **Discover** — Identify the task, check dependencies, ask if there's any context since the design was written. *In `--critical-only`: pick next unblocked task if none specified, but ask the user if dependencies are incomplete. In `--auto`: perform discovery fully autonomously.*
+1. **Discover** — Identify the task, check dependencies, ask if there's any context since the design was written. *In `--auto`: perform discovery fully autonomously.*
 
-2. **Research & Propose** — Scan codebase for current state of files, research test patterns and library usage. Propose implementation approach and TDD applicability. User confirms. *In `--critical-only`: research and decide approach autonomously. In `--auto`: same.*
+2. **Research & Propose** — Scan codebase for current state of files, research test patterns and library usage. Propose implementation approach and TDD applicability. User confirms. *In `--auto`: research and decide approach autonomously.*
 
 3. **Execute & Report** — Implement following TDD Protocol, Commit Protocol, and Deviation Handling below. Report completion, recommend clearing context, and suggest next task. *Note: Deviation Rule 4 (architectural) always asks the user, even in `--auto` mode.*
 

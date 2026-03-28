@@ -2,13 +2,11 @@
 
 Three-phase dialog to gather enough context to produce self-contained task files.
 
-**Critical decisions (`--critical-only`):** architecture approach, design decisions with trade-offs, task breakdown.
-
 ---
 
 ## Phase 1: Discover
 
-*In `--critical-only`: infer non-critical preferences autonomously, but ask about preferred architectural approach if multiple viable options exist. In `--auto`: perform discovery fully autonomously.*
+*In `--auto`: perform discovery fully autonomously.*
 
 Understand the implementation landscape. The requirements spec is already written — now understand how it maps to the codebase. One question at a time.
 
@@ -46,7 +44,7 @@ Research the design and propose ONE section at a time. Wait for approval before 
 
 Present each section separately. Wait for user approval before proposing the next.
 
-*In `--critical-only`: decide Data Models and Interface Contracts autonomously. Pause only for Architecture (Section 1), Design Decisions (Section 4), and Task Breakdown (Section 5) — present these for user approval. In `--auto`: decide all sections autonomously.*
+*In `--auto`: decide all sections autonomously.*
 
 **Section 1 — Architecture:**
 Present the architecture overview as context text, then use `AskUserQuestion` with options:
@@ -111,6 +109,6 @@ Once all sections are approved:
 
 User confirms → generate task files to `.sddw/<feature-name>/design/tasks/`
 
-*In `--critical-only`: still present this summary and wait for confirmation. In `--auto`: generate directly.*
+*In `--auto`: generate directly.*
 
 If user wants changes → return to the relevant section in Phase 2.

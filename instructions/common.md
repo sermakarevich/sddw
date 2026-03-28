@@ -4,38 +4,23 @@ These rules apply to all sddw steps.
 
 ## Interaction Modes
 
-Parse `--auto` or `--critical-only` from the arguments. Default to interactive mode if neither is present.
+Parse `--auto` from the arguments. Default to interactive mode if not present.
 
 | Mode | Flag | Behavior |
 |------|------|----------|
 | **Interactive** | *(default)* | Full guided dialog. One question at a time, every section confirmed. |
-| **Critical-only** | `--critical-only` | Research and propose autonomously. Pause only for critical decisions (see below). Present all non-critical sections as a batch for quick review. |
 | **Auto** | `--auto` | Fully autonomous. No questions asked. Use best judgment for all decisions. |
-
-### What counts as critical
-
-Critical decisions are those that are hard to reverse or that fundamentally shape the output:
-
-| Step | Critical decisions | Non-critical |
-|------|-------------------|--------------|
-| **Requirement** | Project path, scope boundaries (in/out), prohibitions | Purpose framing, user story wording, FR priority order, acceptance criteria details, testing approach |
-| **Code analysis** | Ambiguous conventions, conflicting patterns | Clear-cut patterns, interfaces, flows, naming conventions |
-| **Design** | Architecture approach (new vs modify vs reuse), design decisions with trade-offs, task breakdown and dependencies | Code analysis update, data model details, interface contract specifics |
-| **Implement** | Architectural deviations (Rule 4), dependency conflicts | Task selection (pick next unblocked), implementation approach, TDD applicability |
-| **Verify** | Ambiguous pass/fail classification, remediation task creation | Test runner detection, FR classification (clear pass/fail), report generation |
-| **Self-improve** | Ambiguous root cause classification, applying changes to workflow files | Signal extraction, pattern analysis, finding classification |
 
 ### Mode rules
 
 All modes perform the same work — discover, research, propose, decide. The difference is only in what requires user input.
 
 - **Interactive**: Follow the questionnaire as written — one question at a time, wait for approval on every section.
-- **Critical-only**: Perform all phases autonomously. Make decisions on non-critical items using best judgment. Pause and ask only for critical decisions. Present the final summary before generation.
-- **Auto**: Perform all phases autonomously. Make all decisions — including critical ones — using best judgment. Generate output directly. Still follow all spec format rules and quality standards.
+- **Auto**: Perform all phases autonomously. Make all decisions using best judgment. Generate output directly. Still follow all spec format rules and quality standards.
 
 ### Safety
 
-- In `--auto` mode for the **requirements** step: warn the user that requirements quality depends on input detail. If the feature description in the arguments is less than ~20 words, downgrade to `--critical-only` and ask for a more detailed description.
+- In `--auto` mode for the **requirements** step: warn the user that requirements quality depends on input detail. If the feature description in the arguments is less than ~20 words, downgrade to interactive mode and ask for a more detailed description.
 - In `--auto` mode: architectural deviations (Deviation Rule 4) during implement still STOP and ask — this overrides `--auto` because the risk of silent architectural changes is too high.
 
 ## Interaction (Interactive mode)
@@ -72,7 +57,7 @@ All `.sddw/` references are **relative to the current working directory** — th
 | **Yes/No confirmation** | `AskUserQuestion` with two options: "Yes" and "No" (or contextual equivalents). |
 
 **Rules:**
-- SHALL use `AskUserQuestion` for every question in interactive and critical-only modes — both option-based and open-ended.
+- SHALL use `AskUserQuestion` for every question in interactive mode — both option-based and open-ended.
 - SHALL NOT present questions or options as plain text in the conversation and wait for a reply.
 - The only text output between questions should be brief context, summaries, or research findings that set up the next question.
 
