@@ -11,7 +11,15 @@ If no `--task` is provided, list available tasks and ask the user which to execu
 
 ## Prerequisites
 
-Read the task file: `<resolved-sddw-path>/<feature-name>/design/tasks/task-<N>-*.md`
+**Step 1 — Read `design.md` (required):**
+
+Read `<resolved-sddw-path>/<feature-name>/design/design.md`.
+
+If `design.md` is missing: inform the user that `design.md` is required for this feature, suggest regenerating via `/sddw:design <feature>`, and do NOT propose implementation.
+
+**Step 2 — Read the task file:**
+
+Read `<resolved-sddw-path>/<feature-name>/design/tasks/task-<N>-*.md`.
 
 Use the Project path from `<resolved-sddw-path>/<feature-name>/requirements.md` as the working directory for implementation.
 
