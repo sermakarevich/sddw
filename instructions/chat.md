@@ -96,4 +96,4 @@ Heuristic: if the change would touch more than 3 files or require more than 1 co
 - SHALL use `AskUserQuestion` for disambiguation and scope-affecting confirmations
 - SHALL NOT start a full questionnaire flow
 - SHALL NOT produce new artifact types — chat edits existing artifacts or writes code
-- SHALL NOT create task files — if the work needs a task file, redirect to `/sddw:design_and_taskify`
+- SHALL NOT create task files — if the work needs a task file, redirect to `/sddw:design_and_taskify` or `/sddw:taskify`

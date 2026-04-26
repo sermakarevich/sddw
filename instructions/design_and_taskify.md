@@ -29,9 +29,15 @@ Follow the monolithic 3-phase flow defined in the questionnaire (`questionnaires
 
 ## Rules
 
-- SHALL produce artefacts structurally equivalent to running the split flow (`/sddw:design` then `/sddw:taskify`) (FR-03).
+- SHALL produce artefacts structurally equivalent to running the split flow (`/sddw:design` then `/sddw:taskify`).
+- SHALL read and reference the requirements spec — every design element traces to an FR
+- SHALL use the Project path from the requirements spec as the target codebase for analysis
 - SHALL write `design.md` before any task files, ensuring `design.md` is preserved if task generation aborts mid-flow.
-- Every FR from the requirements spec SHALL be covered by at least one task.
+- SHALL use `.sddw/code-analysis.md` if it exists, but SHALL NOT require it
+- SHALL analyse the actual codebase if code-analysis is absent
+- Every task SHALL trace to one or more FR-IDs
+- Every FR SHALL appear in at least one task
+- Tasks SHALL be dependency-ordered (independent first) with explicit `Depends on:` field
 - Tasks SHALL declare `Depends on:` for sequencing.
 - Tasks SHALL use the hybrid format from `specs/design-task.md`, referencing `design.md` for cross-cutting concerns.
 - SHALL NOT silently overwrite an existing `design.md` (see Prerequisites).
