@@ -1,6 +1,6 @@
 ---
 name: sddw:design
-description: Generate design spec as self-contained task files with architecture, data models, interfaces, and decisions
+description: Generate cross-cutting design artefact (design.md) with architecture, data models, interfaces, and decisions — without generating task files
 argument-hint: "<feature-name> [--auto]"
 ---
 
@@ -16,8 +16,8 @@ argument-hint: "<feature-name> [--auto]"
 @~/.claude/sddw/questionnaires/design.md
 
 # SPECS
-@~/.claude/sddw/specs/design-task.md
+@~/.claude/sddw/specs/design.md
 
 # NEXT STEP
 After the user approves the design, suggest:
-> Run `/clear` to free up context, then `/sddw:implement <feature-name> --task 1`
+> Run `/clear` to free up context, then `/sddw:taskify <feature-name>`
