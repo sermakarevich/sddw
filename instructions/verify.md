@@ -13,11 +13,13 @@ Read the feature artifacts from `<resolved-sddw-path>/<feature-name>/`:
 | Artifact | Path | Required |
 |----------|------|----------|
 | Requirements | `<feature-name>/requirements.md` | Yes |
+| Design | `<feature-name>/design/design.md` | Yes |
 | Task files | `<feature-name>/design/tasks/task-*.md` | Yes |
 | Completion reports | `<feature-name>/implement/tasks/*.done.md` | Yes |
 | Code analysis | `code-analysis.md` | No |
 
 If requirements or task files do not exist, stop and suggest running the missing step first.
+If `design.md` is missing, stop and inform the user they must regenerate the feature tasks by running `/sddw:design` then `/sddw:taskify`.
 
 If no completion reports exist, warn the user that no tasks appear to have been implemented and suggest running `/sddw:implement` first.
 
@@ -82,7 +84,8 @@ When issues are found, create remediation task files in the same location as des
 Where `<N>` continues the numbering from existing tasks. Follow the same task file format from the design-task spec.
 
 **Rules for remediation tasks:**
-- SHALL follow the exact same format as design task files
+- SHALL follow the exact same hybrid format as design task files
+- SHALL reference `design.md` for cross-cutting context
 - SHALL reference the FR-IDs that need fixing
 - SHALL include the specific failing tests or uncovered criteria in the acceptance criteria section
 - `Depends on:` SHALL reference the original task that implemented the failing functionality

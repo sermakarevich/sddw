@@ -8,7 +8,7 @@
 
 Spec-Driven Development Workflow for [Claude Code](https://docs.anthropic.com/en/docs/claude-code).
 
-- Write **requirements**, optionally **analyse the codebase**, then **design** (as self-contained task files), then **implement** each task separately, then **verify** the result, then **self-improve** the workflow
+- Write **requirements**, optionally **analyse the codebase**, then **design** architecture, then **taskify** (as hybrid task files referencing `design.md`), then **implement** each task separately, then **verify** the result, then **self-improve** the workflow
 - The agent guides you through every step — researches, proposes options, confirms your decisions
 - Every step produces exactly one spec type. Every step reads specs from previous steps.
 - `/clear` context between steps — each step works within a focused context window
@@ -56,10 +56,12 @@ Every step supports two interaction modes:
 
 1. **Requirements** — collaboratively produce a feature spec with user stories, FRs, and acceptance criteria
 2. **Code Analysis** *(optional)* — scan existing codebase for patterns, interfaces, and conventions
-3. **Design** — break the feature into self-contained task files with architecture and contracts
-4. **Implement** — execute one task at a time following TDD and commit protocols
-5. **Verify** — validate the implementation against requirements and acceptance criteria
-6. **Self-Improve** — analyse execution across all steps and propose workflow improvements
+3. **Design** — produce a cross-cutting `design.md` with architecture, models, and decisions
+4. **Taskify** — break the feature into hybrid task files referencing `design.md`
+5. **Implement** — execute one task at a time following TDD and commit protocols
+6. **Verify** — validate the implementation against requirements and acceptance criteria
+7. **Self-Improve** — analyse execution across all steps and propose workflow improvements
+- **Design & Taskify** — combined alias: run design and taskify in one shot (`/sddw:design_and_taskify`)
 - **Chat** — fast-track interaction with an existing feature: questions, edits, quick fixes
 - **Help** — workflow overview, list features, check feature status
 
@@ -101,26 +103,49 @@ Skip this step for greenfield projects with no existing codebase.
 /sddw:design <feature-name> [--auto]
 ```
 
-Produce self-contained task files through guided dialog:
+Produce a cross-cutting `design.md` through guided dialog:
 
 - **Discover** — understand architectural preferences and constraints
-- **Research & Propose** — propose architecture, data models, contracts, decisions, and task breakdown
-- **Confirm & Generate** — user approves each block, task files are written
+- **Research & Propose** — propose architecture, data models, contracts, and decisions
+- **Confirm & Generate** — user approves each block, `design.md` is written
+
+Output: `.sddw/<feature-name>/design/design.md`
+
+### 4. Taskify
+
+```
+/sddw:taskify <feature-name> [--auto]
+```
+
+Break the feature into hybrid task files based on requirements and design:
+
+- **Discover** — understand task granularity preferences
+- **Research & Propose** — propose task breakdown in dependency order
+- **Confirm & Generate** — user approves task list, task files are written
 
 Output:
 
 ```
 .sddw/<feature-name>/
 └── design/
+    ├── design.md
     └── tasks/
-        ├── task-1-<slug>.md  # self-contained: architecture, models, contracts, decisions, criteria
+        ├── task-1-<slug>.md  # hybrid: files, criteria, references design.md
         ├── task-2-<slug>.md
         └── ...
 ```
 
-Each task file includes all relevant design details inline — architecture, data models, interface contracts, design decisions, and acceptance criteria — so the implementation agent needs only that single file.
+Each task file includes task-specific details inline and references `design.md` for architecture, models, and shared contracts, so the implementation agent has full context without duplication.
 
-### 4. Implement
+### Design & Taskify (Combined Alias)
+
+```
+/sddw:design_and_taskify <feature-name> [--auto]
+```
+
+Runs the design and taskify steps in one shot. Use this for small features where iterating on architecture independently is not needed.
+
+### 5. Implement
 
 ```
 /sddw:implement <feature-name> --task <N> [--auto]
@@ -132,11 +157,11 @@ Execute a single task from the design spec:
 - **Research & Propose** — scan codebase, propose implementation approach and TDD applicability
 - **Execute** — implement following TDD protocol, commit protocol, and deviation handling
 
-Each task file is self-contained — the agent loads it as primary context without needing any other design document.
+Each task file is a hybrid — the agent loads it alongside `design.md` so it has full context.
 
 After each task, a completion report (`task-N-<slug>.done.md`) is written to `implement/tasks/`, documenting what was done, deviations, and difficulties.
 
-### 5. Verify
+### 6. Verify
 
 ```
 /sddw:verify <feature-name> [--auto]
@@ -158,7 +183,7 @@ Output:
 
 If issues are found, remediation tasks are created as additional task files in `design/tasks/` (continuing the numbering). These can be executed with `/sddw:implement` and then verified again — the loop repeats until all checks pass.
 
-### 6. Self-Improve
+### 7. Self-Improve
 
 ```
 /sddw:self-improve <feature-name> [--auto]

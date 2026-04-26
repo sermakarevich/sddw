@@ -30,23 +30,27 @@ sddw — Spec-Driven Development Workflow
     Skip this step for greenfield projects with no existing codebase.
 
   Step 3: Design           /sddw:design <feature-name>
-    Produce self-contained task files: architecture, data models,
-    interface contracts, design decisions, task breakdown.
+    Produce cross-cutting design.md: architecture, data models,
+    interface contracts, design decisions.
 
-  Step 4: Implement        /sddw:implement <feature-name> --task <N>
+  Step 4: Taskify          /sddw:taskify <feature-name>
+    Break the feature into hybrid task files referencing design.md.
+
+  Step 5: Implement        /sddw:implement <feature-name> --task <N>
     Execute a single task following TDD protocol, commit protocol,
     and deviation handling. One task at a time.
 
-  Step 5: Verify           /sddw:verify <feature-name>
+  Step 6: Verify           /sddw:verify <feature-name>
     Run tests, cross-check acceptance criteria, review done criteria.
     Creates remediation tasks if issues are found.
 
-  Step 6: Self-Improve     /sddw:self-improve <feature-name>
+  Step 7: Self-Improve     /sddw:self-improve <feature-name>
     Analyse feature execution across all steps. Identify gaps,
     errors, and patterns. Propose concrete improvements to
     workflow instructions, questionnaires, and specs.
 
   Fast-track:
+    /sddw:design_and_taskify <feature-name>  Combined alias for Design + Taskify
     /sddw:chat <feature-name>     Quick edits, questions, or updates on an
                                    existing feature. Loads artifacts, skips
                                    the full questionnaire ceremony.
@@ -67,15 +71,16 @@ For each feature, show a one-line summary with status indicator:
 
 ```
 Features in .sddw/:
-  <feature-a>    [requirements → code-analysis → design → implement 2/4]
-  <feature-b>    [requirements → design → implement 4/4 → verify PASS → self-improve 2 applied]
+  <feature-a>    [requirements → code-analysis → design → tasks (4) → implement 2/4]
+  <feature-b>    [requirements → design → tasks (4) → implement 4/4 → verify PASS → self-improve 2 applied]
   <feature-c>    [requirements]
 ```
 
 Status detection:
 - `requirements.md` exists → requirements done
 - `.sddw/code-analysis.md` exists → code analysis done
-- `design/tasks/task-N-*.md` → design done (count total tasks)
+- `design/design.md` exists → design done
+- `design/tasks/task-N-*.md` → tasks generated (count total tasks)
 - `implement/tasks/task-N-*.done.md` → count completed tasks
 - `verify/report.md` exists → verification done (read result from Summary)
 - `self-improve/report.md` exists → self-improve done (read applied/skipped counts from Summary)
@@ -100,7 +105,8 @@ Feature: <feature-name>
     (or: ○ skipped — no code-analysis.md found)
 
   Design:          ✓ completed
-    └─ .sddw/<feature-name>/design/tasks/
+    └─ .sddw/<feature-name>/design/design.md
+    (or: ○ pending)
 
   Tasks:           2 of 4 complete
     1. task-1-<slug>    ✓ done
