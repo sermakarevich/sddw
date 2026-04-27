@@ -1,6 +1,6 @@
 # Design Questionnaire
 
-Three-phase dialog to gather enough context to produce self-contained task files.
+Three-phase dialog to gather enough context to produce `design.md`.
 
 ---
 
@@ -79,18 +79,6 @@ Question: "Decision: [title]. I recommend option 1 because [rationale]. Your cal
 
 Wait for response. Lock in decision. Move to next decision if any.
 
-**Section 5 — Task Breakdown (produces individual task files):**
-> "I'd break this into [N] tasks, each as a self-contained file:"
-> 1. Task 1: [description] (FR-01) — Depends on: none — files: [list]
-> 2. Task 2: [description] (FR-02) — Depends on: task-1 — files: [list]
-> "Tasks 1 and [N] can run in parallel. Agree with this breakdown and dependency ordering?"
->
-> "Each task file will include the architecture, data models, contracts, and design decisions relevant to that task — fully self-contained."
->
-> For each task that modifies a module's interface: also list existing test files (especially integration tests) that mock or depend on the current interface — mark them as `— update`.
-
-Wait for response. Lock in approved tasks. Each task becomes a separate file in `design/tasks/`.
-
 ### Rules for proposing:
 - SHALL propose ONE section at a time, wait for approval, then move to next
 - SHALL base proposals on actual codebase analysis (or code-analysis.md), not assumptions
@@ -104,10 +92,13 @@ Wait for response. Lock in approved tasks. Each task becomes a separate file in 
 
 Once all sections are approved:
 
-> "Ready to generate the task files? Here's what I'll write:"
-> - [N] task files, each self-contained with relevant architecture, models, contracts, decisions, and acceptance criteria
+> "Ready to generate `design.md`? Here's what I'll write:"
+> - Architecture overview
+> - Data models
+> - Interface contracts
+> - Design decisions
 
-User confirms → generate task files to `.sddw/<feature-name>/design/tasks/`
+User confirms → generate `design.md` to `.sddw/<feature-name>/design/design.md` following the `specs/design.md` template.
 
 *In `--auto`: generate directly.*
 

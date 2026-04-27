@@ -1,6 +1,6 @@
 ## Task File Format
 
-Each task is a self-contained file at `.sddw/<feature-name>/design/tasks/task-<N>-<slug>.md`. The file contains everything the implementation agent needs to execute the task without loading any other design document.
+Each task file at `.sddw/<feature-name>/design/tasks/task-<N>-<slug>.md` references `design.md` for cross-cutting Architecture, Data Models, and Design Decisions. Only task-specific Files, Contracts, Acceptance Criteria, and Done Criteria are inlined.
 
 **Format:**
 ```
@@ -9,22 +9,19 @@ Each task is a self-contained file at `.sddw/<feature-name>/design/tasks/task-<N
 ## Trace
 - **FR-IDs:** FR-01, FR-02
 - **Depends on:** none | task-1, task-2
+- **Design:** ../design.md
 
 ## Files
 - `path/to/create.py` — create
 - `path/to/modify.py` — modify
+- `tests/test_existing.py` — update (interface change)
 
-## Architecture
+## Design References
+- design.md §Architecture (<relevant component or section>)
+- design.md §Data Models (<relevant entity>)
+- design.md §Design Decisions (<relevant decision>)
 
-[Component and data flow relevant to this task]
-
-### Components
-- [Component]: [responsibility] — [new | existing | modified]
-
-### Data Flow
-[Source] → [Transform/Action] → [Destination]
-
-## Contracts
+## Contracts (task-specific)
 
 ### API Endpoints
 - [METHOD] [path]: [description]
@@ -37,19 +34,6 @@ Each task is a self-contained file at `.sddw/<feature-name>/design/tasks/task-<N
   - Pre: [pre-conditions]
   - Post: [post-conditions]
 
-## Data Models
-
-[Entities, schemas, relationships, and migration requirements relevant to this task]
-
-## Design Decisions
-
-[Non-obvious technical choices relevant to this task with rationale and rejected alternatives]
-
-### [Decision title]
-- **Chosen:** [approach]
-- **Rationale:** [why this approach]
-- **Rejected:** [alternative] — [why rejected]
-
 ## Acceptance Criteria
 
 [Given/When/Then scenarios for the referenced FR-IDs from requirements.md]
@@ -61,15 +45,15 @@ Each task is a self-contained file at `.sddw/<feature-name>/design/tasks/task-<N
 ```
 
 **Rules:**
-- Each task file SHALL be self-contained — include all context needed to implement
-- SHALL include architecture, data models, contracts, and design decisions relevant to this task inline
+- SHALL reference `design.md` for cross-cutting Architecture, Data Models, and Design Decisions via the Design References block
+- SHALL inline only task-specific Files, Contracts, Acceptance Criteria, and Done Criteria; cross-cutting context lives in `design.md` and is referenced by section pointer
+- SHALL NOT duplicate content from `design.md`. If a section's content lives in `design.md`, list it under Design References instead
 - SHALL copy relevant acceptance criteria inline, not reference other files
-- SHALL include only the architecture, contracts, models, decisions, and criteria relevant to this task
 - FR-IDs SHALL match the functional requirements from the requirements spec
 - `Depends on:` SHALL reference other task numbers (e.g., `task-1`) or `none`
 - Done criteria SHALL be specific enough to verify programmatically
 - File paths SHALL be concrete, not placeholders
-- Sections with no content for this task (e.g., no API endpoints) SHALL be omitted rather than left empty
+- Sections with no content for this task (e.g., no task-specific contracts, no cross-cutting context to reference) SHALL be omitted rather than left empty
 - Files section SHALL include existing test files that depend on interfaces being changed, marked as `— update (interface change)`. When a task changes a module's public interface (function signatures, data schema, return types), existing tests that mock or depend on that interface will break — listing them prevents Rule 3 deviations during implementation.
 
 **Example:**
@@ -78,41 +62,16 @@ Each task is a self-contained file at `.sddw/<feature-name>/design/tasks/task-<N
 > ## Trace
 > - **FR-IDs:** FR-01, FR-02
 > - **Depends on:** none
+> - **Design:** ../design.md
 >
 > ## Files
 > - `db/migrations/003_create_password_reset_tokens.py` — create
 > - `src/models/reset_token.py` — create
 >
-> ## Architecture
->
-> ### Components
-> - `TokenRepository`: persists and validates reset tokens — new
->
-> ### Data Flow
-> `ResetService` → `TokenRepository.create()` → database
->
-> ## Contracts
->
-> ### Internal Interfaces
-> - `PasswordResetToken.is_valid() -> bool`: returns True if not expired and not used
->   - Pre: token exists in database
->   - Post: no side effects
->
-> ## Data Models
-> - PasswordResetToken:
->   - `id (uuid)`: primary key
->   - `token (str, unique, indexed)`: secure random token
->   - `user_id (uuid, FK → users.id)`: owner
->   - `expires_at (datetime)`: creation time + 24h
->   - `used (bool, default: false)`: single-use flag
->   - `created_at (datetime)`: auto-set
->
-> ## Design Decisions
->
-> ### Token storage: database vs Redis
-> - **Chosen:** Database (PostgreSQL)
-> - **Rationale:** Tokens need to survive server restarts, existing stack uses PostgreSQL, 24h expiry doesn't need Redis performance
-> - **Rejected:** Redis with TTL — adds infrastructure dependency for a low-throughput feature
+> ## Design References
+> - design.md §Architecture (TokenRepository component)
+> - design.md §Data Models (PasswordResetToken)
+> - design.md §Design Decisions (Token storage: database vs Redis)
 >
 > ## Acceptance Criteria
 >

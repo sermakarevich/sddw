@@ -11,7 +11,15 @@ If no `--task` is provided, list available tasks and ask the user which to execu
 
 ## Prerequisites
 
-Read the task file: `<resolved-sddw-path>/<feature-name>/design/tasks/task-<N>-*.md`
+**Step 1 — Read `design.md` (required):**
+
+Read `<resolved-sddw-path>/<feature-name>/design/design.md`.
+
+If `design.md` is missing: inform the user that `design.md` is required for this feature, suggest regenerating via `/sddw:design <feature>`, and do NOT propose implementation.
+
+**Step 2 — Read the task file:**
+
+Read `<resolved-sddw-path>/<feature-name>/design/tasks/task-<N>-*.md`.
 
 Use the Project path from `<resolved-sddw-path>/<feature-name>/requirements.md` as the working directory for implementation.
 
@@ -27,7 +35,7 @@ Follow the three-phase flow defined in the questionnaire:
 
 1. **Discover** — Identify the task, check dependencies, ask if there's any context since the design was written. *In `--auto`: perform discovery fully autonomously.*
 
-2. **Research & Propose** — Scan codebase for current state of files, research test patterns and library usage. Propose implementation approach and TDD applicability. User confirms. *In `--auto`: research and decide approach autonomously.*
+2. **Research & Propose** — Scan codebase for current state of files, research test patterns and library usage. Propose implementation approach grounded in BOTH `design.md` (cross-cutting Architecture / Data Models / Design Decisions) AND the task file (task-specific Files / Contracts / Acceptance Criteria / Done Criteria), and TDD applicability. User confirms. *In `--auto`: research and decide approach autonomously.*
 
 3. **Execute & Report** — Implement following TDD Protocol, Commit Protocol, and Deviation Handling below. Report completion, recommend clearing context, and suggest next task. *Note: Deviation Rule 4 (architectural) always asks the user, even in `--auto` mode.*
 
@@ -138,3 +146,4 @@ Create the `implement/tasks/` directory if it does not exist. The report documen
 - Implemented code for the specified task
 - Commit(s) with descriptive messages referencing FR-IDs
 - Completion report (`.done.md`) in `implement/tasks/`
+

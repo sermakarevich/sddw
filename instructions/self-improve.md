@@ -13,6 +13,7 @@ Read the feature artifacts from `<resolved-sddw-path>/<feature-name>/`:
 | Artifact | Path | Required |
 |----------|------|----------|
 | Requirements | `<feature-name>/requirements.md` | Yes |
+| Design | `<feature-name>/design/design.md` | Yes |
 | Task files | `<feature-name>/design/tasks/task-*.md` | Yes |
 | Completion reports | `<feature-name>/implement/tasks/*.done.md` | Yes |
 | Verification report | `<feature-name>/verify/report.md` | Yes |
@@ -62,7 +63,7 @@ Signals to check:
 - Done criteria that were too vague to verify
 
 Questions to answer:
-- Were task files self-contained enough for implementation?
+- Were task files (with their `design.md` references) complete enough for implementation?
 - Were task dependencies accurate?
 - Were architecture decisions adequate?
 
