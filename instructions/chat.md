@@ -14,6 +14,7 @@ Read the feature artifacts from `<resolved-sddw-path>/<feature-name>/`:
 |----------|------|----------|
 | Requirements | `<feature-name>/requirements.md` | Yes |
 | Code analysis | `code-analysis.md` | No |
+| Design | `<feature-name>/design/design.md` | No |
 | Task files | `<feature-name>/design/tasks/task-*.md` | No |
 | Completion reports | `<feature-name>/implement/tasks/*.done.md` | No |
 
@@ -81,7 +82,7 @@ Action: Show feature status using the same logic as `/sddw:help status <feature-
 
 If a request is too large for chat — would require new task files, new architecture, or multiple independent changes — redirect:
 
-> "This looks like it needs a full design pass. Run `/sddw:design <feature-name>` to break it down properly."
+> "This looks like it needs a full design pass. Run `/sddw:design_and_taskify <feature-name>` to break it down properly."
 
 Heuristic: if the change would touch more than 3 files or require more than 1 commit, suggest the full workflow.
 
@@ -95,4 +96,4 @@ Heuristic: if the change would touch more than 3 files or require more than 1 co
 - SHALL use `AskUserQuestion` for disambiguation and scope-affecting confirmations
 - SHALL NOT start a full questionnaire flow
 - SHALL NOT produce new artifact types — chat edits existing artifacts or writes code
-- SHALL NOT create task files — if the work needs a task file, redirect to `/sddw:design`
+- SHALL NOT create task files — if the work needs a task file, redirect to `/sddw:design_and_taskify` or `/sddw:taskify`

@@ -71,7 +71,7 @@ After task completion:
 
 > If unblocked tasks remain:
 > "Next unblocked tasks: [list]."
-> "**Recommendation:** Clear your context before starting the next task (`/clear` or start a new conversation). Each task is self-contained — a fresh context avoids accumulated noise from this implementation."
+> "**Recommendation:** Clear your context before starting the next task (`/clear` or start a new conversation). Each task execution is isolated — a fresh context avoids accumulated noise from this implementation."
 > "Then run `/sddw:implement <feature> --task <next>`."
 >
 > If all tasks are complete:

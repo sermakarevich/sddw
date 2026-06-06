@@ -24,4 +24,6 @@ If no feature name is provided, ask the user to describe the feature they want t
 After the user approves the requirements, suggest:
 > Run `/clear` to free up context.
 > If you have an existing codebase, run `/sddw:code-analysis <feature-name>` to ground design decisions in the actual code.
-> Otherwise, go straight to `/sddw:design <feature-name>`.
+> Otherwise, go straight to `/sddw:design_and_taskify <feature-name>` (recommended default).
+> 
+> *Alternative for design review iteration:* Run `/sddw:design <feature-name>` to establish architecture, then `/sddw:taskify <feature-name>` to generate tasks.
