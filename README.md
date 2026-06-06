@@ -5,6 +5,7 @@
 # `sddw`
 
 [![X (Twitter)](https://img.shields.io/badge/X-@SDDWorkflows-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/SDDWorkflows)
+[![Slides](https://img.shields.io/badge/Slides-SDD%20Workflow-FBBC04?style=for-the-badge&logo=googleslides&logoColor=white)](https://docs.google.com/presentation/d/1SjKXF7hkoqyiN9-3tBGY4PDGvS3iqVyovDlJC_hYvMA/edit?usp=sharing)
 
 Spec-Driven Development Workflow for [Claude Code](https://docs.anthropic.com/en/docs/claude-code).
 
